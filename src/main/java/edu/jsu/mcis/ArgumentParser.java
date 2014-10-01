@@ -1,41 +1,27 @@
 package edu.jsu.mcis;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class ArgumentParser{
-	private String ProgramName;
-	private String Length;
-	private String Width;
-	private String Height;
-
-	public ArgumentParser(String parameters){
-		ArgumentValues values = new ArgumentValues();
-		Scanner text = new Scanner(parameters);
-		
-		ProgramName = text.next();
-		Length = text.next();
-		Width = text.next();
-		Height = text.next();
-		
-		values.setProgramName(ProgramName);
-		values.setLength(Length);
-		values.setWidth(Width);
-		values.setHeight(Height);
+	private String programName;
+	private Vector<ArgumentValues> argumentList; 
+	
+	
+	public ArgumentParser(){
+		argumentList = new Vector<ArgumentValues>();
+	}
+	
+	public void addArgument(String argumentName){
+		argumentList.add(ArgumentValues(;
+	}
+	
+	public void addValue(String argumentName, String value){
 		
 	}
 	
-	public String getProgramName(){
-		return ProgramName;
+	public void getValue(String argumentName, String value){
+		
 	}
 	
-	public String getLength(){
-		return Length;
-	}
-	
-	public String getWidth(){
-		return Width;
-	}
-	public String getHeight(){
-		return Height;
-	}
 }

@@ -8,35 +8,27 @@ import static org.junit.Assert.*;
 public class ArgumentParserTest{
 
 	@Test
-	public void testGetProgramName(){
-		ArgumentParser test = new ArgumentParser("VolumeCalculator 3 4 2");
-		assertEquals("VolumeCalculator",test.getProgramName());
+	public void testAddArgument(){
+		ArgumentParser parser = new ArgumentParser();
+		assertEquals(0, parser.getNumArguments());
+		parser.addArgument("color");
+		assertEquals(1, parser.getNumArguments());
 	}
 	
 	@Test
-	public void testGetLength(){
-		ArgumentParser test = new ArgumentParser("VolumeCalculator 3 4 2");
-		assertEquals("3",test.getLength());
+	public void testParseSingleArgument() {
+		ArgumentParser parser = new ArgumentParser();
+		parser.addArgument("color");
+		parser.parse("SomeProgramName red");
+		assertEquals("red", parser.getArgument("color").getValue());
 	}
 	
-	@Test
-	public void testGetWidth(){
-		ArgumentParser test = new ArgumentParser("VolumeCalculator 3 4 2");
-		assertEquals("4",test.getWidth());
-	}
-
-	@Test
-	public void testGetHeight(){
-		ArgumentParser test = new ArgumentParser("VolumeCalculator 3 4 2");
-		assertEquals("2",test.getHeight());
-	}
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
 }
