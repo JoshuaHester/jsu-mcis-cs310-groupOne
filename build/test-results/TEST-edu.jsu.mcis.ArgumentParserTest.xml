@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.jsu.mcis.ArgumentParserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2014-10-01T04:59:37" hostname="JaredLaptop" time="0.051">
+  <properties/>
+  <testcase name="testGetWidth" classname="edu.jsu.mcis.ArgumentParserTest" time="0.043"/>
+  <testcase name="testGetProgramName" classname="edu.jsu.mcis.ArgumentParserTest" time="0.001"/>
+  <testcase name="testGetHeight" classname="edu.jsu.mcis.ArgumentParserTest" time="0.001"/>
+  <testcase name="testGetLength" classname="edu.jsu.mcis.ArgumentParserTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -8,7 +8,7 @@ public class ArgumentValuesTest{
 
 	@Test
 	public void testSetValues(){
-		ArugmentValues v = new ArgumentValues();
+		ArgumentValues v = new ArgumentValues();
 		
 		assertEquals("VolumeCalculator",v.setProgramName("VolumeCalculator"));
 		assertEquals("2",v.setLength("2"));
