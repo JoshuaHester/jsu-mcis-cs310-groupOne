@@ -15,19 +15,32 @@ public class ArgumentParser{
 		argumentList.add(new ArgumentValues(argumentName));
 	}
 	
-	private void addValue(String argumentName, String value){
-		
-	}
+//	private void addValue(String argumentName, String value){
+//		
+//	}
 	
 	public int getNumArguments(){
 		return argumentList.size();
 	}
 	
 	public void parse(String s){
+		Scanner scan = new Scanner(s);
+		programName = scan.next();
+		for(int i=0;i<getNumArguments();i++){
+			argumentList.get(i).addValue(scan.next());
+			
+		}
 		
 	}
 	
-	public ArgumentValues getArgument(){
+	public ArgumentValues getArgument(String argName){
+	ArgumentValues argument;
+		for(int i=0;i<getNumArguments();i++){
+			argument = argumentList.get(i);
+			if(argument.getName().equals(argName)){
+				return argument;
+			}
+		}
 		return null;
 	}
 }

@@ -19,4 +19,8 @@ private String value;
 		return value;
 	}
 	
+	public String getName(){
+		return argumentName;
+	}
+	
 }
