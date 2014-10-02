@@ -11,7 +11,7 @@ private String value;
 		argumentName = name;
 	}
 	
-	public String addValue(String name){
+	public void addValue(String name){
 		value = name;
 	}
 	
