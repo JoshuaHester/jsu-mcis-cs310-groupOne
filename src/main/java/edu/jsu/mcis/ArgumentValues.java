@@ -1,5 +1,4 @@
 package edu.jsu.mcis;
-<<<<<<< HEAD
 /* 
  * Create a class called ArgumentValues that can hold named,string values 
  * representing positional arguments.
@@ -7,17 +6,9 @@ package edu.jsu.mcis;
  */
 import java.util.*;
 //Date Created 9/30/2014
-=======
-
-import java.util.*;
-//import java.util.Scanner;
->>>>>>> origin/master
 
 public class ArgumentValues{
-private String argumentName;
-private String value;
 
-<<<<<<< HEAD
 	private String argument;
 	private String value;
 	
@@ -41,22 +32,5 @@ private String value;
 	 public void setValue(String v){
 		value = v;
 	 }
-=======
-	public ArgumentValues(String name){
-		argumentName = name;
-	}
-	
-	public void addValue(String name){
-		value = name;
-	}
-	
-	public String getValue(){
-		return value;
-	}
-	
-	public String getName(){
-		return argumentName;
-	}
-	
->>>>>>> origin/master
+
 }
