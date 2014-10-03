@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.jsu.mcis.ArgumentValuesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2014-10-01T04:59:38" hostname="JaredLaptop" time="0.0">
+<testsuite name="edu.jsu.mcis.ArgumentValuesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2014-10-03T17:49:33" hostname="JaredLaptop" time="0.0">
   <properties/>
-  <testcase name="testSetValues" classname="edu.jsu.mcis.ArgumentValuesTest" time="0.0"/>
+  <testcase name="testSetArgument" classname="edu.jsu.mcis.ArgumentValuesTest" time="0.0"/>
+  <testcase name="testGetArgument" classname="edu.jsu.mcis.ArgumentValuesTest" time="0.0"/>
+  <testcase name="testSetValue" classname="edu.jsu.mcis.ArgumentValuesTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

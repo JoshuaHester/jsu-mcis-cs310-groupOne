@@ -6,14 +6,28 @@ import static org.junit.Assert.*;
 
 public class ArgumentValuesTest{
 
-	@Test
-	public void testSetValues(){
-		ArgumentValues v = new ArgumentValues();
-		
-		assertEquals("VolumeCalculator",v.setProgramName("VolumeCalculator"));
-		assertEquals("2",v.setLength("2"));
-		assertEquals("4",v.setWidth("4"));
-		assertEquals("7",v.setHeight("7"));
-	}
+	private ArgumentValues v;
 
+	/*
+	@Test
+	public void testSetArgument(){
+	v = new ArgumentValues("Some Argument");
+	assertEquals("Some Argument",v.argument);
+	}
+	*/
+	@Test
+	public void testGetArgument(){
+	v = new ArgumentValues("Some Argument");
+	assertEquals("Some Argument",v.getName());
+	}
+	/*
+	@Test
+	public void testSetValue(){
+	v = new ArgumentValues("Some Argument");
+	v.setValue("7");
+	assertEquals("7",v.value);
+	}
+	*/
+	@Test
+	public void testGetValue(){
 }
