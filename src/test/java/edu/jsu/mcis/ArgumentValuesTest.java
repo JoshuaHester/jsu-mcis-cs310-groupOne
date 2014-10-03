@@ -30,4 +30,7 @@ public class ArgumentValuesTest{
 	*/
 	@Test
 	public void testGetValue(){
+	v = new ArgumentValues("Some Argument");
+	assertEquals("",v.getValue());
+	}
 }
