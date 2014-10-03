@@ -2,10 +2,10 @@ import edu.jsu.mcis.*;
 
 public class GroupOneKeywords(){
 	
-	private ArgumentValue p;
+	private ArgumentParser p;
 	
 	public void startCalVolume(String s) {
-		p = new ArgumentValue();
+		p = new ArgumentParser();
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
@@ -25,7 +25,7 @@ public class GroupOneKeywords(){
 	}
 	
 	public void startGetPet(String s) {
-		p = new ArgumentValue();
+		p = new ArgumentParser();
 		p.addArgument("pet");
 		p.addArgument("number");
 		p.addArgument("rainy");
