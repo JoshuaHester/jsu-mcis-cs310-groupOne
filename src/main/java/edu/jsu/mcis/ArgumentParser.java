@@ -35,6 +35,9 @@ public class ArgumentParser{
 				return argument;
 			}
 		}
-		return null;
+		//return null;
+		ArgumentValues bob =new ArgumentValues("");
+		bob.setValue("");
+		return bob;
 	}
 }
