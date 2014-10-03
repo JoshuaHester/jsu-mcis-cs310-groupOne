@@ -1,0 +1,53 @@
+*** Settings ***
+Library			GroupOneKeywords
+
+
+*** User Keywords ***
+
+
+Check Length	
+	${length}=  	Get Length
+	Should Be Equal  	7  		${length}
+	
+Check Width
+	${width}=  		Get Width
+	Should Be Equal  	5  		${width}
+	
+Check Height
+	${height}= 		Get Height
+	Should Be Equal 	2 		${height}
+	
+	
+Check Pet
+	${pet}=  		Get Pet
+	Should Be Equal 	 dog  	${pet}
+	
+Check Number
+	${number}=  	Get Number
+	Should Be Equal		 2		${number}
+	
+Check Rainy
+	${rainy}=  		Get Rainy
+	Should Be Equal 	true 	${rainy}
+	
+Check Bathrooms
+	${bathrooms}= 	Get Bathrooms
+	Should Be Equal 	3.5 	${bathrooms}
+
+*** Test Cases ***
+
+Start Program With Arguments 7 5 2
+	Start Cal Volume  7 5 2
+	Check Length
+	Check Width 
+	Check Height
+
+
+
+Start Program With Arguments dog 2 true 3.5
+	Start Get Pet  dog 2 true 3.5
+	Check Pet
+	Check Number
+	Check Rainy
+	Check Bathrooms
+
