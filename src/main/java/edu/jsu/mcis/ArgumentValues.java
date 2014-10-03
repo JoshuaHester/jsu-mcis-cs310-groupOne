@@ -1,42 +1,35 @@
 package edu.jsu.mcis;
-// Create a class called ArgumentValues that can hold 
-// named, string values representing positional arguments 
-
-// Date Created 9/30/2014
-// Authored by : Jarred & Sarah
+/* 
+ * Create a class called ArgumentValues that can hold named,string values 
+ * representing positional arguments.
+ *
+ */
+import java.util.*;
+//Date Created 9/30/2014
 
 public class ArgumentValues {
 
-	public String programName;
-	public String length;
-	public String width;
-	public String height;
+	private String argument;
+	private String value;
 	
-	public ArgumentValues(){
-		programName = "";
-		length = "";
-		width = "";
-		height = "";
-	}
 	
-	/* Change these methods to void so they do
-	 * not return any values but rather set them
-	*/
-	public String setProgramName(String n){
-		return programName = n;
+	public ArgumentValues(String arg){
+		argument = arg;
+		value = "";
 	}
-	public String setLength(String l){
-		return length = l;
-	}
-	public String setWidth(String w){
-		return width = w;
-	}
-	public String setHeight(String h){
-		return height = h;
-	}
-	
-
-	public static void main(String[] args){
-	
-	}
+	/* This object is used to hold positional arguments while associating
+	 * values with it. Overall it should be created and stored in a 
+	 * Vector<ArgumentValues> somewhere in the ArgumentParser.class so 
+	 * it can be easily accessed later through sorting.
+	 */
+	 
+	 public String getValue(){
+		return value;
+	 }
+	 public String getName(){
+		return argument;
+	 }
+	 public void setValue(String v){
+		value = v;
+	 }
 }
