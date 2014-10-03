@@ -1,6 +1,6 @@
 import edu.jsu.mcis.*;
 
-public class GroupOneKeywords(){
+public class GroupOneKeywords{
 	
 	private ArgumentParser p;
 	
