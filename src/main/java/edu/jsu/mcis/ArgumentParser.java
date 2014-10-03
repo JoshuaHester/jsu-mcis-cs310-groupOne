@@ -15,10 +15,6 @@ public class ArgumentParser{
 		argumentList.add(new ArgumentValues(argumentName));
 	}
 	
-//	private void addValue(String argumentName, String value){
-//		
-//	}
-	
 	public int getNumArguments(){
 		return argumentList.size();
 	}
@@ -28,9 +24,7 @@ public class ArgumentParser{
 		programName = scan.next();
 		for(int i=0;i<getNumArguments();i++){
 			argumentList.get(i).addValue(scan.next());
-			
 		}
-		
 	}
 	
 	public ArgumentValues getArgument(String argName){
