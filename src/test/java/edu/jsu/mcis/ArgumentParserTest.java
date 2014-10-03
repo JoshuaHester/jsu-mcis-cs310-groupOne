@@ -24,23 +24,24 @@ public class ArgumentParserTest{
 	}
 	
 	@Test
-	ArgumentParser parser=new ArgumentParser();
-	parser.addArgument("pet");
-	parse.parse("SomeProgramName dog");
-	assertEquals("", parser.getArgument("pet").getValue());
+	public void testNonExistantArgumentShouldBeEmptyString() {
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument("pet");
+		parser.parse("SomeProgramName dog");
+		assertEquals("", parser.getArgument("animal").getValue());
+	}
 	
-	/*@Test
+	@Test
 	public void getUsageTest(){
-		ArguementParser argp= new ArgumentParser();
+		ArgumentParser argp= new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
-		argp.parse("Volcal");
+		argp.parse("VolCal 0 0 0");
 		String s=argp.getUsage();
-		String a="Vol/n positional arguments:/n length/n width/n height/n";
-		
+		String a="VolCal/n positional arguments:/n length/n width/n height/n ";
 		assertEquals(a,s);
-	}*/
+	}
 	
 	
 	

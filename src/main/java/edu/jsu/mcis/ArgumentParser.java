@@ -23,12 +23,12 @@ public class ArgumentParser{
 		Scanner scan = new Scanner(s);
 		programName = scan.next();
 		for(int i=0;i<getNumArguments();i++){
-			argumentList.get(i).addValue(scan.next());
+			argumentList.get(i).setValue(scan.next());
 		}
 	}
 	
 	public ArgumentValues getArgument(String argName){
-	ArgumentValues argument;
+		ArgumentValues argument;
 		for(int i=0;i<getNumArguments();i++){
 			argument = argumentList.get(i);
 			if(argument.getName().equals(argName)){
@@ -39,5 +39,28 @@ public class ArgumentParser{
 		ArgumentValues bob =new ArgumentValues("");
 		bob.setValue("");
 		return bob;
+	}
+/*	
+	public String getUsage(){
+		String s = programName.toString()+"/n positional arguments:/n ";
+		
+		s=s+argumentList.get(0).getName()+"/n ";
+		s=s+argumentList.get(1).getName()+"/n ";
+		s=s+argumentList.get(2).getName()+"/n ";
+		
+		
+		
+		
+		System.out.println(s);
+		return s;
+	}
+*/
+	
+	public String getUsage(){
+		String s = programName.toString()+"/n positional arguments:/n ";
+		for(int i=0;i<getNumArguments();i++){
+			s=s+argumentList.get(i).getName()+"/n ";
+		}
+		return s;
 	}
 }
