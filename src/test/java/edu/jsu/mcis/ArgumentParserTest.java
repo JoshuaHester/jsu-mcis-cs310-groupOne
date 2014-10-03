@@ -23,28 +23,23 @@ public class ArgumentParserTest{
 		assertEquals("red", parser.getArgument("color").getValue());
 	}
 	
-<<<<<<< HEAD
-=======
 	@Test
+	public void testEmptyString(){
 	ArgumentParser parser=new ArgumentParser();
 	parser.addArgument("pet");
-	parse.parse("SomeProgramName dog");
+	parser.parse("SomeProgramName dog");
 	assertEquals("", parser.getArgument("pet").getValue());
+	}
 	
->>>>>>> origin/master
 	/*@Test
 	public void getUsageTest(){
-		ArgumentParser argp = new ArgumentParser();
+		ArguementParser argp= new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("Volcal");
 		String s=argp.getUsage();
-<<<<<<< HEAD
-		String a = "Vol/n positional arguments:/n length/n width/n height/n";
-=======
 		String a="Vol/n positional arguments:/n length/n width/n height/n";
->>>>>>> origin/master
 		
 		assertEquals(a,s);
 	}*/
