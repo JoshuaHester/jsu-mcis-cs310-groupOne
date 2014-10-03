@@ -23,7 +23,7 @@ public class ArgumentParser{
 		Scanner scan = new Scanner(s);
 		programName = scan.next();
 		for(int i=0;i<getNumArguments();i++){
-			argumentList.get(i).addValue(scan.next());
+			argumentList.get(i).setValue(scan.next());
 		}
 	}
 	
