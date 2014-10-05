@@ -39,7 +39,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height");
 		argp.parse("VolCal 0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal/n positional arguments:/n length/n width/n height/n ";
+		String a="VolCal/n positional arguments:/n length/n width/n height";
 		assertEquals(a,s);
 	}
 	

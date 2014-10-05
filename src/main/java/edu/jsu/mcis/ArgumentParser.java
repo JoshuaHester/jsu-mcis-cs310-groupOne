@@ -40,26 +40,11 @@ public class ArgumentParser{
 		bob.setValue("");
 		return bob;
 	}
-/*	
-	public String getUsage(){
-		String s = programName.toString()+"/n positional arguments:/n ";
-		
-		s=s+argumentList.get(0).getName()+"/n ";
-		s=s+argumentList.get(1).getName()+"/n ";
-		s=s+argumentList.get(2).getName()+"/n ";
-		
-		
-		
-		
-		System.out.println(s);
-		return s;
-	}
-*/
 	
 	public String getUsage(){
-		String s = programName.toString()+"/n positional arguments:/n ";
+		String s = programName.toString()+"/n positional arguments:";
 		for(int i=0;i<getNumArguments();i++){
-			s=s+argumentList.get(i).getName()+"/n ";
+			s=s+"/n "+argumentList.get(i).getName();
 		}
 		return s;
 	}
