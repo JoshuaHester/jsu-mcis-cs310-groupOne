@@ -16,21 +16,32 @@ public class ArgumentValuesTest{
 	}
 	*/
 	@Test
-	public void testGetArgument(){
-	v = new ArgumentValues("Some Argument");
-	assertEquals("Some Argument",v.getName());
+		public void testGetArgument(){
+		v = new ArgumentValues("Some Argument");
+		assertEquals("Some Argument",v.getName());
 	}
-	/*
+	
 	@Test
 	public void testSetValue(){
-	v = new ArgumentValues("Some Argument");
-	v.setValue("7");
-	assertEquals("7",v.value);
+		v = new ArgumentValues("Some Argument");
+		v.setValue("7");
+		assertEquals("7",v.getValue());
 	}
-	*/
+	
 	@Test
 	public void testGetValue(){
-	v = new ArgumentValues("Some Argument");
-	assertEquals("",v.getValue());
+		v = new ArgumentValues("Some Argument");
+		assertEquals("",v.getValue());
 	}
+	
+	@Test
+	public void testMakeArgumentWithDescription(){
+		v = new ArgumentValues("pet", "Best Friend");
+		v.setValue("dog");
+		assertEquals("dog",v.getValue());
+		assertEquals("Best Friend",v.getDescription());
+		assertEquals("pet",v.getName());
+	}
+	
+	
 }

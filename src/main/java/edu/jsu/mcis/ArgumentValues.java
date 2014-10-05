@@ -17,20 +17,28 @@ public class ArgumentValues{
 		argument = arg;
 		value = "";
 	}
+	
+	public ArgumentValues(String arg, String desc){
+		this(arg);
+	}
+	
 	/* This object is used to hold positional arguments while associating
 	 * values with it. Overall it should be created and stored in a 
 	 * Vector<ArgumentValues> somewhere in the ArgumentParser.class so 
 	 * it can be easily accessed later through sorting.
 	 */
 	 
-	 public String getValue(){
+	public String getValue(){
 		return value;
-	 }
-	 public String getName(){
+	}
+	public String getName(){
 		return argument;
-	 }
-	 public void setValue(String v){
+	}
+	public void setValue(String v){
 		value = v;
-	 }
+	}
 
+	public String getDescription(){
+		return null;
+	}
 }
