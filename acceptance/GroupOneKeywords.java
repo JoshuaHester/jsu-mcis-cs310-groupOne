@@ -9,7 +9,7 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.parse(s);
+		p.parse("CalVolume "+s);
 	}
 	
 	public String getLength(){
@@ -30,7 +30,7 @@ public class GroupOneKeywords{
 		p.addArgument("number");
 		p.addArgument("rainy");
 		p.addArgument("bathrooms");
-		p.parse(s);
+		p.parse("GetPet "+s);
 	}
 	
 	public String getPet(){
