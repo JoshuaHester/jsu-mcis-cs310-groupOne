@@ -43,7 +43,18 @@ public class ArgumentParserTest{
 		assertEquals(a,s);
 	}
 	
-	
+		@Test
+		
+	public void getUsageWithDescriptionTest(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument("length", "The length of the object");
+		argp.addArgument("width", "The width of the object");
+		argp.addArgument("height", "The height of the object");
+		argp.parse("VolCal 0 0 0");
+		String s=argp.getUsage();
+		String a="VolCal/n positional arguments:/n length The length of the object/n width The width of the object/n height The height of the object";
+		assertEquals(a,s);
+	}
 	
 	
 	

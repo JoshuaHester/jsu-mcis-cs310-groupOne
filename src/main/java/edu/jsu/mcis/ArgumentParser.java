@@ -15,6 +15,10 @@ public class ArgumentParser{
 		argumentList.add(new ArgumentValues(argumentName));
 	}
 	
+	public void addArgument(String argumentName, String argumentDescription){
+		argumentList.add(new ArgumentValues(argumentName, argumentDescription));
+	}
+	
 	public int getNumArguments(){
 		return argumentList.size();
 	}
@@ -35,7 +39,6 @@ public class ArgumentParser{
 				return argument;
 			}
 		}
-		//return null;
 		ArgumentValues bob =new ArgumentValues("");
 		bob.setValue("");
 		return bob;
@@ -45,6 +48,9 @@ public class ArgumentParser{
 		String s = programName.toString()+"/n positional arguments:";
 		for(int i=0;i<getNumArguments();i++){
 			s=s+"/n "+argumentList.get(i).getName();
+			if(argumentList.get(i).getDescription()!=null){
+				s=s+" "+argumentList.get(i).getDescription();
+			}
 		}
 		return s;
 	}

@@ -11,6 +11,7 @@ public class ArgumentValues{
 
 	private String argument;
 	private String value;
+	private String description;
 	
 	
 	public ArgumentValues(String arg){
@@ -20,6 +21,7 @@ public class ArgumentValues{
 	
 	public ArgumentValues(String arg, String desc){
 		this(arg);
+		setDescription(desc);
 	}
 	
 	/* This object is used to hold positional arguments while associating
@@ -37,8 +39,12 @@ public class ArgumentValues{
 	public void setValue(String v){
 		value = v;
 	}
+	
+	public void setDescription(String s){
+		description = s;
+	}
 
 	public String getDescription(){
-		return null;
+		return description;
 	}
 }
