@@ -29,14 +29,23 @@ public class ArgumentParser{
 		Scanner scan = new Scanner(s);
 		programName = scan.next();
 		String nextVal = "";
-		for(int i=0;i<getNumArguments();i++){
-			if(helpOut == false){
-				nextVal = scan.next();
-				if(nextVal.equals("-h")){
-					helpOut = true;
+//		for(int i=0;i<getNumArguments();i++){
+		boolean loop = true;
+		int i=0;
+		while(loop){
+			if(scan.hasNext()){
+				if(helpOut == false){
+					nextVal = scan.next();
+					if(nextVal.equals("-h")){
+						helpOut = true;
+					}
+					else {
+						argumentList.get(i).setValue(nextVal);
+						i++;
+					}
 				}
-				else argumentList.get(i).setValue(nextVal);
 			}
+			else loop = false;
 		}
 	}
 	
