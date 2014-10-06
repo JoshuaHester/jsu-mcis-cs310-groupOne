@@ -37,7 +37,7 @@ Check Bathrooms
 *** Test Cases ***
 
 Start Program With Arguments 7 5 2
-	start Cal Volume		7 5 2
+	Start Cal Volume  7 5 2
 	Check Length
 	Check Width 
 	Check Height
@@ -45,7 +45,7 @@ Start Program With Arguments 7 5 2
 
 
 Start Program With Arguments dog 2 true 3.5
-	start Get Pet		dog 2 true 3.5
+	Start Get Pet  dog 2 true 3.5
 	Check Pet
 	Check Number
 	Check Rainy
