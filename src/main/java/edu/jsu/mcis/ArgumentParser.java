@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class ArgumentParser{
 	private String programName;
 	private Vector<ArgumentValues> argumentList; 
+	private boolean helpOut = false;
+	
 	
 	public ArgumentParser(){
 		argumentList = new Vector<ArgumentValues>();
@@ -26,9 +28,20 @@ public class ArgumentParser{
 	public void parse(String s){
 		Scanner scan = new Scanner(s);
 		programName = scan.next();
+		String nextVal = "";
 		for(int i=0;i<getNumArguments();i++){
-			argumentList.get(i).setValue(scan.next());
+			if(helpOut == false){
+				nextVal = scan.next();
+				if(nextVal.equals("-h")){
+					helpOut = true;
+				}
+				else argumentList.get(i).setValue(nextVal);
+			}
 		}
+	}
+	
+	public boolean getHelpOut(){
+		return helpOut;
 	}
 	
 	public ArgumentValues getArgument(String argName){
@@ -39,9 +52,9 @@ public class ArgumentParser{
 				return argument;
 			}
 		}
-		ArgumentValues bob =new ArgumentValues("");
-		bob.setValue("");
-		return bob;
+		ArgumentValues val =new ArgumentValues("");
+		val.setValue("");
+		return val;
 	}
 	
 	public String getUsage(){

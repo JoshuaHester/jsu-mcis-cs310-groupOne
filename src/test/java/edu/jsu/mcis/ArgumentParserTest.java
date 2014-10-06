@@ -32,7 +32,7 @@ public class ArgumentParserTest{
 	}
 	
 	@Test
-	public void getUsageTest(){
+	public void testGetUsage(){
 		ArgumentParser argp= new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
@@ -45,7 +45,7 @@ public class ArgumentParserTest{
 	
 		@Test
 		
-	public void getUsageWithDescriptionTest(){
+	public void testGetUsageWithDescription(){
 		ArgumentParser argp= new ArgumentParser();
 		argp.addArgument("length", "The length of the object");
 		argp.addArgument("width", "The width of the object");
@@ -56,6 +56,15 @@ public class ArgumentParserTest{
 		assertEquals(a,s);
 	}
 	
+	@Test
+	public void testDashHFunction(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("CalVol -h");
+		assertEquals(true, argp.getHelpOut());
+	}
 	
 	
 	
