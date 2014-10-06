@@ -43,8 +43,7 @@ public class ArgumentParserTest{
 		assertEquals(a,s);
 	}
 	
-		@Test
-		
+	@Test
 	public void testGetUsageWithDescription(){
 		ArgumentParser argp= new ArgumentParser();
 		argp.addArgument("length", "The length of the object");
@@ -55,7 +54,29 @@ public class ArgumentParserTest{
 		String a="VolCal/n positional arguments:/n length The length of the object/n width The width of the object/n height The height of the object";
 		assertEquals(a,s);
 	}
+
+	@Test 
+	// If their are more values than arguments, exit the program.
+	public void testTooManyArguments(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7 5 2 43");
+		assertEquals("43",argp.getUnknownValue());
+	}
 	
+	@Test
+	// If their are more arguments than values, exit the program
+	public void testTooLessArguments(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7 5");
+		assertEquals("height",argp.getUnknownArg());
+	}
+
 	@Test
 	public void testDashHFunction(){
 		ArgumentParser argp = new ArgumentParser();
@@ -65,9 +86,4 @@ public class ArgumentParserTest{
 		argp.parse("CalVol -h");
 		assertEquals(true, argp.getHelpOut());
 	}
-	
-	
-	
-	
-	
 }
