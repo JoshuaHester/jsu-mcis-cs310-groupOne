@@ -54,6 +54,16 @@ public class ArgumentParserTest{
 		String a="VolCal/n positional arguments:/n length The length of the object/n width The width of the object/n height The height of the object";
 		assertEquals(a,s);
 	}
+	
+	@Test
+	public void testDashHFunction(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("CalVol -h");
+		assertEquals(true, argp.getHelpOut());
+	}
 
 	@Test 
 	// If their are more values than arguments, exit the program.
@@ -77,13 +87,68 @@ public class ArgumentParserTest{
 		assertEquals("height",argp.getUnknownArg());
 	}
 
-	@Test
-	public void testDashHFunction(){
+	@Test 
+	public void testTooManyArgumentsTwo(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
-		argp.addArgument("height");
-		argp.parse("CalVol -h");
-		assertEquals(true, argp.getHelpOut());
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7 5 2 43 57");
+		assertEquals("43 57",argp.getUnknownValue());
 	}
+	
+	@Test
+	public void testTooLessArgumentsTwo(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7");
+		assertEquals("width height",argp.getUnknownArg());
+	}
+	
+		@Test 
+	public void testTooManyArgumentsBool(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7 5 2 43");
+		assertEquals(true,argp.checkTooManyArg());
+	}
+	
+	@Test
+	public void testTooLessArgumentsBool(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		argp.parse("VolCal 7 5");
+		assertEquals(true,argp.checkTooFewArg());
+	}
+	
+	@Test
+	public void testMissingArgumentsMessage(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 7 5");
+		String s=argp.missingArguments();
+		String a="VolCal/n positional arguments:/n length/n width/n height/n error: the following arguments are required: height";
+		assertEquals(a,s);
+	}
+	
+	@Test
+	public void testtooManyArgumentsMessage(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 7 5 2 43");
+		String s=argp.tooManyArguments();
+		String a="VolCal/n positional arguments:/n length/n width/n height/n error: unrecognised arguments: 43";
+		assertEquals(a,s);
+	}
+
 }

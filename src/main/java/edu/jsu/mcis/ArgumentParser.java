@@ -7,6 +7,8 @@ public class ArgumentParser{
 	private String programName;
 	private Vector<ArgumentValues> argumentList; 
 	private boolean helpOut = false;
+	private boolean tooManyArg = false;
+	private boolean tooFewArg = false;
 	private ArgumentValues invalidArg;
 	private String missingArg;
 	
@@ -35,6 +37,7 @@ public class ArgumentParser{
 		while(loop){
 			if(scan.hasNext()){
 				if(getNumArguments()<i+1){
+					tooManyArg=true;
 					String a =scan.next();
 					while(scan.hasNext()){
 					a=a+" "+scan.next();
@@ -42,24 +45,24 @@ public class ArgumentParser{
 					invalidArg = new ArgumentValues("invalid");
 					invalidArg.setValue(a);
 					loop = false;
+					
 				}
 				else{
-					if(helpOut == false){
-						nextVal = scan.next();
-						if(nextVal.equals("-h")){
-							helpOut = true;
-							loop = false;
-						}
-						else {
-							argumentList.get(i).setValue(nextVal);
-							i++;
-						}
+					nextVal = scan.next();
+					if(nextVal.equals("-h")){
+						helpOut = true;
+						loop = false;
+					}
+					else {
+						argumentList.get(i).setValue(nextVal);
+						i++;
 					}
 				}
 			}
 			else loop = false;
 		}	
 		if(i<getNumArguments()){
+			tooFewArg=true;
 			missingArg=argumentList.get(i).getName();
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentList.get(i).getName();
@@ -103,4 +106,15 @@ public class ArgumentParser{
 		return missingArg;
 	}
 	
+	public String missingArguments(){
+		return getUsage()+"/n error: the following arguments are required: "+getUnknownArg();
+		
+	}
+	
+	public String tooManyArguments(){
+		return getUsage()+"/n error: unrecognised arguments: "+getUnknownValue();
+	}
+	
+	public boolean checkTooManyArg(){return tooManyArg;}
+	public boolean checkTooFewArg(){return tooFewArg;}
 }
