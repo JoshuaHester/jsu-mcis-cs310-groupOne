@@ -8,6 +8,7 @@ public class ArgumentParser{
 	private Vector<ArgumentValues> argumentList; 
 	private boolean helpOut = false;
 	private ArgumentValues invalidArg;
+	private String missingArg;
 	
 	public ArgumentParser(){
 		argumentList = new Vector<ArgumentValues>();
@@ -57,6 +58,12 @@ public class ArgumentParser{
 				}
 			}
 			else loop = false;
+		}	
+		if(i<getNumArguments()){
+			missingArg=argumentList.get(i).getName();
+			for(i=i+1;i<getNumArguments();i++){
+				missingArg=missingArg+" "+argumentList.get(i).getName();
+			}
 		}
 	}
 	
@@ -93,7 +100,7 @@ public class ArgumentParser{
 	}
 	
 	public String getUnknownArg(){
-		return null;
+		return missingArg;
 	}
 	
 }
