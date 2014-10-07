@@ -4,7 +4,7 @@ public class GroupOneKeywords{
 	
 	private ArgumentParser p;
 	
-	public void startCalVolume(String s) {
+	public void StartProgramWithArguments1(String s) {
 		p = new ArgumentParser();
 		p.addArgument("length");
 		p.addArgument("width");
@@ -24,7 +24,7 @@ public class GroupOneKeywords{
 		return p.getArgument("height").getValue();
 	}
 	
-	public void startGetPet(String s) {
+	public void StartProgramWithArguments2(String s) {
 		p = new ArgumentParser();
 		p.addArgument("pet");
 		p.addArgument("number");
