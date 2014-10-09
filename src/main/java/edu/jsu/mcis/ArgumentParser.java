@@ -10,12 +10,14 @@ public class ArgumentParser{
 	private boolean tooFewArg = false;
 	private ArgumentValues invalidArg;
 	private String missingArg;
-	private ArrayList keyMapList;
+	private List<String> keyMapList;
 	private Hashtable<String,ArgumentValues> argumentTable;
+	public enum Types{STRING, INT, FLOAT, BOOLEAN}
+	
 	
 	public ArgumentParser(){
-		keyMapList = new ArrayList(5);
-		argumentTable = new Hashtable(5);
+		keyMapList = new ArrayList<String>(5);
+		argumentTable = new Hashtable<String,ArgumentValues>(5);
 	}
 	
 	public void addArgument(String argumentName){
