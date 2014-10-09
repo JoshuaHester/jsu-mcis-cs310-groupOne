@@ -5,27 +5,31 @@ import java.util.Scanner;
 
 public class ArgumentParser{
 	private String programName;
-	private Vector<ArgumentValues> argumentList; 
 	private boolean helpOut = false;
 	private boolean tooManyArg = false;
 	private boolean tooFewArg = false;
 	private ArgumentValues invalidArg;
 	private String missingArg;
+	private ArrayList keyMapList;
+	private Hashtable<String,ArgumentValues> argumentTable;
 	
 	public ArgumentParser(){
-		argumentList = new Vector<ArgumentValues>();
+		keyMapList = new ArrayList(5);
+		argumentTable = new Hashtable(5);
 	}
 	
 	public void addArgument(String argumentName){
-		argumentList.add(new ArgumentValues(argumentName));
+		argumentTable.put(argumentName, new ArgumentValues(argumentName));
+		keyMapList.add(argumentName);
 	}
 	
 	public void addArgument(String argumentName, String argumentDescription){
-		argumentList.add(new ArgumentValues(argumentName, argumentDescription));
+		argumentTable.put(argumentName, new ArgumentValues(argumentName, argumentDescription));
+		keyMapList.add(argumentName);
 	}
 	
 	public int getNumArguments(){
-		return argumentList.size();
+		return keyMapList.size();
 	}
 	
 	public void parse(String s){
@@ -45,7 +49,6 @@ public class ArgumentParser{
 					invalidArg = new ArgumentValues("invalid");
 					invalidArg.setValue(a);
 					loop = false;
-					
 				}
 				else{
 					nextVal = scan.next();
@@ -54,7 +57,7 @@ public class ArgumentParser{
 						loop = false;
 					}
 					else {
-						argumentList.get(i).setValue(nextVal);
+						argumentTable.get(keyMapList.get(i)).setValue(nextVal);
 						i++;
 					}
 				}
@@ -63,9 +66,9 @@ public class ArgumentParser{
 		}	
 		if(i<getNumArguments()){
 			tooFewArg=true;
-			missingArg=argumentList.get(i).getName();
+			missingArg=argumentTable.get(keyMapList.get(i)).getName();
 			for(i=i+1;i<getNumArguments();i++){
-				missingArg=missingArg+" "+argumentList.get(i).getName();
+				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
 			}
 		}
 	}
@@ -75,24 +78,22 @@ public class ArgumentParser{
 	}
 	
 	public ArgumentValues getArgument(String argName){
-		ArgumentValues argument;
-		for(int i=0;i<getNumArguments();i++){
-			argument = argumentList.get(i);
-			if(argument.getName().equals(argName)){
-				return argument;
-			}
+		if(argumentTable.containsKey(argName)){
+			return argumentTable.get(argName);
 		}
-		ArgumentValues val =new ArgumentValues("");
-		val.setValue("");
-		return val;
+		else{	
+			ArgumentValues val =new ArgumentValues("");
+			val.setValue("");
+			return val;
+		}
 	}
 	
 	public String getUsage(){
 		String s = programName.toString()+"/n positional arguments:";
 		for(int i=0;i<getNumArguments();i++){
-			s=s+"/n "+argumentList.get(i).getName();
-			if(argumentList.get(i).getDescription()!=null){
-				s=s+" "+argumentList.get(i).getDescription();
+			s=s+"/n "+argumentTable.get(keyMapList.get(i)).getName();
+			if(argumentTable.get(keyMapList.get(i)).getDescription()!=null){
+				s=s+" "+argumentTable.get(keyMapList.get(i)).getDescription();
 			}
 		}
 		return s;
