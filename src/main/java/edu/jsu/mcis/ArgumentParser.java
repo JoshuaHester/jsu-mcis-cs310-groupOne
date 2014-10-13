@@ -30,6 +30,11 @@ public class ArgumentParser{
 		keyMapList.add(argumentName);
 	}
 	
+	public void addArgument(ArgumentValues.Types type, String argumentName){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+		keyMapList.add(argumentName);
+	}
+	
 	public int getNumArguments(){
 		return keyMapList.size();
 	}

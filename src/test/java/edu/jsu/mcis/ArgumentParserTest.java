@@ -150,5 +150,50 @@ public class ArgumentParserTest{
 		String a="VolCal/n positional arguments:/n length/n width/n height/n error: unrecognised arguments: 43";
 		assertEquals(a,s);
 	}
-
+	
+	@Test
+	public void testAddIntArgument() {
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.INT, "length");
+		parser.parse("SomeProgramName 5");
+		assertEquals(5, parser.getArgument("length").getValue());
+	}
+	
+	@Test
+	public void testAddFloatArgument() {
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.FLOAT, "length");
+		parser.parse("SomeProgramName 5.5");
+		assertEquals(5.5, parser.getArgument("length").getValue());
+	}
+	
+	@Test
+	public void testAddBooleanArgument() {
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.BOOLEAN, "Rainy");
+		parser.parse("SomeProgramName true");
+		assertEquals(true, parser.getArgument("Rainy").getValue());
+	}
+	
+	@Test
+	public void testAddStringArgument() {
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.STRING, "pet");
+		parser.parse("SomeProgramName dog");
+		assertEquals("dog", parser.getArgument("pet").getValue());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
