@@ -12,7 +12,7 @@ public class ArgumentParser{
 	private String missingArg;
 	private List<String> keyMapList;
 	private Hashtable<String,ArgumentValues> argumentTable;
-	public enum Types{STRING, INT, FLOAT, BOOLEAN}
+	
 	
 	
 	public ArgumentParser(){

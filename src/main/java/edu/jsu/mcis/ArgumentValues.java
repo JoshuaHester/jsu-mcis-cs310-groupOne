@@ -12,6 +12,7 @@ public class ArgumentValues{
 	private String argument;
 	private String value;
 	private String description;
+	public enum Types{STRING, INT, FLOAT, BOOLEAN};
 	
 	
 	public ArgumentValues(String arg){
