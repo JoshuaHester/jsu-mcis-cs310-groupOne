@@ -45,19 +45,19 @@ public class ArgumentValuesTest{
 		assertEquals(5,v.getValue());
 	}
 	@Test
-		public void testIntValueArgument(){
+	public void testFloatValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "approximate");
 		v.setValue("3.2");
 		assertEquals(3.2,v.getValue());
 	}
 	@Test
-		public void testIntValueArgument(){
+	public void testBooleanValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "true");
 		v.setValue("true");
 		assertEquals(true,v.getValue());
 	}
 	@Test
-		public void testIntValueArgument(){
+	public void testStringValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
 		v.setValue("dog");
 		assertEquals("dog",v.getValue());
