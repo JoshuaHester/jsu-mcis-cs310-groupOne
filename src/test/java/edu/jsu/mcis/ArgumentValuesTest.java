@@ -7,14 +7,6 @@ import static org.junit.Assert.*;
 public class ArgumentValuesTest{
 
 	private ArgumentValues v;
-
-	/*
-	@Test
-	public void testSetArgument(){
-	v = new ArgumentValues("Some Argument");
-	assertEquals("Some Argument",v.argument);
-	}
-	*/
 	@Test
 		public void testGetArgument(){
 		v = new ArgumentValues("Some Argument");
@@ -43,5 +35,31 @@ public class ArgumentValuesTest{
 		assertEquals("pet",v.getName());
 	}
 	
-	
+	/* These tests are made to implement all data types 
+	 * and store them in ArgumentValues. 
+	*/
+	@Test
+	public void testIntValueArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.INT, "length");
+		v.setValue("5");
+		assertEquals(5,v.getValue());
+	}
+	@Test
+		public void testIntValueArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "approximate");
+		v.setValue("3.2");
+		assertEquals(3.2,v.getValue());
+	}
+	@Test
+		public void testIntValueArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "true");
+		v.setValue("true");
+		assertEquals(true,v.getValue());
+	}
+	@Test
+		public void testIntValueArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
+		v.setValue("dog");
+		assertEquals("dog",v.getValue());
+	}
 }
