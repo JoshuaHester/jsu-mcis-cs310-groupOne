@@ -7,22 +7,31 @@ package edu.jsu.mcis;
 import java.util.*;
 //Date Created 9/30/2014
 
-public class ArgumentValues{
+public class ArgumentValues<T>{
 
 	private String argument;
-	private String value;
+	private T value;
 	private String description;
+	private Types variables = Types.STRING;
 	public enum Types{STRING, INT, FLOAT, BOOLEAN};
 	
 	
 	public ArgumentValues(String arg){
 		argument = arg;
 		value = "";
+		
 	}
 	
 	public ArgumentValues(String arg, String desc){
 		this(arg);
 		setDescription(desc);
+	}
+	
+	public ArgumentValues(Types t, String arg){
+		
+		this(arg);
+		variables = t;
+	
 	}
 	
 	/* This object is used to hold positional arguments while associating
@@ -38,12 +47,22 @@ public class ArgumentValues{
 		return argument;
 	}
 	public void setValue(String v){
-		value = v;
+		switch(variables){
+		case INT:
+			break;
+		case FLOAT:
+			break;
+		case BOOLEAN:
+			break;
+		default:
+			value = v;
+		}
 	}
 	
 	public void setDescription(String s){
 		description = s;
 	}
+
 
 	public String getDescription(){
 		return description;
