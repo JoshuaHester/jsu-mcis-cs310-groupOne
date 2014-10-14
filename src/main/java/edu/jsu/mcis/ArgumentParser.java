@@ -96,9 +96,9 @@ public class ArgumentParser{
 	}
 	
 	public String getUsage(){
-		String s = programName.toString()+"/n positional arguments:";
+		String s = programName.toString()+"\n positional arguments:";
 		for(int i=0;i<getNumArguments();i++){
-			s=s+"/n "+argumentTable.get(keyMapList.get(i)).getName();
+			s=s+"\n "+argumentTable.get(keyMapList.get(i)).getName();
 			if(argumentTable.get(keyMapList.get(i)).getDescription()!=null){
 				s=s+" "+argumentTable.get(keyMapList.get(i)).getDescription();
 			}
@@ -115,12 +115,12 @@ public class ArgumentParser{
 	}
 	
 	public String missingArguments(){
-		return getUsage()+"/n error: the following arguments are required: "+getUnknownArg();
+		return getUsage()+"\n error: the following arguments are required: "+getUnknownArg();
 		
 	}
 	
 	public String tooManyArguments(){
-		return getUsage()+"/n error: unrecognised arguments: "+getUnknownValue();
+		return getUsage()+"\n error: unrecognised arguments: "+getUnknownValue();
 	}
 	
 	public boolean checkTooManyArg(){return tooManyArg;}

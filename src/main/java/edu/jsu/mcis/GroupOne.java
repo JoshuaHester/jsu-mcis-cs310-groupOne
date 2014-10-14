@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GroupOne{
 
-	public void main(String args[]){
+	public static void main(String args[]){
 		Scanner key = new Scanner(System.in);
 		String input = "";
 		while(!input.equals("QUIT")){

@@ -39,7 +39,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height");
 		argp.parse("VolCal 0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal/n positional arguments:/n length/n width/n height";
+		String a="VolCal\n positional arguments:\n length\n width\n height";
 		assertEquals(a,s);
 	}
 	
@@ -51,7 +51,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height", "The height of the object");
 		argp.parse("VolCal 0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal/n positional arguments:/n length The length of the object/n width The width of the object/n height The height of the object";
+		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
 		assertEquals(a,s);
 	}
 	
@@ -135,7 +135,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height");
 		argp.parse("VolCal 7 5");
 		String s=argp.missingArguments();
-		String a="VolCal/n positional arguments:/n length/n width/n height/n error: the following arguments are required: height";
+		String a="VolCal\n positional arguments:\n length\n width\n height\n error: the following arguments are required: height";
 		assertEquals(a,s);
 	}
 	
@@ -147,7 +147,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height");
 		argp.parse("VolCal 7 5 2 43");
 		String s=argp.tooManyArguments();
-		String a="VolCal/n positional arguments:/n length/n width/n height/n error: unrecognised arguments: 43";
+		String a="VolCal\n positional arguments:\n length\n width\n height\n error: unrecognised arguments: 43";
 		assertEquals(a,s);
 	}
 	
