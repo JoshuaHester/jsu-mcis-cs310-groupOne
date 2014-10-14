@@ -48,7 +48,7 @@ public class ArgumentValuesTest{
 	public void testFloatValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "approximate");
 		v.setValue("3.2");
-		assertEquals(3.2,v.getValue());
+		assertEquals(3.2f,v.getValue());
 	}
 	@Test
 	public void testBooleanValueArgument(){

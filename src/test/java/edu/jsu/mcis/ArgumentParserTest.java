@@ -164,7 +164,7 @@ public class ArgumentParserTest{
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.FLOAT, "length");
 		parser.parse("SomeProgramName 5.5");
-		assertEquals(5.5, parser.getArgument("length").getValue());
+		assertEquals(5.5f, parser.getArgument("length").getValue());
 	}
 	
 	@Test
@@ -183,17 +183,19 @@ public class ArgumentParserTest{
 		assertEquals("dog", parser.getArgument("pet").getValue());
 	}
 	
+	@Test
+	public void testIncorrectBooleanDataType(){
 	
 	
+	}
+	@Test
+	public void testIncorrectFloatDataType(){
 	
+
+	}
+	@Test
+	public void testIncorrectIntDataType(){
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	}
 }

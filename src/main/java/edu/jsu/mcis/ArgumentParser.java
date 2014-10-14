@@ -106,7 +106,7 @@ public class ArgumentParser{
 		return s;
 	}
 	
-	public String getUnknownValue(){
+	public Object getUnknownValue(){
 		return invalidArg.getValue();
 	}
 	
