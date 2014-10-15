@@ -223,11 +223,41 @@ public class ArgumentParserTest{
 	
 	
 	
+	@Test
+	public void testMessageOutputHelp(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.INT, "pet");
+		parser.parse("VolCal -h");
+		String a="VolCal\n positional arguments:\n length\n width\n height";
+		assertEquals(a,parser.getMessage());
+	}
 	
+	@Test
+	public void testMessageOutputHelpDesc(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.INT, "pet");
+		parser.parse("VolCal -h");
+		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
+		assertEquals(a,parser.getMessage());
+	}
 	
+	@Test
+	public void testMessageOutputTooFewArg(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.INT, "pet");
+		parser.parse("VolCal 7 8");
+		String a="VolCal\n positional arguments:\n length\n width\n height\n error: the following arguments are required: height";
+		assertEquals(a,parser.getMessage());
+	}
 	
-	
-	
+	@Test
+	public void testMessageOutputTooManyArg(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.INT, "pet");
+		parser.parse("VolCal 7 8");
+		String a="VolCal\n positional arguments:\n length\n width\n height\n error: unrecognised arguments: 43";
+		assertEquals(a,parser.getMessage());
+	}
 	
 	
 }

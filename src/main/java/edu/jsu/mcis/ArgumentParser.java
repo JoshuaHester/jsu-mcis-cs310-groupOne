@@ -126,5 +126,7 @@ public class ArgumentParser{
 	public boolean checkTooManyArg(){return tooManyArg;}
 	public boolean checkTooFewArg(){return tooFewArg;}
 	
-	
+	public String getMessage(){
+		return "";
+	}
 }
