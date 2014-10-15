@@ -184,15 +184,29 @@ public class ArgumentParserTest{
 	}
 	
 	@Test
-	public void testIncorrectBooleanDataType(){
-	
-	
+		public void testCorrectBooleanDataType(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.BOOLEAN, "pet");
+		parser.parse("SomeProgramName true");
+		assertEquals(true, parser.getArgument("pet").isExpectedType());
+		assertEquals(true, parser.getArgument("pet").getValue());
 	}
+	
+	@Test
+	public void testIncorrectBooleanDataType(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument(ArgumentValues.Types.BOOLEAN, "pet");
+		parser.parse("SomeProgramName 50");
+		assertEquals(false, parser.getArgument("pet").isExpectedType());
+		assertEquals("boolean", parser.getArgument("pet").expectedType());
+	}
+	
 	@Test
 	public void testIncorrectFloatDataType(){
 	
 
 	}
+	
 	@Test
 	public void testIncorrectIntDataType(){
 	
