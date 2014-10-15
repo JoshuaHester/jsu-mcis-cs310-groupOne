@@ -205,12 +205,12 @@ public class ArgumentParserTest{
 	public void testIncorrectFloatDataType(){
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.FLOAT, "pet");
-		parser.parse("SomeProgramName 50");
+		parser.parse("SomeProgramName dog");
 		assertEquals(false, parser.getArgument("pet").isExpectedType());
 		assertEquals("float", parser.getArgument("pet").expectedType());
 
 	}
-	
+
 	@Test
 	public void testIncorrectIntDataType(){
 		ArgumentParser parser=new ArgumentParser();
@@ -220,4 +220,5 @@ public class ArgumentParserTest{
 		assertEquals("int", parser.getArgument("pet").expectedType());
 
 	}
+	
 }

@@ -10,6 +10,8 @@ public class ArgumentValues{
 	private String description;
 	private Types variables = Types.STRING;
 	public enum Types{STRING, INT, FLOAT, BOOLEAN};
+	private boolean correctType = true;
+	private String varType = "String";
 	
 	
 	public ArgumentValues(String arg){
@@ -40,13 +42,28 @@ public class ArgumentValues{
 	public void setValue(String v){
 		switch(variables){
 		case INT:
-			value = Integer.parseInt(v);
+			varType = "int";
+			try{
+				value = Integer.parseInt(v);
+				
+			}
+			catch(Exception e){correctType = false;}
 			break;
 		case FLOAT:
-			value = Float.parseFloat(v);
+			varType = "float";
+			try{
+				value = Float.parseFloat(v);
+			}
+			catch(Exception e){correctType = false;}
+			
 			break;
 		case BOOLEAN:
-			value = Boolean.parseBoolean(v);
+			varType = "boolean";
+			if(v.equals("true") || v.equals("false")){
+				value = Boolean.parseBoolean(v);
+			}
+			else
+				correctType = false;
 			break;
 		default:
 			value = v;
@@ -59,5 +76,13 @@ public class ArgumentValues{
 
 	public String getDescription(){
 		return description;
+	}
+	
+	public boolean isExpectedType(){
+		return correctType;
+	}
+	
+	public String expectedType(){
+		return varType;
 	}
 }

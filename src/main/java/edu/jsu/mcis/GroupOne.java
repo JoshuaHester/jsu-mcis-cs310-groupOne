@@ -19,8 +19,8 @@ public class GroupOne{
 			arg.addArgument(ArgumentValues.Types.FLOAT, "height");
 			arg.parse(input);
 			if(arg.getHelpOut()){System.out.println(arg.getUsage());}
-			else if(arg.checkTooManyArg()){System.out.println(arg.missingArguments());}
-			else if(arg.checkTooFewArg()){System.out.println(arg.tooManyArguments());}
+			else if(arg.checkTooManyArg()){System.out.println(arg.tooManyArguments());}
+			else if(arg.checkTooFewArg()){System.out.println(arg.missingArguments());}
 			else{
 				float l = Float.parseFloat(arg.getArgument("length").getValue().toString());
 				float w = Float.parseFloat(arg.getArgument("width").getValue().toString());
