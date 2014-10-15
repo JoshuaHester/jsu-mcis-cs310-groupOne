@@ -22,9 +22,9 @@ public class GroupOne{
 			else if(arg.checkTooManyArg()){System.out.println(arg.tooManyArguments());}
 			else if(arg.checkTooFewArg()){System.out.println(arg.missingArguments());}
 			else{
-				float l = Float.parseFloat(arg.getArgument("length").getValue().toString());
-				float w = Float.parseFloat(arg.getArgument("width").getValue().toString());
-				float h = Float.parseFloat(arg.getArgument("height").getValue().toString());
+				float l = arg.getArgument("length").getValue();
+				float w = arg.getArgument("width").getValue();
+				float h = arg.getArgument("height").getValue();
 				float v = CalVol(l,w,h);
 				System.out.println(v);
 			}

@@ -1,10 +1,9 @@
 package edu.jsu.mcis;
 
 import java.util.*;
-//Date Created 9/30/2014
 
+@SuppressWarnings("unchecked")
 public class ArgumentValues{
-
 	private String argument;
 	private Object value;
 	private String description;
@@ -12,7 +11,6 @@ public class ArgumentValues{
 	public enum Types{STRING, INT, FLOAT, BOOLEAN};
 	private boolean correctType = true;
 	private String varType = "String";
-	
 	
 	public ArgumentValues(String arg){
 		argument = arg;
@@ -25,16 +23,23 @@ public class ArgumentValues{
 	}
 	
 	public ArgumentValues(Types t, String arg){
-		
 		this(arg);
 		variables = t;
-	
 	}
 
-	public Object getValue(){
-		return value;
+	public <T extends Object> T getValue(){
+		switch(variables){
+		case INT:
+			return (T) Integer.valueOf(value.toString());
+		case FLOAT:
+			return (T) Float.valueOf(value.toString());
+		case BOOLEAN:
+			return (T) Boolean.valueOf(value.toString());
+		default:
+			return (T) value.toString();
+		}
 	}
-		
+	
 	public String getName(){
 		return argument;
 	}
@@ -45,7 +50,6 @@ public class ArgumentValues{
 			varType = "int";
 			try{
 				value = Integer.parseInt(v);
-				
 			}
 			catch(Exception e){correctType = false;}
 			break;
