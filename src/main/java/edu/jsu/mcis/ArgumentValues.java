@@ -28,16 +28,7 @@ public class ArgumentValues{
 	}
 
 	public <T extends Object> T getValue(){
-		switch(variables){
-		case INT:
-			return (T) Integer.valueOf(value.toString());
-		case FLOAT:
-			return (T) Float.valueOf(value.toString());
-		case BOOLEAN:
-			return (T) Boolean.valueOf(value.toString());
-		default:
-			return (T) value.toString();
-		}
+		return (T) value;
 	}
 	
 	public String getName(){
