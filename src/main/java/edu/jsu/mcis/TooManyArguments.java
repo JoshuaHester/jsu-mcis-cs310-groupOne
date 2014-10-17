@@ -2,16 +2,16 @@ package edu.jsu.mcis;
 
 public class TooManyArguments extends RuntimeException {
 	
-	private String info;
+	private String unexpectedArgument;
 	
 	public TooManyArguments(String s) {
-			info = s;
+			unexpectedArgument = s;
 	}
 	public String getInfo() {
-		return info;
+		return unexpectedArgument;
 	}
 	public String toString() {
-		return "There are too many arguments " + info;
+		return "Unrecognized arguments: " + unexpectedArgument;
 	}
 }
 

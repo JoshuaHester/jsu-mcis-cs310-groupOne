@@ -9,10 +9,11 @@ public class WrongDataTypeTest{
 	public void testWrongDataType() {
 		boolean thrown = false;
 		ArgumentParser argp = new ArgumentParser();
-		String s = "VolCal 7 5 dog";
+		String s = "dog";
+		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
 		
 		try {
-			throw new WrongDataType(s);
+			throw new WrongDataType(arg,s);
 		} catch (WrongDataType e) {
 			thrown = true;
 		}

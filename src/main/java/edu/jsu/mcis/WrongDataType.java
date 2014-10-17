@@ -1,17 +1,28 @@
 package edu.jsu.mcis;
 
 public class WrongDataType extends RuntimeException {
+	private ArgumentValues arg;
 	
-	private String info;
+	private String value;
 	
-	public WrongDataType(String s) {
-			info = s;
+	public WrongDataType(ArgumentValues arg, String value) {
+			this.value= value;
+			this.arg=arg;
 	}
-	public String getInfo() {
-		return info;
+	public String getValue() {
+		return value;
 	}
+	public String getType(){
+		return arg.getType();
+	}
+	
+	public String getName(){
+		return arg.getName();
+	}
+	
 	public String toString() {
-		return "Incorrect data type: " + info;
+		String result= "argument " + arg.getType() + "invalid" + arg.getName() + "argument" + value;
+		return result;
 	}
 }
 

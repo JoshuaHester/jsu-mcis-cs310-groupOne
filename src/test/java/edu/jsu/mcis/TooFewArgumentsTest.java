@@ -9,7 +9,7 @@ public class TooFewArgumentsTest{
 	public void testTooFewyArguments() {
 		boolean thrown = false;
 		ArgumentParser argp = new ArgumentParser();
-		String s = "VolCal 7 5";
+		String s = "height";
 		
 		try {
 			throw new TooFewArguments(s);

@@ -80,4 +80,17 @@ public class ArgumentValues{
 	public String expectedType(){
 		return varType;
 	}
+	
+	public String getType(){
+		switch(variables){
+		case INT:
+			return "int";
+		case FLOAT:
+			return "float";
+		case BOOLEAN:
+			return "boolean";
+		default:
+			return "String";
+		}
+	}
 }

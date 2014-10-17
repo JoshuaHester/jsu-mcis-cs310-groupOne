@@ -2,16 +2,16 @@ package edu.jsu.mcis;
 
 public class TooFewArguments extends RuntimeException {
 	
-	private String info;
+	private String expectedArgument;
 	
 	public TooFewArguments(String s) {
-			info = s;
+			expectedArgument= s;
 	}
 	public String getInfo() {
-		return info;
+		return expectedArgument;
 	}
 	public String toString() {
-		return "There are too few arguments " + info;
+		return "The following arguments are required: " + expectedArgument;
 	}
 
 }

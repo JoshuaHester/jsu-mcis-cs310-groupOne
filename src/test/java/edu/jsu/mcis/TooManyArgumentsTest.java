@@ -9,7 +9,7 @@ public class TooManyArgumentsTest{
 	public void testTooManyArguments() {
 		boolean thrown = false;
 		ArgumentParser argp = new ArgumentParser();
-		String s = "VolCal 7 5 2 43";
+		String s = "43";
 		
 		try {
 			throw new TooManyArguments(s);
