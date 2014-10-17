@@ -64,93 +64,51 @@ public class ArgumentParserTest{
 		argp.parse("CalVol -h");
 		assertEquals(true, argp.getHelpOut());
 	}
-	/*
+	
 	@Test 
 	// If their are more values than arguments, exit the program.
 	public void testTooManyArguments(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7 5 2 43");
-		assertEquals("43",argp.getUnknownValue());
+		argp.addArgument("height");
+		try{
+			argp.parse("VolCal 7 5 2 43");
+			assert false;
+		} catch (TooManyArguments e){
+		assert true; 
+		}
 	}
-	
-	@Test
-	// If their are more arguments than values, exit the program
-	public void testTooLessArguments(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7 5");
-		assertEquals("height",argp.getUnknownArg());
-	}
-	
-	@Test 
+		@Test 
+	// If their are more values than arguments, exit the program.
 	public void testTooManyArgumentsTwo(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7 5 2 43 57");
-		assertEquals("43 57",argp.getUnknownValue());
-	}
-	
-	@Test
-	public void testTooLessArgumentsTwo(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7");
-		assertEquals("width height",argp.getUnknownArg());
-	}
-	
-		@Test 
-	public void testTooManyArgumentsBool(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7 5 2 43");
-		assertEquals(true,argp.checkTooManyArg());
-	}
-	
-	@Test
-	public void testTooLessArgumentsBool(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height"); 
-		argp.parse("VolCal 7 5");
-		assertEquals(true,argp.checkTooFewArg());
-	}
-	
-	@Test
-	public void testMissingArgumentsMessage(){
-		ArgumentParser argp= new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
 		argp.addArgument("height");
-		argp.parse("VolCal 7 5");
-		String s=argp.missingArguments();
-		String a="VolCal\n positional arguments:\n length\n width\n height\n error: the following arguments are required: height";
-		assertEquals(a,s);
+		try{
+			argp.parse("VolCal 7 5 2 43 8");
+			assert false;
+		} catch (TooManyArguments e){
+		assert true; 
+		}
 	}
-	
-	@Test
-	public void testtooManyArgumentsMessage(){
-		ArgumentParser argp= new ArgumentParser();
+		@Test
+	// If their are more arguments than values, exit the program
+	public void testTooFewArguments(){
+		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
 		argp.addArgument("width");
-		argp.addArgument("height");
-		argp.parse("VolCal 7 5 2 43");
-		String s=argp.tooManyArguments();
-		String a="VolCal\n positional arguments:\n length\n width\n height\n error: unrecognised arguments: 43";
-		assertEquals(a,s);
+		argp.addArgument("height"); 
+		try{
+			argp.parse("VolCal 7 5");
+			assert false;
+		} catch (TooFewArguments e){
+		assert true; 
+		}
+		
 	}
-	*/
+
 	@Test
 	public void testAddIntArgument() {
 		ArgumentParser parser=new ArgumentParser();
@@ -183,15 +141,20 @@ public class ArgumentParserTest{
 		assertEquals("dog", parser.getArgument("pet").getValue());
 	}
 	
-	@Test
-		public void testCorrectBooleanDataType(){
+		@Test
+	public void testIncorrectBooleanDataType(){
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.BOOLEAN, "pet");
-		parser.parse("SomeProgramName true");
-		assertEquals(true, parser.getArgument("pet").isExpectedType());
-		assertEquals(true, parser.getArgument("pet").getValue());
+		try{
+		parser.parse("SomeProgramName 50");
+		assert false;
+		} catch (WrongDataType e){
+		assert true;
+		}
+		
 	}
-	
+	/*
+
 	@Test
 	public void testIncorrectBooleanDataType(){
 		ArgumentParser parser=new ArgumentParser();
@@ -220,7 +183,7 @@ public class ArgumentParserTest{
 		assertEquals("int", parser.getArgument("pet").expectedType());
 
 	}
-	
+	*/
 	
 	
 	

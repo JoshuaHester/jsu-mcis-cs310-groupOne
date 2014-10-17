@@ -6,10 +6,6 @@ import java.util.Scanner;
 public class ArgumentParser{
 	private String programName;
 	private boolean helpOut = false;
-	private boolean tooManyArg = false;
-	private boolean tooFewArg = false;
-	private ArgumentValues invalidArg;
-	private String missingArg;
 	private List<String> keyMapList;
 	private Hashtable<String,ArgumentValues> argumentTable;
 	
@@ -48,14 +44,11 @@ public class ArgumentParser{
 		while(loop){
 			if(scan.hasNext()){
 				if(getNumArguments()<i+1){
-					tooManyArg=true;
 					String a =scan.next();
 					while(scan.hasNext()){
 					a=a+" "+scan.next();
 					}
-					invalidArg = new ArgumentValues("invalid");
-					invalidArg.setValue(a);
-					loop = false;
+					throw new TooManyArguments(a);
 				}
 				else{
 					nextVal = scan.next();
@@ -71,12 +64,12 @@ public class ArgumentParser{
 			}
 			else loop = false;
 		}	
-		if(i<getNumArguments()){
-			tooFewArg=true;
-			missingArg=argumentTable.get(keyMapList.get(i)).getName();
+		if(i<getNumArguments()&&!helpOut){
+			String missingArg=argumentTable.get(keyMapList.get(i)).getName();
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
 			}
+			throw new TooFewArguments(missingArg);
 		}
 	}
 	
@@ -105,27 +98,7 @@ public class ArgumentParser{
 		}
 		return s;
 	}
-	
-	public Object getUnknownValue(){
-		return invalidArg.getValue();
-	}
-	
-	public String getUnknownArg(){
-		return missingArg;
-	}
-	
-	public String missingArguments(){
-		return getUsage()+"\n error: the following arguments are required: "+getUnknownArg();
 		
-	}
-	
-	public String tooManyArguments(){
-		return getUsage()+"\n error: unrecognised arguments: "+getUnknownValue();
-	}
-	
-	public boolean checkTooManyArg(){return tooManyArg;}
-	public boolean checkTooFewArg(){return tooFewArg;}
-	
 	public String getMessage(){
 		return "";
 	}
