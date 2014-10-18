@@ -201,5 +201,68 @@ public class ArgumentParserTest{
 		}
 	}
 	
+
+	@Test 
+	public void testParseOptionalArgumentsOne(){
+		ArgumentParser parser=new ArgumentParser();
+		argp.addArgument(ArgumentValues.Types.FLOAT, "length");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "width");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "height"); 
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "type");
+		argp.parse("VolCal 7 4 3 --type sphere");
+		assertEquals(7.0f, parser.getArgument("length").getValue());
+		assertEquals(4.0f, parser.getArgument("width").getValue());
+		assertEquals(3.0f, parser.getArgument("height").getValue());
+		assertEquals("sphere", parser.getArgument("type").getValue());
+	}
+	
+	@Test 
+	public void testParseOptionalArgumentsTwo(){
+		ArgumentParser parser=new ArgumentParser();
+		argp.addArgument(ArgumentValues.Types.FLOAT, "length");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "width");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "height"); 
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "type");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "color");
+		argp.parse("VolCal 7 4 3 --type sphere --color red");
+		assertEquals(7.0f, parser.getArgument("length").getValue());
+		assertEquals(4.0f, parser.getArgument("width").getValue());
+		assertEquals(3.0f, parser.getArgument("height").getValue());
+		assertEquals("sphere", parser.getArgument("type").getValue());
+		assertEquals("red", parser.getArgument("color").getValue());
+	}
+	
+	@Test 
+	public void testParseOptionalArgumentsAnyOrder(){
+		ArgumentParser parser=new ArgumentParser();
+		argp.addArgument(ArgumentValues.Types.FLOAT, "length");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "width");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "height"); 
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "type");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "color");
+		argp.parse("VolCal 7 --type sphere 4 --color red 3");
+		assertEquals(7.0f, parser.getArgument("length").getValue());
+		assertEquals(4.0f, parser.getArgument("width").getValue());
+		assertEquals(3.0f, parser.getArgument("height").getValue());
+		assertEquals("sphere", parser.getArgument("type").getValue());
+		assertEquals("red", parser.getArgument("color").getValue());
+	}
+	
+	@Test 
+	public void testParseOptionalArgumentsWithDescriptions(){
+		ArgumentParser parser=new ArgumentParser();
+		argp.addArgument(ArgumentValues.Types.FLOAT, "length", "The length of the object");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "width", "The width of the object");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "height", "The height of the object");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "type", "The type of object");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "color", "The color of the object");
+		argp.parse("VolCal 7 4 3 --type sphere --color red");
+		assertEquals(7.0f, parser.getArgument("length").getValue());
+		assertEquals(4.0f, parser.getArgument("width").getValue());
+		assertEquals(3.0f, parser.getArgument("height").getValue());
+		assertEquals("sphere", parser.getArgument("type").getValue());
+		assertEquals("red", parser.getArgument("color").getValue());
+	}
+	
 	
 }
