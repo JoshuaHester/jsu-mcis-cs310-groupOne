@@ -24,6 +24,11 @@ public class ArgumentValues{
 		this(arg);
 		variables = t;
 	}
+	
+	public ArgumentValues(Types t, String arg, String desc){
+		this(t,arg);
+		setDescription(desc);
+	}
 
 	public <T extends Object> T getValue(){
 		return (T) value;

@@ -66,7 +66,6 @@ public class ArgumentParserTest{
 	}
 	
 	@Test 
-	// If their are more values than arguments, exit the program.
 	public void testTooManyArguments(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
@@ -79,8 +78,8 @@ public class ArgumentParserTest{
 		assert true; 
 		}
 	}
-		@Test 
-	// If their are more values than arguments, exit the program.
+	
+	@Test
 	public void testTooManyArgumentsTwo(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
@@ -93,8 +92,8 @@ public class ArgumentParserTest{
 		assert true; 
 		}
 	}
-		@Test
-	// If their are more arguments than values, exit the program
+	
+	@Test
 	public void testTooFewArguments(){
 		ArgumentParser argp = new ArgumentParser();
 		argp.addArgument("length");
@@ -106,7 +105,20 @@ public class ArgumentParserTest{
 		} catch (TooFewArguments e){
 		assert true; 
 		}
-		
+	}
+	
+	@Test
+	public void testTooFewArgumentsTwo(){
+		ArgumentParser argp = new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height"); 
+		try{
+			argp.parse("VolCal 7");
+			assert false;
+		} catch (TooFewArguments e){
+		assert true; 
+		}
 	}
 
 	@Test
@@ -141,50 +153,53 @@ public class ArgumentParserTest{
 		assertEquals("dog", parser.getArgument("pet").getValue());
 	}
 	
-		@Test
-	public void testIncorrectBooleanDataType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(ArgumentValues.Types.BOOLEAN, "pet");
-		try{
-		parser.parse("SomeProgramName 50");
-		assert false;
-		} catch (WrongDataType e){
-		assert true;
-		}
-		
+	@Test
+	public void testTypeUsageWithDescription(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument(ArgumentValues.Types.FLOAT, "length", "The length of the object");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "width", "The width of the object");
+		argp.addArgument(ArgumentValues.Types.FLOAT, "height", "The height of the object");
+		argp.parse("VolCal -h");
+		String s=argp.getUsage();
+		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
+		assertEquals(a,s);
 	}
-	/*
-
+	
 	@Test
 	public void testIncorrectBooleanDataType(){
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.BOOLEAN, "pet");
-		parser.parse("SomeProgramName 50");
-		assertEquals(false, parser.getArgument("pet").isExpectedType());
-		assertEquals("boolean", parser.getArgument("pet").expectedType());
+		try{
+			parser.parse("SomeProgramName 50");
+			assert false;
+		} catch (WrongDataType e){
+			assert true;
+		}
 	}
 	
 	@Test
 	public void testIncorrectFloatDataType(){
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.FLOAT, "pet");
-		parser.parse("SomeProgramName dog");
-		assertEquals(false, parser.getArgument("pet").isExpectedType());
-		assertEquals("float", parser.getArgument("pet").expectedType());
-
+		try{
+			parser.parse("SomeProgramName dog");
+			assert false;
+		} catch (WrongDataType e){
+			assert true;
+		}
 	}
-
+	
 	@Test
 	public void testIncorrectIntDataType(){
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument(ArgumentValues.Types.INT, "pet");
-		parser.parse("SomeProgramName true");
-		assertEquals(false, parser.getArgument("pet").isExpectedType());
-		assertEquals("int", parser.getArgument("pet").expectedType());
-
+		try{
+			parser.parse("SomeProgramName true");
+			assert false;
+		} catch (WrongDataType e){
+			assert true;
+		}
 	}
-	*/
-	
 	
 	
 }

@@ -35,9 +35,6 @@ public class ArgumentValuesTest{
 		assertEquals("pet",v.getName());
 	}
 	
-	/* These tests are made to implement all data types 
-	 * and store them in ArgumentValues. 
-	*/
 	@Test
 	public void testIntValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.INT, "length");
@@ -52,14 +49,46 @@ public class ArgumentValuesTest{
 	}
 	@Test
 	public void testBooleanValueArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "true");
+		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "car");
 		v.setValue("true");
 		assertEquals(true,v.getValue());
 	}
+	@Test
+	public void testBooleanValueArgumentFalse(){
+		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "car");
+		v.setValue("false");
+		assertEquals(false,v.getValue());
+	}
+	
 	@Test
 	public void testStringValueArgument(){
 		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
 		v.setValue("dog");
 		assertEquals("dog",v.getValue());
 	}
+	
+	@Test
+	public void testStringTypeArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
+		assertEquals("String",v.getType());
+	}
+	
+	@Test
+	public void testIntTypeArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.INT, "pet");
+		assertEquals("int",v.getType());
+	}
+	
+	@Test
+	public void testFloatTypeArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "pet");
+		assertEquals("float",v.getType());
+	}
+	
+	@Test
+	public void testBoolTypeArgument(){
+		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "pet");
+		assertEquals("boolean",v.getType());
+	}
+	
 }

@@ -21,7 +21,7 @@ public class WrongDataType extends RuntimeException {
 	}
 	
 	public String toString() {
-		String result= "argument " + arg.getType() + "invalid" + arg.getName() + "argument" + value;
+		String result= "argument " + arg.getName() + ": invalid " + arg.getType() + " value: " + value;
 		return result;
 	}
 }
