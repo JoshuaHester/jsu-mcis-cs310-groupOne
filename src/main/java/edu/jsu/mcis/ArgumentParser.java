@@ -36,6 +36,14 @@ public class ArgumentParser{
 		keyMapList.add(argumentName);
 	}
 	
+	public void addOptionalArgument(ArgumentValues.Types type, String argumentName){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+	}
+	
+	public void addOptionalArgument(ArgumentValues.Types type, String argumentName, String desc){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
+	}
+	
 	public int getNumArguments(){
 		return keyMapList.size();
 	}
@@ -48,18 +56,22 @@ public class ArgumentParser{
 		int i=0;
 		while(loop){
 			if(scan.hasNext()){
-				if(getNumArguments()<i+1){
-					String a =scan.next();
+				nextVal = scan.next();
+				if(getNumArguments()<i+1&&!nextVal.contains("-")){
+					String a =nextVal;
 					while(scan.hasNext()){
-					a=a+" "+scan.next();
+						a=a+" "+scan.next();
 					}
 					throw new TooManyArguments(a);
 				}
 				else{
-					nextVal = scan.next();
 					if(nextVal.equals("-h")){
 						helpOut = true;
 						loop = false;
+					}
+					else if(nextVal.contains("--")){
+						String argName = nextVal.substring(2);
+						getArgument(argName).setValue(scan.next());
 					}
 					else {
 						try{
