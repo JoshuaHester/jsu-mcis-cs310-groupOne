@@ -62,7 +62,12 @@ public class ArgumentParser{
 						loop = false;
 					}
 					else {
-						argumentTable.get(keyMapList.get(i)).setValue(nextVal);
+						try{
+							argumentTable.get(keyMapList.get(i)).setValue(nextVal);
+						}
+						catch(Exception e){
+							throw new WrongDataType(argumentTable.get(keyMapList.get(i)),nextVal);
+						}
 						i++;
 					}
 				}

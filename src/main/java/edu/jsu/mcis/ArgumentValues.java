@@ -41,28 +41,17 @@ public class ArgumentValues{
 	public void setValue(String v){
 		switch(variables){
 		case INT:
-			try{
-				value = Integer.parseInt(v);
-			}
-			catch(Exception e){
-				throw new WrongDataType(this,v);
-			}
+			value = Integer.parseInt(v);
 			break;
 		case FLOAT:
-			try{
-				value = Float.parseFloat(v);
-			}
-			catch(Exception e){
-				throw new WrongDataType(this,v);
-			}
-			
+			value = Float.parseFloat(v);
 			break;
 		case BOOLEAN:
 			if(v.equals("true") || v.equals("false")){
 				value = Boolean.parseBoolean(v);
 			}
 			else{
-				throw new WrongDataType(this,v);
+				throw new RuntimeException();
 			}
 			break;
 		default:

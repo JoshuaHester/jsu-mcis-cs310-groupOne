@@ -201,7 +201,7 @@ public class ArgumentParserTest{
 		}
 	}
 	
-
+/*
 	@Test 
 	public void testParseOptionalArgumentsOne(){
 		ArgumentParser parser=new ArgumentParser();
@@ -264,5 +264,5 @@ public class ArgumentParserTest{
 		assertEquals("red", parser.getArgument("color").getValue());
 	}
 	
-	
+*/	
 }
