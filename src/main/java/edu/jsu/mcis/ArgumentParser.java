@@ -10,7 +10,6 @@ public class ArgumentParser{
 	private Hashtable<String,ArgumentValues> argumentTable;
 	
 	
-	
 	public ArgumentParser(){
 		keyMapList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
@@ -113,9 +112,6 @@ public class ArgumentParser{
 		String s = programName.toString() + " usage:";
 		for(int i=0;i<getNumArguments();i++){
 			s=s+" "+argumentTable.get(keyMapList.get(i)).getName();
-			if(argumentTable.get(keyMapList.get(i)).getDescription()!=null){
-				s=s+" "+argumentTable.get(keyMapList.get(i)).getDescription();
-			}
 		}
 		return s;
 	}	
