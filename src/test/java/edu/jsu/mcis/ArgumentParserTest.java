@@ -211,9 +211,20 @@ public class ArgumentParserTest{
 		argp.parse("VolCal 0 0 0");
 		String a="VolCal usage: length width height";
 		assertEquals(argp.usageOutput(),a);
-
 	}
 
+	@Test
+	public void testUsageOutputOpt(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "type");
+		argp.addOptionalArgument(ArgumentValues.Types.STRING, "color");
+		argp.parse("VolCal 0 0 0");
+		String a="VolCal usage: length width height --type --color";
+		assertEquals(argp.usageOutput(),a);
+	}
 
 	@Test 
 	public void testParseOptionalArgumentsOne(){
@@ -277,8 +288,6 @@ public class ArgumentParserTest{
 		assertEquals("red", argp.getArgument("color").getValue());
 	}
 	
-	
-	//Test Boolean Optional Values 
 	@Test 
 	public void testParseTwoOptionalBooleanArguments(){
 		ArgumentParser argp=new ArgumentParser();
@@ -291,8 +300,8 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(5.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
-		assertEquals("red", argp.getArgument("color").getValue());
+		assertEquals(true, argp.getArgument("type").getValue());
+		assertEquals(false, argp.getArgument("color").getValue());
 	}
 	@Test 
 	public void testParseBooleanOptionalArgumentsOne(){
@@ -305,7 +314,7 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
+		assertEquals(true, argp.getArgument("type").getValue());
 	}
 	@Test 
 	public void testParseBooleanOptionalArgumentsAnyOrder(){
@@ -319,8 +328,8 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
-		assertEquals("red", argp.getArgument("color").getValue());
+		assertEquals(true, argp.getArgument("type").getValue());
+		assertEquals(false, argp.getArgument("color").getValue());
 	}
 	
 	@Test 
@@ -335,11 +344,10 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
-		assertEquals("red", argp.getArgument("color").getValue());
+		assertEquals(true, argp.getArgument("type").getValue());
+		assertEquals(false, argp.getArgument("color").getValue());
 	}
-	
-	// Test Optional Integer Values 
+	 
 	@Test 
 	public void testParseIntOptionalArgumentsWithDescriptions(){
 		ArgumentParser argp=new ArgumentParser();
@@ -352,8 +360,8 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
-		assertEquals("red", argp.getArgument("color").getValue());
+		assertEquals(1, argp.getArgument("type").getValue());
+		assertEquals(2, argp.getArgument("color").getValue());
 	}
 
 	@Test 
@@ -367,7 +375,7 @@ public class ArgumentParserTest{
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
+		assertEquals(2, argp.getArgument("type").getValue());
 	}
 	@Test 
 	public void testParseIntOptionalArgumentsAnyOrder(){
@@ -377,12 +385,12 @@ public class ArgumentParserTest{
 		argp.addArgument(ArgumentValues.Types.FLOAT, "height"); 
 		argp.addOptionalArgument(ArgumentValues.Types.INT, "type");
 		argp.addOptionalArgument(ArgumentValues.Types.INT, "color");
-		argp.parse("VolCal 7 --type 4 --color 3");
+		argp.parse("VolCal 7 --type 4 --color 3 4 3");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
 		assertEquals(3.0f, argp.getArgument("height").getValue());
-		assertEquals("sphere", argp.getArgument("type").getValue());
-		assertEquals("red", argp.getArgument("color").getValue());
+		assertEquals(4, argp.getArgument("type").getValue());
+		assertEquals(3, argp.getArgument("color").getValue());
 	}
 	
 	@Test 

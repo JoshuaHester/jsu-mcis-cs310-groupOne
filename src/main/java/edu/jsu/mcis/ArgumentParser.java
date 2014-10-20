@@ -143,7 +143,7 @@ public class ArgumentParser{
 		}
 		if(getNumOptArguments()!=0){
 			for(int i=0;i<getNumOptArguments();i++){
-				s=s+"\n --"+argumentTable.get(optionalList.get(i)).getName();
+				s=s+" --"+argumentTable.get(optionalList.get(i)).getName();
 			}
 		}
 		return s;
