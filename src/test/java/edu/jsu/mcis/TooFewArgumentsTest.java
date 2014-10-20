@@ -4,15 +4,21 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TooFewArgumentsTest{
+	private ArgumentParser argp;
+	private String s;
+
+	@Before
+	public void setUpMyTest(){
+		argp = new ArgumentParser();
+		s = "height";
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+	}
 	
 	@Test
 	public void testTooFewArguments() {
 		boolean thrown = false;
-		ArgumentParser argp = new ArgumentParser();
-		String s = "height";
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		argp.parse("VolCal 0 0 0");
 		String a = argp.usageOutput();
 		
@@ -27,10 +33,6 @@ public class TooFewArgumentsTest{
 	
 		@Test
 	public void testGetString(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5");
 		} catch(TooFewArguments e){
@@ -42,10 +44,6 @@ public class TooFewArgumentsTest{
 	
 	@Test
 	public void testGetName(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5");
 		} catch(TooFewArguments e){
