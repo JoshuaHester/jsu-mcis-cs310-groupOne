@@ -7,11 +7,13 @@ public class ArgumentParser{
 	private String programName;
 	private boolean helpOut = false;
 	private List<String> keyMapList;
+	private List<String> optionalList;
 	private Hashtable<String,ArgumentValues> argumentTable;
 	
 	
 	public ArgumentParser(){
 		keyMapList = new ArrayList<String>(5);
+		optionalList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
 	}
 	
@@ -37,14 +39,20 @@ public class ArgumentParser{
 	
 	public void addOptionalArgument(ArgumentValues.Types type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+		optionalList.add(argumentName);
 	}
 	
 	public void addOptionalArgument(ArgumentValues.Types type, String argumentName, String desc){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
+		optionalList.add(argumentName);
 	}
 	
 	public int getNumArguments(){
 		return keyMapList.size();
+	}
+	
+	public int getNumOptArguments(){
+		return optionalList.size();
 	}
 	
 	public void parse(String s){
@@ -117,6 +125,14 @@ public class ArgumentParser{
 				s=s+" "+argumentTable.get(keyMapList.get(i)).getDescription();
 			}
 		}
+		if(getNumOptArguments()!=0){
+			for(int i=0;i<getNumOptArguments();i++){
+				s=s+"\n --"+argumentTable.get(optionalList.get(i)).getName();
+				if(argumentTable.get(optionalList.get(i)).getDescription()!=null){
+					s=s+" "+argumentTable.get(optionalList.get(i)).getDescription();
+				}
+			}
+		}
 		return s;
 	}
 	
@@ -124,6 +140,11 @@ public class ArgumentParser{
 		String s = programName.toString() + " usage:";
 		for(int i=0;i<getNumArguments();i++){
 			s=s+" "+argumentTable.get(keyMapList.get(i)).getName();
+		}
+		if(getNumOptArguments()!=0){
+			for(int i=0;i<getNumOptArguments();i++){
+				s=s+"\n --"+argumentTable.get(optionalList.get(i)).getName();
+			}
 		}
 		return s;
 	}	
