@@ -4,15 +4,26 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TooManyArgumentsTest{
+	private ArgumentParser argp;
+	private String s;
+
+	@Before
+	public void setUpMyTest(){
+		argp = new ArgumentParser();
+		s = "height";
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+	}
 	
 	@Test
 	public void testTooManyArguments() {
 		boolean thrown = false;
-		ArgumentParser argp = new ArgumentParser();
-		String s = "43";
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		
 		try {
-			throw new TooManyArguments(s);
+			throw new TooManyArguments(s,a);
 		} catch (TooManyArguments e) {
 			thrown = true;
 		}
@@ -22,25 +33,17 @@ public class TooManyArgumentsTest{
 	
 	@Test
 	public void testGetString(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5 2 43");
 		} catch(TooManyArguments e){
 			String a = e.toString();
-			String b = "Unrecognized arguments: 43";
+			String b = "VolCal usage: length width height Unrecognised arguments: 43";
 			assertEquals(b,a);
 		}
 	}
 	
 	@Test
 	public void testGetName(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5 2 43");
 		} catch(TooManyArguments e){

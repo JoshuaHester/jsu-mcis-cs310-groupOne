@@ -4,15 +4,26 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TooFewArgumentsTest{
+	private ArgumentParser argp;
+	private String s;
+
+	@Before
+	public void setUpMyTest(){
+		argp = new ArgumentParser();
+		s = "height";
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+	}
 	
 	@Test
-	public void testTooFewyArguments() {
+	public void testTooFewArguments() {
 		boolean thrown = false;
-		ArgumentParser argp = new ArgumentParser();
-		String s = "height";
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		
 		try {
-			throw new TooFewArguments(s);
+			throw new TooFewArguments(s,a);
 		} catch (TooFewArguments e) {
 			thrown = true;
 		}
@@ -22,25 +33,17 @@ public class TooFewArgumentsTest{
 	
 		@Test
 	public void testGetString(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5");
 		} catch(TooFewArguments e){
 			String a = e.toString();
-			String b = "The following arguments are required: height";
+			String b = "VolCal usage: length width height The following arguments are required: height";
 			assertEquals(b,a);
 		}
 	}
 	
 	@Test
 	public void testGetName(){
-		ArgumentParser argp = new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
 		try{
 			argp.parse("VolCal 7 5");
 		} catch(TooFewArguments e){

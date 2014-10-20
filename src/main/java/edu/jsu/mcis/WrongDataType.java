@@ -4,10 +4,12 @@ public class WrongDataType extends RuntimeException {
 	private ArgumentValues arg;
 	
 	private String value;
+	private String usageInfo;
 	
-	public WrongDataType(ArgumentValues arg, String value) {
+	public WrongDataType(ArgumentValues arg, String value, String a) {
 			this.value= value;
 			this.arg=arg;
+			usageInfo = a;
 	}
 	public String getValue() {
 		return value;
@@ -21,7 +23,7 @@ public class WrongDataType extends RuntimeException {
 	}
 	
 	public String toString() {
-		String result= "argument " + arg.getName() + ": invalid " + arg.getType() + " value: " + value;
+		String result= usageInfo + " argument " + arg.getName() + ": invalid " + arg.getType() + " value: " + value;
 		return result;
 	}
 }

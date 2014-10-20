@@ -10,7 +10,6 @@ public class ArgumentParser{
 	private Hashtable<String,ArgumentValues> argumentTable;
 	
 	
-	
 	public ArgumentParser(){
 		keyMapList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
@@ -62,7 +61,7 @@ public class ArgumentParser{
 					while(scan.hasNext()){
 						a=a+" "+scan.next();
 					}
-					throw new TooManyArguments(a);
+					throw new TooManyArguments(a, this.usageOutput());
 				}
 				else{
 					if(nextVal.equals("-h")){
@@ -78,7 +77,7 @@ public class ArgumentParser{
 							argumentTable.get(keyMapList.get(i)).setValue(nextVal);
 						}
 						catch(Exception e){
-							throw new WrongDataType(argumentTable.get(keyMapList.get(i)),nextVal);
+							throw new WrongDataType(argumentTable.get(keyMapList.get(i)),nextVal, this.usageOutput());
 						}
 						i++;
 					}
@@ -91,7 +90,7 @@ public class ArgumentParser{
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
 			}
-			throw new TooFewArguments(missingArg);
+			throw new TooFewArguments(missingArg, this.usageOutput());
 		}
 	}
 	
@@ -120,5 +119,13 @@ public class ArgumentParser{
 		}
 		return s;
 	}
+	
+	public String usageOutput(){
+		String s = programName.toString() + " usage:";
+		for(int i=0;i<getNumArguments();i++){
+			s=s+" "+argumentTable.get(keyMapList.get(i)).getName();
+		}
+		return s;
+	}	
 	
 }
