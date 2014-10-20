@@ -201,6 +201,18 @@ public class ArgumentParserTest{
 		}
 	}
 	
+	@Test
+	public void testUsageOutput(){
+		ArgumentParser argp= new ArgumentParser();
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a="VolCal usage: length width height";
+		assertEquals(argp.usageOutput(),a);
+
+	}
+	
 /*
 	@Test 
 	public void testParseOptionalArgumentsOne(){

@@ -10,9 +10,14 @@ public class TooManyArgumentsTest{
 		boolean thrown = false;
 		ArgumentParser argp = new ArgumentParser();
 		String s = "43";
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		
 		try {
-			throw new TooManyArguments(s);
+			throw new TooManyArguments(s,a);
 		} catch (TooManyArguments e) {
 			thrown = true;
 		}
@@ -30,7 +35,7 @@ public class TooManyArgumentsTest{
 			argp.parse("VolCal 7 5 2 43");
 		} catch(TooManyArguments e){
 			String a = e.toString();
-			String b = "Unrecognized arguments: 43";
+			String b = "VolCal usage: length width height Unrecognised arguments: 43";
 			assertEquals(b,a);
 		}
 	}

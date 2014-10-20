@@ -3,15 +3,18 @@ package edu.jsu.mcis;
 public class TooManyArguments extends RuntimeException {
 	
 	private String unexpectedArgument;
+	private String usageInfo;
 	
-	public TooManyArguments(String s) {
+	public TooManyArguments(String s, String a) {
 			unexpectedArgument = s;
+			usageInfo = a;
 	}
 	public String getInfo() {
 		return unexpectedArgument;
 	}
+
 	public String toString() {
-		return "Unrecognized arguments: " + unexpectedArgument;
+		return usageInfo + " Unrecognised arguments: " + unexpectedArgument;
 	}
 }
 

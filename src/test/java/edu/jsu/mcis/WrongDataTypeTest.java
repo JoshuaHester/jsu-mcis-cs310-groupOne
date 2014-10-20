@@ -11,9 +11,14 @@ public class WrongDataTypeTest{
 		ArgumentParser argp = new ArgumentParser();
 		String s = "dog";
 		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		
 		try {
-			throw new WrongDataType(arg,s);
+			throw new WrongDataType(arg,s, a);
 		} catch (WrongDataType e) {
 			thrown = true;
 		}
@@ -26,12 +31,17 @@ public class WrongDataTypeTest{
 	ArgumentParser argp = new ArgumentParser();
 		String s = "dog";
 		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		try{
-			throw new WrongDataType(arg,s);
+			throw new WrongDataType(arg,s,a);
 		} catch(WrongDataType e){
-			String a = e.toString();
-			String b = "argument width: invalid float value: dog";
-			assertEquals(b,a);
+			String n = e.toString();
+			String b = "VolCal usage: length width height argument width: invalid float value: dog";
+			assertEquals(b,n);
 		}
 	}
 	
@@ -40,12 +50,17 @@ public class WrongDataTypeTest{
 	ArgumentParser argp = new ArgumentParser();
 		String s = "dog";
 		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		try{
-			throw new WrongDataType(arg,s);
+			throw new WrongDataType(arg,s,a);
 		} catch(WrongDataType e){
-			String a = e.getName();
+			String n = e.getName();
 			String b = "width";
-			assertEquals(b,a);
+			assertEquals(b,n);
 		}
 	}
 	
@@ -54,12 +69,17 @@ public class WrongDataTypeTest{
 	ArgumentParser argp = new ArgumentParser();
 		String s = "dog";
 		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		try{
-			throw new WrongDataType(arg,s);
+			throw new WrongDataType(arg,s,a);
 		} catch(WrongDataType e){
-			String a = e.getValue();
+			String v = e.getValue();
 			String b = "dog";
-			assertEquals(b,a);
+			assertEquals(b,v);
 		}
 	}
 	
@@ -68,12 +88,17 @@ public class WrongDataTypeTest{
 	ArgumentParser argp = new ArgumentParser();
 		String s = "dog";
 		ArgumentValues arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		argp.addArgument("length");
+		argp.addArgument("width");
+		argp.addArgument("height");
+		argp.parse("VolCal 0 0 0");
+		String a = argp.usageOutput();
 		try{
-			throw new WrongDataType(arg,s);
+			throw new WrongDataType(arg,s, a);
 		} catch(WrongDataType e){
-			String a = e.getType();
+			String t = e.getType();
 			String b = "float";
-			assertEquals(b,a);
+			assertEquals(b,t);
 		}
 	}
 }
