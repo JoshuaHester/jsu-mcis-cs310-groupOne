@@ -1,6 +1,6 @@
 package edu.jsu.mcis;
 
-public class TooFewArguments extends RuntimeException {
+public class TooFewArgumentsException extends RuntimeException {
 	
 	private String expectedArgument;
 	private String usageInfo;

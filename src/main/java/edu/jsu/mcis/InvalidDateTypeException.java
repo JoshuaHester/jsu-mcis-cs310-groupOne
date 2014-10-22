@@ -1,6 +1,6 @@
 package edu.jsu.mcis;
 
-public class WrongDataType extends RuntimeException {
+public class InvalidDataTypeException extends RuntimeException {
 	private ArgumentValues arg;
 	
 	private String value;
