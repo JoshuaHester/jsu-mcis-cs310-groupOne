@@ -37,57 +37,57 @@ public class ArgumentValuesTest{
 	
 	@Test
 	public void testIntValueArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.INT, "length");
+		v = new ArgumentValues(DataType.INT, "length");
 		v.setValue("5");
 		assertEquals(5,v.getValue());
 	}
 	@Test
 	public void testFloatValueArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "approximate");
+		v = new ArgumentValues(DataType.FLOAT, "approximate");
 		v.setValue("3.2");
 		assertEquals(3.2f,v.getValue());
 	}
 	@Test
 	public void testBooleanValueArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "car");
+		v = new ArgumentValues(DataType.BOOLEAN, "car");
 		v.setValue("true");
 		assertEquals(true,v.getValue());
 	}
 	@Test
 	public void testBooleanValueArgumentFalse(){
-		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "car");
+		v = new ArgumentValues(DataType.BOOLEAN, "car");
 		v.setValue("false");
 		assertEquals(false,v.getValue());
 	}
 	
 	@Test
 	public void testStringValueArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
+		v = new ArgumentValues(DataType.STRING, "pet");
 		v.setValue("dog");
 		assertEquals("dog",v.getValue());
 	}
 	
 	@Test
 	public void testStringTypeArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.STRING, "pet");
+		v = new ArgumentValues(DataType.STRING, "pet");
 		assertEquals("String",v.getType());
 	}
 	
 	@Test
 	public void testIntTypeArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.INT, "pet");
+		v = new ArgumentValues(DataType.INT, "pet");
 		assertEquals("int",v.getType());
 	}
 	
 	@Test
 	public void testFloatTypeArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.FLOAT, "pet");
+		v = new ArgumentValues(DataType.FLOAT, "pet");
 		assertEquals("float",v.getType());
 	}
 	
 	@Test
 	public void testBoolTypeArgument(){
-		v = new ArgumentValues(ArgumentValues.Types.BOOLEAN, "pet");
+		v = new ArgumentValues(DataType.BOOLEAN, "pet");
 		assertEquals("boolean",v.getType());
 	}
 	

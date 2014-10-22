@@ -7,8 +7,7 @@ public class ArgumentValues{
 	private String argument;
 	private Object value;
 	private String description;
-	private Types variables = Types.STRING;
-	public enum Types{STRING, INT, FLOAT, BOOLEAN};
+	private DataType variables = DataType.STRING;
 
 	public ArgumentValues(String arg){
 		argument = arg;
@@ -20,12 +19,12 @@ public class ArgumentValues{
 		setDescription(desc);
 	}
 	
-	public ArgumentValues(Types t, String arg){
+	public ArgumentValues(DataType t, String arg){
 		this(arg);
 		variables = t;
 	}
 	
-	public ArgumentValues(Types t, String arg, String desc){
+	public ArgumentValues(DataType t, String arg, String desc){
 		this(t,arg);
 		setDescription(desc);
 	}

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.Scanner;
 
 public class ArgumentParser{
-	private String programName;
+	private String programName ="";
 	private boolean helpOut = false;
 	private List<String> keyMapList;
 	private List<String> optionalList;
@@ -15,6 +15,7 @@ public class ArgumentParser{
 		keyMapList = new ArrayList<String>(5);
 		optionalList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
+		setProgramName();
 	}
 	
 	public void addArgument(String argumentName){
@@ -27,22 +28,22 @@ public class ArgumentParser{
 		keyMapList.add(argumentName);
 	}
 	
-	public void addArgument(ArgumentValues.Types type, String argumentName){
+	public void addArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		keyMapList.add(argumentName);
 	}
 	
-	public void addArgument(ArgumentValues.Types type, String argumentName, String argumentDescription){
+	public void addArgument(DataType type, String argumentName, String argumentDescription){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, argumentDescription));
 		keyMapList.add(argumentName);
 	}
 	
-	public void addOptionalArgument(ArgumentValues.Types type, String argumentName){
+	public void addOptionalArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		optionalList.add(argumentName);
 	}
 	
-	public void addOptionalArgument(ArgumentValues.Types type, String argumentName, String desc){
+	public void addOptionalArgument(DataType type, String argumentName, String desc){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
 		optionalList.add(argumentName);
 	}
@@ -57,7 +58,6 @@ public class ArgumentParser{
 	
 	public void parse(String s){
 		Scanner scan = new Scanner(s);
-		programName = scan.next();
 		String nextVal = "";
 		boolean loop = true;
 		int i=0;
@@ -69,7 +69,7 @@ public class ArgumentParser{
 					while(scan.hasNext()){
 						a=a+" "+scan.next();
 					}
-					throw new TooManyArguments(a, this.usageOutput());
+					throw new TooManyArgumentsException(a, this.usageOutput());
 				}
 				else{
 					if(nextVal.equals("-h")){
@@ -85,7 +85,7 @@ public class ArgumentParser{
 							argumentTable.get(keyMapList.get(i)).setValue(nextVal);
 						}
 						catch(Exception e){
-							throw new WrongDataType(argumentTable.get(keyMapList.get(i)),nextVal, this.usageOutput());
+							throw new InvalidDataTypeException(argumentTable.get(keyMapList.get(i)),nextVal, this.usageOutput());
 						}
 						i++;
 					}
@@ -98,7 +98,7 @@ public class ArgumentParser{
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
 			}
-			throw new TooFewArguments(missingArg, this.usageOutput());
+			throw new TooFewArgumentsException(missingArg, this.usageOutput());
 		}
 	}
 	
@@ -147,6 +147,9 @@ public class ArgumentParser{
 			}
 		}
 		return s;
-	}	
+	}
 	
+	public void setProgramName(){
+		programName = Thread.currentThread().getStackTrace()[3].getClassName();
+	}
 }

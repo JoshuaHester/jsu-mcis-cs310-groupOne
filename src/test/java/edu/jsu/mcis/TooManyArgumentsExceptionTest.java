@@ -3,7 +3,7 @@ package edu.jsu.mcis;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class TooManyArgumentsTest{
+public class TooManyArgumentsExceptionTest{
 	private ArgumentParser argp;
 	private String s;
 
@@ -23,8 +23,8 @@ public class TooManyArgumentsTest{
 		String a = argp.usageOutput();
 		
 		try {
-			throw new TooManyArguments(s,a);
-		} catch (TooManyArguments e) {
+			throw new TooManyArgumentsException(s,a);
+		} catch (TooManyArgumentsException e) {
 			thrown = true;
 		}
 		
@@ -35,7 +35,7 @@ public class TooManyArgumentsTest{
 	public void testGetString(){
 		try{
 			argp.parse("VolCal 7 5 2 43");
-		} catch(TooManyArguments e){
+		} catch(TooManyArgumentsException e){
 			String a = e.toString();
 			String b = "VolCal usage: length width height Unrecognised arguments: 43";
 			assertEquals(b,a);
@@ -46,8 +46,8 @@ public class TooManyArgumentsTest{
 	public void testGetName(){
 		try{
 			argp.parse("VolCal 7 5 2 43");
-		} catch(TooManyArguments e){
-			String a = e.getInfo();
+		} catch(TooManyArgumentsException e){
+			String a = e.getUnexpectedArgument();
 			String b = "43";
 			assertEquals(b,a);
 		}

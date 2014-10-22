@@ -3,7 +3,7 @@ package edu.jsu.mcis;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class WrongDataTypeTest{
+public class InvalidDataTypeExceptionTest{
 	private ArgumentParser argp;
 	private ArgumentValues arg;
 	private String s;
@@ -16,7 +16,7 @@ public class WrongDataTypeTest{
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("VolCal 0 0 0");
-		arg= new ArgumentValues(ArgumentValues.Types.FLOAT,"width");
+		arg= new ArgumentValues(DataType.FLOAT,"width");
 		s = "dog";
 		a = argp.usageOutput();
 	}
@@ -26,8 +26,8 @@ public class WrongDataTypeTest{
 		boolean thrown = false;
 	
 		try {
-			throw new WrongDataType(arg,s, a);
-		} catch (WrongDataType e) {
+			throw new InvalidDataTypeException(arg,s, a);
+		} catch (InvalidDataTypeException e) {
 			thrown = true;
 		}
 		
@@ -38,8 +38,8 @@ public class WrongDataTypeTest{
 	public void testGetString(){
 
 		try{
-			throw new WrongDataType(arg,s,a);
-		} catch(WrongDataType e){
+			throw new InvalidDataTypeException(arg,s,a);
+		} catch(InvalidDataTypeException e){
 			String n = e.toString();
 			String b = "VolCal usage: length width height argument width: invalid float value: dog";
 			assertEquals(b,n);
@@ -50,8 +50,8 @@ public class WrongDataTypeTest{
 	public void testGetName(){
 
 		try{
-			throw new WrongDataType(arg,s,a);
-		} catch(WrongDataType e){
+			throw new InvalidDataTypeException(arg,s,a);
+		} catch(InvalidDataTypeException e){
 			String n = e.getName();
 			String b = "width";
 			assertEquals(b,n);
@@ -62,8 +62,8 @@ public class WrongDataTypeTest{
 	public void testGetValue(){
 
 		try{
-			throw new WrongDataType(arg,s,a);
-		} catch(WrongDataType e){
+			throw new InvalidDataTypeException(arg,s,a);
+		} catch(InvalidDataTypeException e){
 			String v = e.getValue();
 			String b = "dog";
 			assertEquals(b,v);
@@ -74,8 +74,8 @@ public class WrongDataTypeTest{
 	public void testGetType(){
 
 		try{
-			throw new WrongDataType(arg,s, a);
-		} catch(WrongDataType e){
+			throw new InvalidDataTypeException(arg,s, a);
+		} catch(InvalidDataTypeException e){
 			String t = e.getType();
 			String b = "float";
 			assertEquals(b,t);

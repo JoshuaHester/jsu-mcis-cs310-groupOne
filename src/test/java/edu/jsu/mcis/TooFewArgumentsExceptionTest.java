@@ -3,7 +3,7 @@ package edu.jsu.mcis;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class TooFewArgumentsTest{
+public class TooFewArgumentsExceptionTest{
 	private ArgumentParser argp;
 	private String s;
 
@@ -23,8 +23,8 @@ public class TooFewArgumentsTest{
 		String a = argp.usageOutput();
 		
 		try {
-			throw new TooFewArguments(s,a);
-		} catch (TooFewArguments e) {
+			throw new TooFewArgumentsException(s,a);
+		} catch (TooFewArgumentsException e) {
 			thrown = true;
 		}
 		
@@ -35,7 +35,7 @@ public class TooFewArgumentsTest{
 	public void testGetString(){
 		try{
 			argp.parse("VolCal 7 5");
-		} catch(TooFewArguments e){
+		} catch(TooFewArgumentsException e){
 			String a = e.toString();
 			String b = "VolCal usage: length width height The following arguments are required: height";
 			assertEquals(b,a);
@@ -46,8 +46,8 @@ public class TooFewArgumentsTest{
 	public void testGetName(){
 		try{
 			argp.parse("VolCal 7 5");
-		} catch(TooFewArguments e){
-			String a = e.getInfo();
+		} catch(TooFewArgumentsException e){
+			String a = e.getMissingArgumentName();
 			String b = "height";
 			assertEquals(b,a);
 		}
