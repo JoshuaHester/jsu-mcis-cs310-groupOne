@@ -6,7 +6,7 @@ public class InvalidDataTypeException extends RuntimeException {
 	private String value;
 	private String usageInfo;
 	
-	public WrongDataType(ArgumentValues arg, String value, String a) {
+	public InvalidDataTypeException(ArgumentValues arg, String value, String a) {
 			this.value= value;
 			this.arg=arg;
 			usageInfo = a;

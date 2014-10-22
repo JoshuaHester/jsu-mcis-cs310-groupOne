@@ -5,11 +5,11 @@ public class TooManyArgumentsException extends RuntimeException {
 	private String unexpectedArgument;
 	private String usageInfo;
 	
-	public TooManyArguments(String s, String a) {
+	public TooManyArgumentsException(String s, String a) {
 			unexpectedArgument = s;
 			usageInfo = a;
 	}
-	public String getInfo() {
+	public String getUnexpectedArgument() {
 		return unexpectedArgument;
 	}
 

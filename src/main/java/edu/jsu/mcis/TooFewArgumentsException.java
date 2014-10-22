@@ -5,11 +5,11 @@ public class TooFewArgumentsException extends RuntimeException {
 	private String expectedArgument;
 	private String usageInfo;
 	
-	public TooFewArguments(String s, String a) {
+	public TooFewArgumentsException(String s, String a) {
 			expectedArgument= s;
 			usageInfo = a;
 	}
-	public String getInfo() {
+	public String getMissingArgumentName() {
 		return expectedArgument;
 	}
 	public String toString() {
