@@ -3,13 +3,13 @@ package edu.jsu.mcis;
 import java.util.*;
 import java.util.Scanner;
 
-public class ArgumentParser{
+public class ArgumentParser {
+
 	private String programName ="";
 	private boolean helpOut = false;
 	private List<String> keyMapList;
 	private List<String> optionalList;
 	private Hashtable<String,ArgumentValues> argumentTable;
-	
 	
 	public ArgumentParser(){
 		keyMapList = new ArrayList<String>(5);
@@ -69,7 +69,7 @@ public class ArgumentParser{
 					while(scan.hasNext()){
 						a=a+" "+scan.next();
 					}
-					throw new TooManyArgumentsException(a, this.usageOutput());
+					throw new TooManyArgumentsException(a);
 				}
 				else{
 					if(nextVal.equals("-h")){
@@ -85,7 +85,7 @@ public class ArgumentParser{
 							argumentTable.get(keyMapList.get(i)).setValue(nextVal);
 						}
 						catch(Exception e){
-							throw new InvalidDataTypeException(argumentTable.get(keyMapList.get(i)),nextVal, this.usageOutput());
+							throw new InvalidDataTypeException(argumentTable.get(keyMapList.get(i)),nextVal);
 						}
 						i++;
 					}
@@ -98,7 +98,7 @@ public class ArgumentParser{
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
 			}
-			throw new TooFewArgumentsException(missingArg, this.usageOutput());
+			throw new TooFewArgumentsException(missingArg);
 		}
 	}
 	
@@ -136,20 +136,7 @@ public class ArgumentParser{
 		return s;
 	}
 	
-	public String usageOutput(){
-		String s = programName.toString() + " usage:";
-		for(int i=0;i<getNumArguments();i++){
-			s=s+" "+argumentTable.get(keyMapList.get(i)).getName();
-		}
-		if(getNumOptArguments()!=0){
-			for(int i=0;i<getNumOptArguments();i++){
-				s=s+" --"+argumentTable.get(optionalList.get(i)).getName();
-			}
-		}
-		return s;
-	}
-	
-	public void setProgramName(){
+	private void setProgramName(){
 		programName = Thread.currentThread().getStackTrace()[3].getClassName();
 	}
 }

@@ -2,18 +2,19 @@ package edu.jsu.mcis;
 
 public class InvalidDataTypeException extends RuntimeException {
 	private ArgumentValues arg;
-	
 	private String value;
-	private String usageInfo;
+	private String exceptionClassInfo;
 	
-	public InvalidDataTypeException(ArgumentValues arg, String value, String a) {
+	public InvalidDataTypeException(ArgumentValues arg, String value) {
 			this.value= value;
 			this.arg=arg;
-			usageInfo = a;
+			setExceptionClassName();
 	}
+	
 	public String getValue() {
 		return value;
 	}
+	
 	public String getType(){
 		return arg.getType();
 	}
@@ -23,8 +24,11 @@ public class InvalidDataTypeException extends RuntimeException {
 	}
 	
 	public String toString() {
-		String result= usageInfo + " argument " + arg.getName() + ": invalid " + arg.getType() + " value: " + value;
+		String result= exceptionClassInfo + " argument " + arg.getName() + ": invalid " + arg.getType() + " value: " + value;
 		return result;
 	}
+	
+	private void setExceptionClassName(){
+		exceptionClassInfo = this.getClass().getSimpleName();
+	}
 }
-

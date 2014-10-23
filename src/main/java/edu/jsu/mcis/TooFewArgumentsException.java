@@ -3,17 +3,20 @@ package edu.jsu.mcis;
 public class TooFewArgumentsException extends RuntimeException {
 	
 	private String expectedArgument;
-	private String usageInfo;
+	private String exceptionClassInfo;
 	
-	public TooFewArgumentsException(String s, String a) {
+	public TooFewArgumentsException(String s) {
 			expectedArgument= s;
-			usageInfo = a;
+			setExceptionClassName();
 	}
 	public String getMissingArgumentName() {
 		return expectedArgument;
 	}
 	public String toString() {
-		return usageInfo + " The following arguments are required: " + expectedArgument;
+		return exceptionClassInfo + " The following arguments are required: " + expectedArgument;
 	}
-
+	
+	private void setExceptionClassName(){
+		exceptionClassInfo = this.getClass().getSimpleName();
+	}
 }

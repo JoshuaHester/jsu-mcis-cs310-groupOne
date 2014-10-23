@@ -39,7 +39,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal\n positional arguments:\n length\n width\n height";
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length\n width\n height";
 		assertEquals(a,s);
 	}
 	
@@ -51,7 +51,7 @@ public class ArgumentParserTest{
 		argp.addArgument("height", "The height of the object");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
 		assertEquals(a,s);
 	}
 	
@@ -161,7 +161,7 @@ public class ArgumentParserTest{
 		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
 		argp.parse("-h");
 		String s=argp.getUsage();
-		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
 		assertEquals(a,s);
 	}
 	
@@ -402,7 +402,7 @@ public class ArgumentParserTest{
 		argp.addOptionalArgument(DataType.STRING, "type");
 		argp.parse("7 4 3 --type sphere");
 		String s=argp.getUsage();
-		String a="VolCal\n positional arguments:\n length\n width\n height\n --type";
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length\n width\n height\n --type";
 		assertEquals(a,s);
 	}
 	
@@ -416,7 +416,7 @@ public class ArgumentParserTest{
 		argp.addOptionalArgument(DataType.STRING, "color", "The color of the object");
 		argp.parse("7 4 3 --type sphere --color red");
 		String s=argp.getUsage();
-		String a="VolCal\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object\n --type The type of object\n --color The color of the object";
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object\n --type The type of object\n --color The color of the object";
 		assertEquals(a,s);
 		
 	}

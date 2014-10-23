@@ -15,10 +15,9 @@ public class InvalidDataTypeExceptionTest{
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
-		argp.parse("VolCal 0 0 0");
+		argp.parse("0 0 0");
 		arg= new ArgumentValues(DataType.FLOAT,"width");
 		s = "dog";
-		a = argp.usageOutput();
 	}
 	
 	@Test
@@ -26,7 +25,7 @@ public class InvalidDataTypeExceptionTest{
 		boolean thrown = false;
 	
 		try {
-			throw new InvalidDataTypeException(arg,s, a);
+			throw new InvalidDataTypeException(arg,s);
 		} catch (InvalidDataTypeException e) {
 			thrown = true;
 		}
@@ -38,10 +37,10 @@ public class InvalidDataTypeExceptionTest{
 	public void testGetString(){
 
 		try{
-			throw new InvalidDataTypeException(arg,s,a);
+			throw new InvalidDataTypeException(arg,s);
 		} catch(InvalidDataTypeException e){
 			String n = e.toString();
-			String b = "VolCal usage: length width height argument width: invalid float value: dog";
+			String b = "InvalidDataTypeException argument width: invalid float value: dog";
 			assertEquals(b,n);
 		}
 	}
@@ -50,7 +49,7 @@ public class InvalidDataTypeExceptionTest{
 	public void testGetName(){
 
 		try{
-			throw new InvalidDataTypeException(arg,s,a);
+			throw new InvalidDataTypeException(arg,s);
 		} catch(InvalidDataTypeException e){
 			String n = e.getName();
 			String b = "width";
@@ -62,7 +61,7 @@ public class InvalidDataTypeExceptionTest{
 	public void testGetValue(){
 
 		try{
-			throw new InvalidDataTypeException(arg,s,a);
+			throw new InvalidDataTypeException(arg,s);
 		} catch(InvalidDataTypeException e){
 			String v = e.getValue();
 			String b = "dog";
@@ -74,7 +73,7 @@ public class InvalidDataTypeExceptionTest{
 	public void testGetType(){
 
 		try{
-			throw new InvalidDataTypeException(arg,s, a);
+			throw new InvalidDataTypeException(arg,s);
 		} catch(InvalidDataTypeException e){
 			String t = e.getType();
 			String b = "float";

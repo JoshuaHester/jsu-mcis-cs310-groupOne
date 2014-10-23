@@ -19,11 +19,9 @@ public class TooFewArgumentsExceptionTest{
 	@Test
 	public void testTooFewArguments() {
 		boolean thrown = false;
-		argp.parse("VolCal 0 0 0");
-		String a = argp.usageOutput();
-		
+		argp.parse("0 0 0");
 		try {
-			throw new TooFewArgumentsException(s,a);
+			throw new TooFewArgumentsException(s);
 		} catch (TooFewArgumentsException e) {
 			thrown = true;
 		}
@@ -31,13 +29,13 @@ public class TooFewArgumentsExceptionTest{
 		assertTrue(thrown);
 	}
 	
-		@Test
+	@Test
 	public void testGetString(){
 		try{
-			argp.parse("VolCal 7 5");
+			argp.parse("7 5");
 		} catch(TooFewArgumentsException e){
 			String a = e.toString();
-			String b = "VolCal usage: length width height The following arguments are required: height";
+			String b = "TooFewArgumentsException The following arguments are required: height";
 			assertEquals(b,a);
 		}
 	}
@@ -45,7 +43,7 @@ public class TooFewArgumentsExceptionTest{
 	@Test
 	public void testGetName(){
 		try{
-			argp.parse("VolCal 7 5");
+			argp.parse("7 5");
 		} catch(TooFewArgumentsException e){
 			String a = e.getMissingArgumentName();
 			String b = "height";

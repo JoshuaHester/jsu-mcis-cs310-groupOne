@@ -19,11 +19,9 @@ public class TooManyArgumentsExceptionTest{
 	@Test
 	public void testTooManyArguments() {
 		boolean thrown = false;
-		argp.parse("VolCal 0 0 0");
-		String a = argp.usageOutput();
-		
+		argp.parse("0 0 0");
 		try {
-			throw new TooManyArgumentsException(s,a);
+			throw new TooManyArgumentsException(s);
 		} catch (TooManyArgumentsException e) {
 			thrown = true;
 		}
@@ -34,10 +32,10 @@ public class TooManyArgumentsExceptionTest{
 	@Test
 	public void testGetString(){
 		try{
-			argp.parse("VolCal 7 5 2 43");
+			argp.parse("7 5 2 43");
 		} catch(TooManyArgumentsException e){
 			String a = e.toString();
-			String b = "VolCal usage: length width height Unrecognised arguments: 43";
+			String b = "TooManyArgumentsException Unrecognised arguments: 43";
 			assertEquals(b,a);
 		}
 	}
@@ -45,7 +43,7 @@ public class TooManyArgumentsExceptionTest{
 	@Test
 	public void testGetName(){
 		try{
-			argp.parse("VolCal 7 5 2 43");
+			argp.parse("7 5 2 43");
 		} catch(TooManyArgumentsException e){
 			String a = e.getUnexpectedArgument();
 			String b = "43";
@@ -53,4 +51,3 @@ public class TooManyArgumentsExceptionTest{
 		}
 	}
 }
-        

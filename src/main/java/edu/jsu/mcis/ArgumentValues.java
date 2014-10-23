@@ -3,7 +3,8 @@ package edu.jsu.mcis;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
-public class ArgumentValues{
+public class ArgumentValues {
+
 	private String argument;
 	private Object value;
 	private String description;
