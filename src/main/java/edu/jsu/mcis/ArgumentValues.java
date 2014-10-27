@@ -30,7 +30,7 @@ public class ArgumentValues {
 		setDescription(desc);
 	}
 
-	public <T extends Object> T getValue(){
+	public <T> T getValue(){
 		return (T) value;
 	}
 	

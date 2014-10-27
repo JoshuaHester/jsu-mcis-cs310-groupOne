@@ -1,12 +1,37 @@
 import edu.jsu.mcis.*;
 
-public class ProductOwnerExample {
-	public static float CalVol(float l, float w, float h, String type){
-		if(type.equals("sphere")){
-			return (4*3.14f*(l*l*l))/3;
+
+public class VolCal {
+	private float result;
+	
+	public VolCal(float l, float w, float h, String type){
+		switch(type){
+			case "sphere":
+				result = calcSphere(l);
+				break;
+			case "pyramid":
+				result = calcPyramid(l,w,h);
+			default:
+				result = calcBox(l,w,h);
 		}
-		else return l*w*h;
 	}
+	
+	public float calcBox(float l, float w, float h){
+		return 1*w*h;
+	}
+	
+	public float calcSphere(float r){
+		return (4*3.14f*(r*r*r))/3;
+	}
+	
+	public float calcPyramid(float l, float w, float h){
+		return 1*w*h;
+	}
+	
+	public float getResult(){
+		return result;
+	}
+	
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
@@ -23,7 +48,7 @@ public class ProductOwnerExample {
 		float w = arg.getArgument("width").getValue();
 		float h = arg.getArgument("height").getValue();
 		String t = arg.getArgument("type").getValue();
-		float v = CalVol(l,w,h,t);
-		System.out.println(v);
+		VolCal cal = new VolCal(l,w,h,t);
+		System.out.println(cal.getResult());
 	}
 }

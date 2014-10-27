@@ -72,9 +72,9 @@ public class ArgumentParser {
 					throw new TooManyArgumentsException(a);
 				}
 				else{
-					if(nextVal.equals("-h")){
-						helpOut = true;
-						loop = false;
+					if(nextVal.equals("-h")||nextVal.equals("--help")){
+						System.out.println(getUsage());
+						System.exit(0);
 					}
 					else if(nextVal.contains("--")){
 						String argName = nextVal.substring(2);
