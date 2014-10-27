@@ -5,13 +5,13 @@ import java.util.*;
 @SuppressWarnings("unchecked")
 public class ArgumentValues {
 
-	private String argument;
+	private String name;
 	private Object value;
 	private String description;
 	private DataType variables = DataType.STRING;
 
 	public ArgumentValues(String arg){
-		argument = arg;
+		name = arg;
 		value = "";
 	}
 	
@@ -35,7 +35,7 @@ public class ArgumentValues {
 	}
 	
 	public String getName(){
-		return argument;
+		return name;
 	}
 	
 	public void setValue(String v){
@@ -68,15 +68,6 @@ public class ArgumentValues {
 	}
 	
 	public String getType(){
-		switch(variables){
-		case INT:
-			return "int";
-		case FLOAT:
-			return "float";
-		case BOOLEAN:
-			return "boolean";
-		default:
-			return "String";
-		}
+	return variables.toString();
 	}
 }
