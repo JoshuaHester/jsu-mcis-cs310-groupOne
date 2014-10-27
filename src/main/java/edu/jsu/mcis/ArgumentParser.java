@@ -32,11 +32,16 @@ public class ArgumentParser {
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		positionalArgList.add(argumentName);
 	}
+	public void addArgument(String argumentName, DataType type){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+		positionalArgList.add(argumentName);
+	}
 	
 	public void addArgument(DataType type, String argumentName, String argumentDescription){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, argumentDescription));
 		positionalArgList.add(argumentName);
 	}
+	
 	
 	public void addOptionalArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));

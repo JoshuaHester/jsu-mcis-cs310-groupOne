@@ -37,7 +37,7 @@ public class VolCal {
 		ArgumentParser arg = new ArgumentParser();
 		arg.addArgument(DataType.FLOAT, "length", "The length of the object. Radius if object is a sphere");
 		arg.addArgument(DataType.FLOAT, "width", "The width of the object");
-		arg.addArgument(DataType.FLOAT, "height", "The height of the object");
+		arg.addArgument("height", DataType.FLOAT, "The height of the object");
 		arg.addOptionalArgument(DataType.STRING, "type", "box", "The type of object having its volume calculated");
 		String input = "";
 		for(int i = 0; i < args.length; i++) {

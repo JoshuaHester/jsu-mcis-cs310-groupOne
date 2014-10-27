@@ -201,6 +201,17 @@ public class ArgumentParserTest{
 		}
 	}
 	
+	@Test
+	public void testNameBeforeType(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument("height", DataType.FLOAT);
+		parser.parse("3.14");
+		assertEquals(3.14f, parser.getArgument("height").getValue());
+		assertEquals("float", parser.getArgument("height").getType());
+	
+	}
+	
+	
 /*
 	@Test
 	public void testUsageOutput(){
