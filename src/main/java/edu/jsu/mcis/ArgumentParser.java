@@ -73,8 +73,11 @@ public class ArgumentParser {
 				}
 				else{
 					if(nextVal.equals("-h")||nextVal.equals("--help")){
+						loop=false;
+						helpOut=true;
 						System.out.println(getUsage());
-						System.exit(0);
+						
+//						System.exit(0);
 					}
 					else if(nextVal.contains("--")){
 						String argName = nextVal.substring(2);
