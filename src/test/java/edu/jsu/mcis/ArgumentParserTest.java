@@ -62,7 +62,7 @@ public class ArgumentParserTest{
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("-h");
-		assertEquals(true, argp.getHelpOut());
+		assertEquals(true, argp.isHelpCalled());
 	}
 	
 	@Test 

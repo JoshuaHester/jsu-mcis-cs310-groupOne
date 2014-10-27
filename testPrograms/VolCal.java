@@ -38,7 +38,7 @@ public class VolCal {
 		arg.addArgument(DataType.FLOAT, "length", "The length of the object. Radius if object is a sphere");
 		arg.addArgument(DataType.FLOAT, "width", "The width of the object");
 		arg.addArgument(DataType.FLOAT, "height", "The height of the object");
-		arg.addOptionalArgument(DataType.STRING, "type", "The type of object having its volume calculated");
+		arg.addOptionalArgument(DataType.STRING, "type", "box", "The type of object having its volume calculated");
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";
@@ -48,7 +48,9 @@ public class VolCal {
 		float w = arg.getArgument("width").getValue();
 		float h = arg.getArgument("height").getValue();
 		String t = arg.getArgument("type").getValue();
+		boolean tp = arg.getArgument("type").getIsPresent();
 		VolCal cal = new VolCal(l,w,h,t);
 		System.out.println(cal.getResult());
+		if(!tp){System.out.println("Remember to specify the type if you want anything other than a box!!!");}
 	}
 }

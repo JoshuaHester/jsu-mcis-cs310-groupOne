@@ -6,54 +6,54 @@ import java.util.Scanner;
 public class ArgumentParser {
 
 	private String programName ="";
-	private boolean helpOut = false;
-	private List<String> keyMapList;
-	private List<String> optionalList;
+	private boolean helpFlag = false;
+	private List<String> positionalArgList;
+	private List<String> optionalArgList;
 	private Hashtable<String,ArgumentValues> argumentTable;
 	
 	public ArgumentParser(){
-		keyMapList = new ArrayList<String>(5);
-		optionalList = new ArrayList<String>(5);
+		positionalArgList = new ArrayList<String>(5);
+		optionalArgList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
 		setProgramName();
 	}
 	
 	public void addArgument(String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(argumentName));
-		keyMapList.add(argumentName);
+		positionalArgList.add(argumentName);
 	}
 	
 	public void addArgument(String argumentName, String argumentDescription){
 		argumentTable.put(argumentName, new ArgumentValues(argumentName, argumentDescription));
-		keyMapList.add(argumentName);
+		positionalArgList.add(argumentName);
 	}
 	
 	public void addArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
-		keyMapList.add(argumentName);
+		positionalArgList.add(argumentName);
 	}
 	
 	public void addArgument(DataType type, String argumentName, String argumentDescription){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, argumentDescription));
-		keyMapList.add(argumentName);
+		positionalArgList.add(argumentName);
 	}
 	
 	public void addOptionalArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
-		optionalList.add(argumentName);
+		optionalArgList.add(argumentName);
 	}
 	
 	public void addOptionalArgument(DataType type, String argumentName, String desc){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
-		optionalList.add(argumentName);
+		optionalArgList.add(argumentName);
 	}
 	
 	public int getNumArguments(){
-		return keyMapList.size();
+		return positionalArgList.size();
 	}
 	
 	public int getNumOptArguments(){
-		return optionalList.size();
+		return optionalArgList.size();
 	}
 	
 	public void parse(String s){
@@ -74,7 +74,7 @@ public class ArgumentParser {
 				else{
 					if(nextVal.equals("-h")||nextVal.equals("--help")){
 						loop=false;
-						helpOut=true;
+						helpFlag=true;
 						System.out.println(getUsage());
 						
 //						System.exit(0);
@@ -85,10 +85,10 @@ public class ArgumentParser {
 					}
 					else {
 						try{
-							argumentTable.get(keyMapList.get(i)).setValue(nextVal);
+							argumentTable.get(positionalArgList.get(i)).setValue(nextVal);
 						}
 						catch(Exception e){
-							throw new InvalidDataTypeException(argumentTable.get(keyMapList.get(i)),nextVal);
+							throw new InvalidDataTypeException(argumentTable.get(positionalArgList.get(i)),nextVal);
 						}
 						i++;
 					}
@@ -96,17 +96,17 @@ public class ArgumentParser {
 			}
 			else loop = false;
 		}	
-		if(i<getNumArguments()&&!helpOut){
-			String missingArg=argumentTable.get(keyMapList.get(i)).getName();
+		if(i<getNumArguments()&&!helpFlag){
+			String missingArg=argumentTable.get(positionalArgList.get(i)).getName();
 			for(i=i+1;i<getNumArguments();i++){
-				missingArg=missingArg+" "+argumentTable.get(keyMapList.get(i)).getName();
+				missingArg=missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
 			}
 			throw new TooFewArgumentsException(missingArg);
 		}
 	}
 	
-	public boolean getHelpOut(){
-		return helpOut;
+	public boolean isHelpCalled(){
+		return helpFlag;
 	}
 	
 	public ArgumentValues getArgument(String argName){
@@ -123,16 +123,16 @@ public class ArgumentParser {
 	public String getUsage(){
 		String s = programName.toString()+"\n positional arguments:";
 		for(int i=0;i<getNumArguments();i++){
-			s=s+"\n "+argumentTable.get(keyMapList.get(i)).getName();
-			if(argumentTable.get(keyMapList.get(i)).getDescription()!=null){
-				s=s+" "+argumentTable.get(keyMapList.get(i)).getDescription();
+			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
+			if(argumentTable.get(positionalArgList.get(i)).getDescription()!=null){
+				s=s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
 			}
 		}
 		if(getNumOptArguments()!=0){
 			for(int i=0;i<getNumOptArguments();i++){
-				s=s+"\n --"+argumentTable.get(optionalList.get(i)).getName();
-				if(argumentTable.get(optionalList.get(i)).getDescription()!=null){
-					s=s+" "+argumentTable.get(optionalList.get(i)).getDescription();
+				s=s+"\n --"+argumentTable.get(optionalArgList.get(i)).getName();
+				if(argumentTable.get(optionalArgList.get(i)).getDescription()!=null){
+					s=s+" "+argumentTable.get(optionalArgList.get(i)).getDescription();
 				}
 			}
 		}
