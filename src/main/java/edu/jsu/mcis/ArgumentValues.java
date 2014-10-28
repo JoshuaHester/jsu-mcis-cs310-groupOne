@@ -30,8 +30,8 @@ public class ArgumentValues {
 		setDescription(desc);
 	}
 
-	public <T> T getValue(){
-		return (T) value;
+	public Object getValue(){
+		return value;
 	}
 	
 	public String getName(){

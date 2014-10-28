@@ -49,9 +49,7 @@ public class VolCal {
 		float w = arg.getArgument("width").getValue();
 		float h = arg.getArgument("height").getValue();
 		String t = arg.getArgument("type").getValue();
-//		boolean tp = arg.getArgument("type").getIsPresent();
 		VolCal cal = new VolCal(l,w,h,t);
 		System.out.println(cal.getResult());
-		if(!tp){System.out.println("Remember to specify the type if you want anything other than a box!!!");}
 	}
 }
