@@ -61,8 +61,11 @@ public class ArgumentParserTest{
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
+		argp.setHelpFlagExits(false);
 		argp.parse("-h");
-		assertEquals(true, argp.isHelpCalled());
+		String s=argp.getUsage();
+		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length\n width\n height";
+		assertEquals(a,s);
 	}
 	
 	@Test 
@@ -159,6 +162,7 @@ public class ArgumentParserTest{
 		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
 		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
 		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
+		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
 		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
@@ -238,32 +242,7 @@ public class ArgumentParserTest{
 		assertEquals(5, parser.getArgument("type").getValue());
 		assertEquals("int", parser.getArgument("type").getType());
 	}
-	
-/*
-	@Test
-	public void testUsageOutput(){
-		ArgumentParser argp= new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
-		argp.parse("0 0 0");
-		String a="VolCal usage: length width height";
-		assertEquals(argp.usageOutput(),a);
-	}
 
-	@Test
-	public void testUsageOutputOpt(){
-		ArgumentParser argp= new ArgumentParser();
-		argp.addArgument("length");
-		argp.addArgument("width");
-		argp.addArgument("height");
-		argp.addOptionalArgument(DataType.STRING, "type");
-		argp.addOptionalArgument(DataType.STRING, "color");
-		argp.parse("0 0 0");
-		String a="VolCal usage: length width height --type --color";
-		assertEquals(argp.usageOutput(),a);
-	}
-*/
 	@Test 
 	public void testParseOptionalArgumentsOne(){
 		ArgumentParser argp=new ArgumentParser();

@@ -6,16 +6,17 @@ import java.util.Scanner;
 public class ArgumentParser {
 
 	private String programName ="";
-	private boolean helpFlag = false;
 	private List<String> positionalArgList;
 	private List<String> optionalArgList;
 	private Hashtable<String,ArgumentValues> argumentTable;
+	private boolean helpFlagExits;
 	
 	public ArgumentParser(){
 		positionalArgList = new ArrayList<String>(5);
 		optionalArgList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,ArgumentValues>(5);
 		setProgramName();
+		helpFlagExits = true;
 	}
 	
 	public void addArgument(String argumentName){
@@ -75,6 +76,10 @@ public class ArgumentParser {
 		return optionalArgList.size();
 	}
 	
+	public void setHelpFlagExits(boolean h) {
+		helpFlagExits = h;
+	}
+	
 	public void parse(String s){
 		Scanner scan = new Scanner(s);
 		String nextVal = "";
@@ -93,10 +98,10 @@ public class ArgumentParser {
 				else{
 					if(nextVal.equals("-h")||nextVal.equals("--help")){
 						loop=false;
-						helpFlag=true;
 						System.out.println(getUsage());
-						
-//						System.exit(0);
+						if(helpFlagExits) {
+							System.exit(0);
+						}
 					}
 					else if(nextVal.contains("--")){
 						String argName = nextVal.substring(2);
@@ -115,17 +120,13 @@ public class ArgumentParser {
 			}
 			else loop = false;
 		}	
-		if(i<getNumArguments()&&!helpFlag){
+		if(i<getNumArguments()&&helpFlagExits){
 			String missingArg=argumentTable.get(positionalArgList.get(i)).getName();
 			for(i=i+1;i<getNumArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
 			}
 			throw new TooFewArgumentsException(missingArg);
 		}
-	}
-	
-	public boolean isHelpCalled(){
-		return helpFlag;
 	}
 	
 	public ArgumentValues getArgument(String argName){
