@@ -42,13 +42,27 @@ public class ArgumentParser {
 		positionalArgList.add(argumentName);
 	}
 	
+	public void addArgument(String argumentName, DataType type, String argumentDescription){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, argumentDescription));
+		positionalArgList.add(argumentName);
+	}
 	
 	public void addOptionalArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		optionalArgList.add(argumentName);
 	}
 	
+	public void addOptionalArgument(String argumentName, DataType type){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+		optionalArgList.add(argumentName);
+	}
+	
 	public void addOptionalArgument(DataType type, String argumentName, String desc){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
+		optionalArgList.add(argumentName);
+	}
+	
+	public void addOptionalArgument(String argumentName, DataType type, String desc){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
 		optionalArgList.add(argumentName);
 	}

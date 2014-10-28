@@ -208,9 +208,36 @@ public class ArgumentParserTest{
 		parser.parse("3.14");
 		assertEquals(3.14f, parser.getArgument("height").getValue());
 		assertEquals("float", parser.getArgument("height").getType());
-	
 	}
 	
+	@Test
+	public void testNameBeforeTypeWithDesc(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.parse("3.14");
+		assertEquals(3.14f, parser.getArgument("height").getValue());
+		assertEquals("float", parser.getArgument("height").getType());
+	}
+	
+	@Test
+	public void testOptNameBeforeType(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.addOptionalArgument("type", DataType.INT);
+		parser.parse("3.14 --type 5");
+		assertEquals(5, parser.getArgument("type").getValue());
+		assertEquals("int", parser.getArgument("type").getType());
+	}
+	
+	@Test
+	public void testOptNameBeforeTypeWithDesc(){
+		ArgumentParser parser=new ArgumentParser();
+		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.addOptionalArgument("type", DataType.INT, "Lorem ipsum dolor sit amet");
+		parser.parse("3 --type 5");
+		assertEquals(5, parser.getArgument("type").getValue());
+		assertEquals("int", parser.getArgument("type").getType());
+	}
 	
 /*
 	@Test
