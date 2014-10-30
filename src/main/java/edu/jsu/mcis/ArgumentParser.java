@@ -33,6 +33,7 @@ public class ArgumentParser {
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		positionalArgList.add(argumentName);
 	}
+
 	public void addArgument(String argumentName, DataType type){
 		addArgument(type, argumentName);
 	}
@@ -98,32 +99,20 @@ public class ArgumentParser {
 		String nextVal = "";
 		boolean loop = true;
 		int i = 0;
+		boolean helpCalled = false;
 		while(loop){
 			if(scan.hasNext()){
 				nextVal = scan.next();
-<<<<<<< HEAD
-				if(getNumArguments() < i+1 && !nextVal.contains("-")){
-					String a = nextVal;
-					while(scan.hasNext()){
-						a = a+" "+scan.next();
-=======
 				if(nextVal.equals("-h")||nextVal.equals("--help")){
 					loop=false;
 					System.out.println(getUsage());
 					if(helpFlagExits) {
 						System.exit(0);
->>>>>>> 8d784285799b6cd03bd703b64ab41a008b0eba5f
+					}
+					else{
+						helpCalled = true;
 					}
 				}
-<<<<<<< HEAD
-				else{
-					if(nextVal.equals("-h") || nextVal.equals("--help")){
-						loop = false;
-						helpFlag = true;
-						System.out.println(getUsage());
-						
-//						System.exit(0);
-=======
 				else if(nextVal.contains("--")){
 					String argName = nextVal.substring(2);
 					if(getArgument(argName).getType().equals("boolean")){
@@ -136,7 +125,6 @@ public class ArgumentParser {
 				else if(getNumPosArguments()>i){
 					try{
 						argumentTable.get(positionalArgList.get(i)).setValue(nextVal);	
->>>>>>> 8d784285799b6cd03bd703b64ab41a008b0eba5f
 					}
 					catch(Exception e){
 						throw new InvalidDataTypeException(argumentTable.get(positionalArgList.get(i)),nextVal);
@@ -151,19 +139,11 @@ public class ArgumentParser {
 				}
 			}
 			else loop = false;
-<<<<<<< HEAD
-		}	
-		if(i < getNumArguments() && !helpFlag){
-			String missingArg = argumentTable.get(positionalArgList.get(i)).getName();
-			for(i = i+1; i < getNumArguments();i++){
-				missingArg = missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
-=======
 		}
-		if(i<getNumPosArguments()&&helpFlagExits){
+		if(i<getNumPosArguments()&&!helpCalled){
 			String missingArg=argumentTable.get(positionalArgList.get(i)).getName();
 			for(i=i+1;i<getNumPosArguments();i++){
 				missingArg=missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
->>>>>>> 8d784285799b6cd03bd703b64ab41a008b0eba5f
 			}
 			throw new TooFewArgumentsException(missingArg);
 		}
@@ -182,17 +162,10 @@ public class ArgumentParser {
 	
 	public String getUsage(){
 		String s = programName.toString()+"\n positional arguments:";
-<<<<<<< HEAD
-		for(int i = 0;i < getNumArguments();i++){
-			s = s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
-			if(argumentTable.get(positionalArgList.get(i)).getDescription() != null){
-				s = s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
-=======
 		for(int i=0;i<getNumPosArguments();i++){
 			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
 			if(argumentTable.get(positionalArgList.get(i)).getDescription()!=null){
 				s=s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
->>>>>>> 8d784285799b6cd03bd703b64ab41a008b0eba5f
 			}
 		}
 		if(getNumOptArguments() != 0){

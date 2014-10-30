@@ -13,15 +13,18 @@ public class GroupOneKeywords{
 	}
 	
 	public String getLength(){
-		return p.getArgument("length").getValue();
+		String s =  p.getArgument("length").getValue();
+		return s;
 	}
 	
 	public String getWidth(){
-		return p.getArgument("width").getValue();
+		String s = p.getArgument("width").getValue();
+		return s;
 	}
 	
 	public String getHeight(){
-		return p.getArgument("height").getValue();
+		String s =  p.getArgument("height").getValue();
+		return s;
 	}
 	
 	public void StartProgramWithArguments2(String s) {
@@ -34,19 +37,23 @@ public class GroupOneKeywords{
 	}
 	
 	public String getPet(){
-		return p.getArgument("pet").getValue();
+		String s = p.getArgument("pet").getValue();
+		return s;
 	}
 	
 	public String getNumber(){
-		return p.getArgument("number").getValue();
+		String s =  p.getArgument("number").getValue();
+		return s;
 	}
 	
 	public String getRainy(){
-		return p.getArgument("rainy").getValue();
+		String s =  p.getArgument("rainy").getValue();
+		return s;
 	}
 	
 	public String getBathrooms(){
-		return p.getArgument("bathrooms").getValue();
+		String s =  p.getArgument("bathrooms").getValue();
+		return s;
 	}
 	
 	public void StartProgramWithOptionalArgument(String s) {
@@ -59,6 +66,7 @@ public class GroupOneKeywords{
 	}
 	
 	public String getType(){ 
-		return p.getArgument("type").getValue(); 
+		String s =  p.getArgument("type").getValue();
+		return s;
 	}
 }
