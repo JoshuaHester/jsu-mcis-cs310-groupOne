@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 public class ArgumentValuesTest{
 
 	private ArgumentValues v;
+	
 	@Test
 		public void testGetArgument(){
 		v = new ArgumentValues("Some Argument");
@@ -41,18 +42,21 @@ public class ArgumentValuesTest{
 		v.setValue("5");
 		assertEquals(5,v.getValue());
 	}
+	
 	@Test
 	public void testFloatValueArgument(){
 		v = new ArgumentValues(DataType.FLOAT, "approximate");
 		v.setValue("3.2");
 		assertEquals(3.2f,v.getValue());
 	}
+	
 	@Test
 	public void testBooleanValueArgument(){
 		v = new ArgumentValues(DataType.BOOLEAN, "car");
 		v.setValue("true");
 		assertEquals(true,v.getValue());
 	}
+	
 	@Test
 	public void testBooleanValueArgumentFalse(){
 		v = new ArgumentValues(DataType.BOOLEAN, "car");
@@ -90,5 +94,4 @@ public class ArgumentValuesTest{
 		v = new ArgumentValues(DataType.BOOLEAN, "pet");
 		assertEquals("boolean",v.getType());
 	}
-	
 }
