@@ -60,21 +60,21 @@ public class ArgumentParser {
 		Scanner scan = new Scanner(s);
 		String nextVal = "";
 		boolean loop = true;
-		int i=0;
+		int i = 0;
 		while(loop){
 			if(scan.hasNext()){
 				nextVal = scan.next();
-				if(getNumArguments()<i+1&&!nextVal.contains("-")){
-					String a =nextVal;
+				if(getNumArguments() < i+1 && !nextVal.contains("-")){
+					String a = nextVal;
 					while(scan.hasNext()){
-						a=a+" "+scan.next();
+						a = a+" "+scan.next();
 					}
 					throw new TooManyArgumentsException(a);
 				}
 				else{
-					if(nextVal.equals("-h")||nextVal.equals("--help")){
-						loop=false;
-						helpFlag=true;
+					if(nextVal.equals("-h") || nextVal.equals("--help")){
+						loop = false;
+						helpFlag = true;
 						System.out.println(getUsage());
 						
 //						System.exit(0);
@@ -96,10 +96,10 @@ public class ArgumentParser {
 			}
 			else loop = false;
 		}	
-		if(i<getNumArguments()&&!helpFlag){
-			String missingArg=argumentTable.get(positionalArgList.get(i)).getName();
-			for(i=i+1;i<getNumArguments();i++){
-				missingArg=missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
+		if(i < getNumArguments() && !helpFlag){
+			String missingArg = argumentTable.get(positionalArgList.get(i)).getName();
+			for(i = i+1; i < getNumArguments();i++){
+				missingArg = missingArg+" "+argumentTable.get(positionalArgList.get(i)).getName();
 			}
 			throw new TooFewArgumentsException(missingArg);
 		}
@@ -114,7 +114,7 @@ public class ArgumentParser {
 			return argumentTable.get(argName);
 		}
 		else{	
-			ArgumentValues val =new ArgumentValues("");
+			ArgumentValues val = new ArgumentValues("");
 			val.setValue("");
 			return val;
 		}
@@ -122,17 +122,17 @@ public class ArgumentParser {
 	
 	public String getUsage(){
 		String s = programName.toString()+"\n positional arguments:";
-		for(int i=0;i<getNumArguments();i++){
-			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
-			if(argumentTable.get(positionalArgList.get(i)).getDescription()!=null){
-				s=s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
+		for(int i = 0;i < getNumArguments();i++){
+			s = s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
+			if(argumentTable.get(positionalArgList.get(i)).getDescription() != null){
+				s = s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
 			}
 		}
-		if(getNumOptArguments()!=0){
-			for(int i=0;i<getNumOptArguments();i++){
-				s=s+"\n --"+argumentTable.get(optionalArgList.get(i)).getName();
-				if(argumentTable.get(optionalArgList.get(i)).getDescription()!=null){
-					s=s+" "+argumentTable.get(optionalArgList.get(i)).getDescription();
+		if(getNumOptArguments() != 0){
+			for(int i = 0;i < getNumOptArguments();i++){
+				s = s+"\n --"+argumentTable.get(optionalArgList.get(i)).getName();
+				if(argumentTable.get(optionalArgList.get(i)).getDescription() != null){
+					s = s+" "+argumentTable.get(optionalArgList.get(i)).getDescription();
 				}
 			}
 		}
