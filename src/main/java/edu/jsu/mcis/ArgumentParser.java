@@ -49,19 +49,32 @@ public class ArgumentParser {
 	public void addOptionalArgument(DataType type, String argumentName){
 		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		optionalArgList.add(argumentName);
+		if(type.toString().equals("boolean")){
+			getArgument(argumentName).setValue("false");
+		}
 	}
 	
 	public void addOptionalArgument(String argumentName, DataType type){
 		addOptionalArgument(type, argumentName);
 	}
 	
-	public void addOptionalArgument(DataType type, String argumentName, String desc){
-		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, desc));
+	public void addOptionalArgument(DataType type, String argumentName, String defaultVal){
+		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
 		optionalArgList.add(argumentName);
+		getArgument(argumentName).setValue(defaultVal);
 	}
 	
-	public void addOptionalArgument(String argumentName, DataType type, String desc){
-		addOptionalArgument(type, argumentName, desc);
+	public void addOptionalArgument(String argumentName, DataType type, String defaultVal){
+		addOptionalArgument(type, argumentName, defaultVal);
+	}
+	
+	public void addOptionalArgument(DataType type, String argumentName, String defaultVal, String desc){
+		addOptionalArgument(type, argumentName, defaultVal);
+		getArgument(argumentName).setDescription(desc);
+	}
+	
+	public void addOptionalArgument(String argumentName, DataType type, String defaultVal, String desc){
+		addOptionalArgument(type, argumentName, defaultVal, desc);
 	}
 	
 	public int getNumPosArguments(){
@@ -113,7 +126,12 @@ public class ArgumentParser {
 =======
 				else if(nextVal.contains("--")){
 					String argName = nextVal.substring(2);
-					getArgument(argName).setValue(scan.next());
+					if(getArgument(argName).getType().equals("boolean")){
+						getArgument(argName).setValue("true");
+					}
+					else{
+						getArgument(argName).setValue(scan.next());
+					}
 				}
 				else if(getNumPosArguments()>i){
 					try{
