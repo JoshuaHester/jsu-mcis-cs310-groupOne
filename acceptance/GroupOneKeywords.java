@@ -9,7 +9,7 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.parse("CalVolume "+s);
+		p.parse(s);
 	}
 	
 	public String getLength(){
@@ -30,7 +30,7 @@ public class GroupOneKeywords{
 		p.addArgument("number");
 		p.addArgument("rainy");
 		p.addArgument("bathrooms");
-		p.parse("GetPet "+s);
+		p.parse(s);
 	}
 	
 	public String getPet(){
@@ -49,4 +49,16 @@ public class GroupOneKeywords{
 		return p.getArgument("bathrooms").getValue();
 	}
 	
+	public void StartProgramWithOptionalArgument(String s) {
+		p = new ArgumentParser();
+		p.addArgument("length");
+		p.addArgument("width");
+		p.addArgument("height");
+		p.addOptionalArgument("type", DataType.STRING);
+		p.parse(s);
+	}
+	
+	public String getType(){ 
+		return p.getArgument("type").getValue(); 
+	}
 }
