@@ -69,4 +69,41 @@ public class GroupOneKeywords{
 		String s =  p.getArgument("type").getValue();
 		return s;
 	}
+	
+	public void StartProgramWithDefaultValues(String s) {
+		p = new ArgumentParser();
+		p.addArgument("length");
+		p.addArgument("width");
+		p.addArgument("height");
+		p.addOptionalArgument("type", DataType.STRING, "box");
+		p.parse(s);
+	}
+	
+	public void StartProgramWithBooleanFlag(String s){
+		p = new ArgumentParser();
+		p.addArgument("length");
+		p.addArgument("width");
+		p.addArgument("height");
+		p.addOptionalArgument("type", DataType.STRING, "box");
+		p.addOptionalArgument("hollow", DataType.BOOLEAN);
+		p.parse(s);
+	}
+	
+	public void StartProgramWithNoBooleanFlag(String s){
+		p = new ArgumentParser();
+		p.addArgument("length");
+		p.addArgument("width");
+		p.addArgument("height");
+		p.addOptionalArgument("type", DataType.STRING, "box");
+		p.addOptionalArgument("hollow", DataType.BOOLEAN);
+		p.parse(s);
+	}
+	
+	
+	public String getHollow(){
+		
+		boolean b =  p.getArgument("hollow").getValue();
+		String s = String.valueOf(b);
+		return s;
+	}
 }

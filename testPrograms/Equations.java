@@ -1,4 +1,3 @@
-
 import edu.jsu.mcis.*;
 
 
@@ -21,7 +20,7 @@ public class Equations {
 		return first - second - third;
 	}
 	
-	public float multiply(float first, float second, float, third){
+	public float multiply(float first, float second, float third){
 		return (first * second * third);
 	}
 	
@@ -46,11 +45,11 @@ public class Equations {
 			input += args[i] + " ";
 		}
 		arg.parse(input);
-		float l = arg.getArgument("first").getValue();
-		float w = arg.getArgument("second").getValue();
-		float h = arg.getArgument("third").getValue();
+		float f = arg.getArgument("first").getValue();
+		float s = arg.getArgument("second").getValue();
+		float th = arg.getArgument("third").getValue();
 		String t = arg.getArgument("type").getValue();
-		Equations cal = new Equations(first,second,third,type);
+		Equations cal = new Equations(f,s,th,t);
 		System.out.println(cal.getResult());
 	}
 }
