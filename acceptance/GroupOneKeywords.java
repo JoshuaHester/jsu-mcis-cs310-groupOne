@@ -61,7 +61,7 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.addOptionalArgument("type", DataType.STRING);
+		p.addOptionalArgument("type", Argument.DataType.STRING);
 		p.parse(s);
 	}
 	
@@ -75,7 +75,7 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.addOptionalArgument("type", DataType.STRING, "box");
+		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
 		p.parse(s);
 	}
 	
@@ -84,8 +84,8 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.addOptionalArgument("type", DataType.STRING, "box");
-		p.addOptionalArgument("hollow", DataType.BOOLEAN);
+		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
+		p.addOptionalArgument("hollow", Argument.DataType.BOOLEAN);
 		p.parse(s);
 	}
 	
@@ -94,8 +94,8 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.addOptionalArgument("type", DataType.STRING, "box");
-		p.addOptionalArgument("hollow", DataType.BOOLEAN);
+		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
+		p.addOptionalArgument("hollow", Argument.DataType.BOOLEAN);
 		p.parse(s);
 	}
 	

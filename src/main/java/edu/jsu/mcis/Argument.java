@@ -3,29 +3,46 @@ package edu.jsu.mcis;
 import java.util.*;
 
 @SuppressWarnings("unchecked")
-public class ArgumentValues {
+public class Argument {
 
 	private String name;
 	private Object value;
 	private String description;
 	private DataType variables = DataType.STRING;
+	
+	
+	public enum DataType{STRING, INT, FLOAT, BOOLEAN;
+		
+		public String toString(){
+			switch(this){
+			case INT:
+				return "int";
+			case FLOAT:
+				return "float";
+			case BOOLEAN:
+				return "boolean";
+			default:
+				return "String";
+			}
+		}
+	}
 
-	public ArgumentValues(String arg){
+	public Argument(String arg){
 		name = arg;
 		value = "";
 	}
 	
-	public ArgumentValues(String arg, String desc){
+	public Argument(String arg, String desc){
 		this(arg);
 		setDescription(desc);
 	}
 	
-	public ArgumentValues(DataType t, String arg){
+	public Argument(DataType t, String arg){
 		this(arg);
 		variables = t;
 	}
 	
-	public ArgumentValues(DataType t, String arg, String desc){
+	public Argument(DataType t, String arg, String desc){
 		this(t,arg);
 		setDescription(desc);
 	}

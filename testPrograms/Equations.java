@@ -40,6 +40,7 @@ public class Equations {
 		arg.addArgument(DataType.FLOAT, "second", "The second number in the equation");
 		arg.addArgument("third", DataType.FLOAT, "The third number in the equation");
 		arg.addOptionalArgument(DataType.STRING, "type", "add", "The type of arithmetic to perform on the equations");
+		//arg.saveToXML("myArguments.XML") 			functionality that is wanted from the product owner. May want to make a different class. BorderFactory that creates boarder. Class that builds argument parser
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";

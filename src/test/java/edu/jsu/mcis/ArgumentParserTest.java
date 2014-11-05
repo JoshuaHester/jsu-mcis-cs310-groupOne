@@ -127,7 +127,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testAddIntArgument() {
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.INT, "length");
+		parser.addArgument(Argument.DataType.INT, "length");
 		parser.parse("5");
 		assertEquals(5, parser.getArgument("length").getValue());
 	}
@@ -135,7 +135,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testAddFloatArgument() {
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.FLOAT, "length");
+		parser.addArgument(Argument.DataType.FLOAT, "length");
 		parser.parse("5.5");
 		assertEquals(5.5f, parser.getArgument("length").getValue());
 	}
@@ -143,7 +143,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testAddBooleanArgument() {
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.BOOLEAN, "Rainy");
+		parser.addArgument(Argument.DataType.BOOLEAN, "Rainy");
 		parser.parse("true");
 		assertEquals(true, parser.getArgument("Rainy").getValue());
 	}
@@ -151,7 +151,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testAddStringArgument() {
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.STRING, "pet");
+		parser.addArgument(Argument.DataType.STRING, "pet");
 		parser.parse("dog");
 		assertEquals("dog", parser.getArgument("pet").getValue());
 	}
@@ -159,9 +159,9 @@ public class ArgumentParserTest{
 	@Test
 	public void testTypeUsageWithDef(){
 		ArgumentParser argp= new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
-		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
-		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "length", "The length of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "width", "The width of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "height", "The height of the object");
 		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
@@ -172,7 +172,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testIncorrectBooleanDataType(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.BOOLEAN, "pet");
+		parser.addArgument(Argument.DataType.BOOLEAN, "pet");
 		try{
 			parser.parse("50");
 			assert false;
@@ -184,7 +184,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testIncorrectFloatDataType(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.FLOAT, "pet");
+		parser.addArgument(Argument.DataType.FLOAT, "pet");
 		try{
 			parser.parse("dog");
 			assert false;
@@ -196,7 +196,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testIncorrectIntDataType(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(DataType.INT, "pet");
+		parser.addArgument(Argument.DataType.INT, "pet");
 		try{
 			parser.parse("true");
 			assert false;
@@ -208,7 +208,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testNameBeforeType(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", DataType.FLOAT);
+		parser.addArgument("height", Argument.DataType.FLOAT);
 		parser.parse("3.14");
 		assertEquals(3.14f, parser.getArgument("height").getValue());
 		assertEquals("float", parser.getArgument("height").getType());
@@ -217,7 +217,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testNameBeforeTypeWithDesc(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.addArgument("height", Argument.DataType.FLOAT, "Lorem ipsum dolor sit amet");
 		parser.parse("3.14");
 		assertEquals(3.14f, parser.getArgument("height").getValue());
 		assertEquals("float", parser.getArgument("height").getType());
@@ -226,8 +226,8 @@ public class ArgumentParserTest{
 	@Test
 	public void testOptNameBeforeType(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
-		parser.addOptionalArgument("type", DataType.INT);
+		parser.addArgument("height", Argument.DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.addOptionalArgument("type", Argument.DataType.INT);
 		parser.parse("3.14 --type 5");
 		assertEquals(5, parser.getArgument("type").getValue());
 		assertEquals("int", parser.getArgument("type").getType());
@@ -236,8 +236,8 @@ public class ArgumentParserTest{
 	@Test
 	public void testOptNameBeforeTypeWithDesc(){
 		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", DataType.FLOAT, "Lorem ipsum dolor sit amet");
-		parser.addOptionalArgument("type", DataType.INT, "1", "Lorem ipsum dolor sit amet");
+		parser.addArgument("height", Argument.DataType.FLOAT, "Lorem ipsum dolor sit amet");
+		parser.addOptionalArgument("type", Argument.DataType.INT, "1", "Lorem ipsum dolor sit amet");
 		parser.parse("3 --type 5");
 		assertEquals(5, parser.getArgument("type").getValue());
 		assertEquals("int", parser.getArgument("type").getType());
@@ -246,10 +246,10 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsOne(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.STRING, "type");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.STRING, "type");
 		argp.parse("7 4 3 --type sphere");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -260,11 +260,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsTwo(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.STRING, "type");
-		argp.addOptionalArgument(DataType.STRING, "color");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.STRING, "type");
+		argp.addOptionalArgument(Argument.DataType.STRING, "color");
 		argp.parse("7 4 3 --type sphere --color red");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -276,11 +276,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsAnyOrder(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.STRING, "type");
-		argp.addOptionalArgument(DataType.STRING, "color");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.STRING, "type");
+		argp.addOptionalArgument(Argument.DataType.STRING, "color");
 		argp.parse("7 --type sphere 4 --color red 3");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -292,11 +292,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsWithDescriptions(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
-		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
-		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
-		argp.addOptionalArgument(DataType.STRING, "type", "0", "The type of object");
-		argp.addOptionalArgument(DataType.STRING, "color", "0", "The color of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "length", "The length of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "width", "The width of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "height", "The height of the object");
+		argp.addOptionalArgument(Argument.DataType.STRING, "type", "0", "The type of object");
+		argp.addOptionalArgument(Argument.DataType.STRING, "color", "0", "The color of the object");
 		argp.parse("7 4 3 --type sphere --color red");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -308,11 +308,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseTwoOptionalBooleanArguments(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.BOOLEAN, "type");
-		argp.addOptionalArgument(DataType.BOOLEAN, "color");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "type");
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "color");
 		argp.parse("7 4 5 --type --color");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -324,10 +324,10 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseBooleanOptionalArgumentsOne(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.BOOLEAN, "type");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "type");
 		argp.parse("7 4 3 --type");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -338,11 +338,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseBooleanOptionalArgumentsAnyOrder(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.BOOLEAN, "type");
-		argp.addOptionalArgument(DataType.BOOLEAN, "color");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "type");
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "color");
 		argp.parse("7 --type 4 3");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -354,11 +354,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseBooleanOptionalArgumentsWithDescriptions(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
-		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
-		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
-		argp.addOptionalArgument(DataType.BOOLEAN, "type", "false", "The type of object");
-		argp.addOptionalArgument(DataType.BOOLEAN, "color", "false", "The color of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "length", "The length of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "width", "The width of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "height", "The height of the object");
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "type", "false", "The type of object");
+		argp.addOptionalArgument(Argument.DataType.BOOLEAN, "color", "false", "The color of the object");
 		argp.parse("7 4 3 --type");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -370,11 +370,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseIntOptionalArgumentsWithDescriptions(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
-		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
-		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
-		argp.addOptionalArgument(DataType.INT, "type", "0", "The type of object");
-		argp.addOptionalArgument(DataType.INT, "color", "0", "The color of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "length", "The length of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "width", "The width of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "height", "The height of the object");
+		argp.addOptionalArgument(Argument.DataType.INT, "type", "0", "The type of object");
+		argp.addOptionalArgument(Argument.DataType.INT, "color", "0", "The color of the object");
 		argp.parse("7 4 3 --type 1 --color 2");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -386,10 +386,10 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseIntOptionalArgumentsOne(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.INT, "type");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.INT, "type");
 		argp.parse("7 4 3 --type 2");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -400,11 +400,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseIntOptionalArgumentsAnyOrder(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.INT, "type");
-		argp.addOptionalArgument(DataType.INT, "color");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.INT, "type");
+		argp.addOptionalArgument(Argument.DataType.INT, "color");
 		argp.parse("7 --type 4 --color 3 4 3");
 		assertEquals(7.0f, argp.getArgument("length").getValue());
 		assertEquals(4.0f, argp.getArgument("width").getValue());
@@ -416,10 +416,10 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsHelp(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length");
-		argp.addArgument(DataType.FLOAT, "width");
-		argp.addArgument(DataType.FLOAT, "height"); 
-		argp.addOptionalArgument(DataType.STRING, "type");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.addArgument(Argument.DataType.FLOAT, "width");
+		argp.addArgument(Argument.DataType.FLOAT, "height"); 
+		argp.addOptionalArgument(Argument.DataType.STRING, "type");
 		argp.parse("7 4 3 --type sphere");
 		String s=argp.getUsage();
 		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length\n width\n height\n --type";
@@ -429,11 +429,11 @@ public class ArgumentParserTest{
 	@Test 
 	public void testParseOptionalArgumentsHelpWithDesc(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.FLOAT, "length", "The length of the object");
-		argp.addArgument(DataType.FLOAT, "width", "The width of the object");
-		argp.addArgument(DataType.FLOAT, "height", "The height of the object");
-		argp.addOptionalArgument(DataType.STRING, "type", "0", "The type of object");
-		argp.addOptionalArgument(DataType.STRING, "color", "0", "The color of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "length", "The length of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "width", "The width of the object");
+		argp.addArgument(Argument.DataType.FLOAT, "height", "The height of the object");
+		argp.addOptionalArgument(Argument.DataType.STRING, "type", "0", "The type of object");
+		argp.addOptionalArgument(Argument.DataType.STRING, "color", "0", "The color of the object");
 		argp.parse("7 4 3 --type sphere --color red");
 		String s=argp.getUsage();
 		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object\n --type The type of object\n --color The color of the object";
@@ -444,8 +444,8 @@ public class ArgumentParserTest{
 	@Test 
 	public void testOptionalArgumentWithDefaultValueUnchanged(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.STRING,"car");
-		argp.addOptionalArgument(DataType.STRING,"type","box");
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.parse("Chevy");
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
@@ -453,8 +453,8 @@ public class ArgumentParserTest{
 	@Test 
 	public void testOptionalArgumentWithDefaultValueChanged(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.STRING,"car");
-		argp.addOptionalArgument(DataType.STRING,"type","box");
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.parse("Chevy --type car");
 		assertEquals("car",argp.getArgument("type").getValue());
 	}
@@ -462,8 +462,8 @@ public class ArgumentParserTest{
 	@Test 
 	public void testOptionalArgumentWithDefaultValueUnchangedWithDesc(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.STRING,"car");
-		argp.addOptionalArgument(DataType.STRING,"type","box","lorem ipsum");
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box","lorem ipsum");
 		argp.parse("Chevy");
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
@@ -471,8 +471,8 @@ public class ArgumentParserTest{
 	@Test 
 	public void testOptionalArgumentWithDefaultValueChangedWithDesc(){
 		ArgumentParser argp=new ArgumentParser();
-		argp.addArgument(DataType.STRING,"car");
-		argp.addOptionalArgument(DataType.STRING,"type","box","lorem ipsum");
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box","lorem ipsum");
 		argp.parse("Chevy --type car");
 		assertEquals("car",argp.getArgument("type").getValue());
 	}

@@ -8,73 +8,73 @@ public class ArgumentParser {
 	private String programName ="";
 	private List<String> positionalArgList;
 	private List<String> optionalArgList;
-	private Hashtable<String,ArgumentValues> argumentTable;
+	private Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
 	
 	public ArgumentParser(){
 		positionalArgList = new ArrayList<String>(5);
 		optionalArgList = new ArrayList<String>(5);
-		argumentTable = new Hashtable<String,ArgumentValues>(5);
+		argumentTable = new Hashtable<String,Argument>(5);
 		setProgramName();
 		helpFlagExits = true;
 	}
 	
 	public void addArgument(String argumentName){
-		argumentTable.put(argumentName, new ArgumentValues(argumentName));
+		argumentTable.put(argumentName, new Argument(argumentName));
 		positionalArgList.add(argumentName);
 	}
 	
 	public void addArgument(String argumentName, String argumentDescription){
-		argumentTable.put(argumentName, new ArgumentValues(argumentName, argumentDescription));
+		argumentTable.put(argumentName, new Argument(argumentName, argumentDescription));
 		positionalArgList.add(argumentName);
 	}
 	
-	public void addArgument(DataType type, String argumentName){
-		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+	public void addArgument(Argument.DataType type, String argumentName){
+		argumentTable.put(argumentName, new Argument(type, argumentName));
 		positionalArgList.add(argumentName);
 	}
 
-	public void addArgument(String argumentName, DataType type){
+	public void addArgument(String argumentName, Argument.DataType type){
 		addArgument(type, argumentName);
 	}
 	
-	public void addArgument(DataType type, String argumentName, String argumentDescription){
-		argumentTable.put(argumentName, new ArgumentValues(type, argumentName, argumentDescription));
+	public void addArgument(Argument.DataType type, String argumentName, String argumentDescription){
+		argumentTable.put(argumentName, new Argument(type, argumentName, argumentDescription));
 		positionalArgList.add(argumentName);
 	}
 	
-	public void addArgument(String argumentName, DataType type, String argumentDescription){
+	public void addArgument(String argumentName, Argument.DataType type, String argumentDescription){
 		addArgument(type, argumentName, argumentDescription);
 	}
 	
-	public void addOptionalArgument(DataType type, String argumentName){
-		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+	public void addOptionalArgument(Argument.DataType type, String argumentName){
+		argumentTable.put(argumentName, new Argument(type, argumentName));
 		optionalArgList.add(argumentName);
 		if(type.toString().equals("boolean")){
 			getArgument(argumentName).setValue("false");
 		}
 	}
 	
-	public void addOptionalArgument(String argumentName, DataType type){
+	public void addOptionalArgument(String argumentName, Argument.DataType type){
 		addOptionalArgument(type, argumentName);
 	}
 	
-	public void addOptionalArgument(DataType type, String argumentName, String defaultVal){
-		argumentTable.put(argumentName, new ArgumentValues(type, argumentName));
+	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal){
+		argumentTable.put(argumentName, new Argument(type, argumentName));
 		optionalArgList.add(argumentName);
 		getArgument(argumentName).setValue(defaultVal);
 	}
 	
-	public void addOptionalArgument(String argumentName, DataType type, String defaultVal){
+	public void addOptionalArgument(String argumentName, Argument.DataType type, String defaultVal){
 		addOptionalArgument(type, argumentName, defaultVal);
 	}
 	
-	public void addOptionalArgument(DataType type, String argumentName, String defaultVal, String desc){
+	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal, String desc){
 		addOptionalArgument(type, argumentName, defaultVal);
 		getArgument(argumentName).setDescription(desc);
 	}
 	
-	public void addOptionalArgument(String argumentName, DataType type, String defaultVal, String desc){
+	public void addOptionalArgument(String argumentName, Argument.DataType type, String defaultVal, String desc){
 		addOptionalArgument(type, argumentName, defaultVal, desc);
 	}
 	
@@ -149,12 +149,12 @@ public class ArgumentParser {
 		}
 	}
 	
-	public ArgumentValues getArgument(String argName){
+	public Argument getArgument(String argName){
 		if(argumentTable.containsKey(argName)){
 			return argumentTable.get(argName);
 		}
 		else{	
-			ArgumentValues val = new ArgumentValues("");
+			Argument val = new Argument("");
 			val.setValue("");
 			return val;
 		}

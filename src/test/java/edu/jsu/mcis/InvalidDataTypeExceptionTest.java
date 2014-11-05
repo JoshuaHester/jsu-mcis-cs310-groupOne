@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class InvalidDataTypeExceptionTest{
 	private ArgumentParser argp;
-	private ArgumentValues arg;
+	private Argument arg;
 	private String s;
 	private String a;
 
@@ -16,7 +16,7 @@ public class InvalidDataTypeExceptionTest{
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("0 0 0");
-		arg= new ArgumentValues(DataType.FLOAT,"width");
+		arg= new Argument(Argument.DataType.FLOAT,"width");
 		s = "dog";
 	}
 	
