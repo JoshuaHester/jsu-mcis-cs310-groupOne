@@ -179,6 +179,11 @@ public class ArgumentParser {
 		return s;
 	}
 	
+	public void loadXML(String path){
+		LoadXML loader = new LoadXML(path);
+		
+	}
+	
 	private void setProgramName(){
 		programName = Thread.currentThread().getStackTrace()[3].getClassName();
 	}

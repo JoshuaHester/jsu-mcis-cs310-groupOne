@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Arguments>
+	<Argument>
+		<name>length</name>
+		<Datatype>float</Datatype>
+		<Description>"length of object"</Description>
+	</Argument>
+	<Argument>
+		<name>width</name>
+		<Datatype>float</Datatype>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<name>height</name>
+		<Datatype>float</Datatype>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<name>type</name>
+		<Datatype>String</Datatype>
+		<optional/ >
+		<Description>"type of object"</Description>
+		<Default>box</Default>
+	</Argument>
+	<Argument>
+		<name>color</name>
+		<Datatype>String</Datatype>
+		<optional/ >
+		<Description>"color of object"</Description>
+		<Default>red</Default>
+	</Argument>
+</Arguments>
