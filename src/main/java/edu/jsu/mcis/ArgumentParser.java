@@ -8,7 +8,7 @@ public class ArgumentParser {
 	private String programName ="";
 	private List<String> positionalArgList;
 	private List<String> optionalArgList;
-	private Hashtable<String,ArgumentValues> argumentTable;
+	private Hashtable<String,ArgumentValues> argumentTable;//flag for named arguments and positional argument. don't declare hashtable. declare as hashmat
 	private boolean helpFlagExits;
 	
 	public ArgumentParser(){
