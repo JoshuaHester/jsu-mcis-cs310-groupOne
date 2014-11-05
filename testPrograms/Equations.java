@@ -11,7 +11,6 @@ public class Equations {
 				break;
 			case "multiply":
 				result = multiply(first, second, third);
-				break;
 			default:
 				result = add(first, second, third);
 		}
@@ -26,7 +25,7 @@ public class Equations {
 	}
 	
 	public float add(float first, float second, float third){
-		return (first + second + third);
+		return first + second + third;
 	}
 	
 	public float getResult(){
@@ -39,7 +38,8 @@ public class Equations {
 		arg.addArgument(DataType.FLOAT, "first", "The first number in the equation");
 		arg.addArgument(DataType.FLOAT, "second", "The second number in the equation");
 		arg.addArgument("third", DataType.FLOAT, "The third number in the equation");
-		arg.addOptionalArgument(DataType.STRING, "type", "add", "The type of arithmetic to perform on the equations");
+		arg.addOptionalArgument(DataType.STRING, "type", "subtract", "The type of arithmetic to perform on the equations");
+		arg.addOptionalArgument(DataType.BOOLEAN, "prime", "whether the object is prime");
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";

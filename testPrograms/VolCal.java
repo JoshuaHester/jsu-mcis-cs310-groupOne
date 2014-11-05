@@ -11,14 +11,13 @@ public class VolCal {
 				break;
 			case "pyramid":
 				result = calcPyramid(l,w,h);
-				break;
 			default:
 				result = calcBox(l,w,h);
 		}
 	}
 	
 	public float calcBox(float l, float w, float h){
-		return l*w*h;
+		return 1*w*h;
 	}
 	
 	public float calcSphere(float r){
@@ -26,7 +25,7 @@ public class VolCal {
 	}
 	
 	public float calcPyramid(float l, float w, float h){
-		return (l*w*h)/3;
+		return 1*w*h;
 	}
 	
 	public float getResult(){
@@ -40,7 +39,7 @@ public class VolCal {
 		arg.addArgument(DataType.FLOAT, "width", "The width of the object");
 		arg.addArgument("height", DataType.FLOAT, "The height of the object");
 		arg.addOptionalArgument(DataType.STRING, "type", "box", "The type of object having its volume calculated");
-		arg.addOptionalArgument(DataType.BOOLEAN, "hollow", "false", "whether the object is hollow");
+		arg.addOptionalArgument(DataType.BOOLEAN, "hollow", "whether the object is hollow");
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";
