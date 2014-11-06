@@ -18,14 +18,14 @@
 	<Argument>
 		<Name>type</Name>
 		<Type>String</Type>
-		<optional/ >
+		<Optional />
 		<Description>"type of object"</Description>
 		<Default>box</Default>
 	</Argument>
 	<Argument>
 		<Name>color</Name>
 		<Type>String</Type>
-		<optional/ >
+		<Optional />
 		<Description>"color of object"</Description>
 		<Default>red</Default>
 	</Argument>
