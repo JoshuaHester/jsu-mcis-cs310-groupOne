@@ -4,12 +4,17 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class LoadXMLTest{
+	private String xmlFile = "C:/Users/Joshua/Documents/GitHub/jsu-mcis-cs310-groupOne/testPrograms/test.xml";
+	
+	@Before
+	public void setFileName() {
+		String xmlFile = "C:/Users/Joshua/Documents/GitHub/jsu-mcis-cs310-groupOne/testPrograms/test.xml";
+	}
 	
 	@Test
 	public void testLoadXMLFile() {
-		ArgumentParser argp = new ArgumentParser();
-		argp.loadXML("test.xml");
-		assertEquals("red",argp.getArgument("color").getValue());
+		LoadXML loader = new LoadXML(xmlFile);
+		assertEquals(5,loader.getnumargs());
 	}
 	
 	
