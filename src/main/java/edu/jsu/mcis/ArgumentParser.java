@@ -24,10 +24,6 @@ public class ArgumentParser {
 		positionalArgList.add(argumentName);
 	}
 	
-	public void addArgument(String argumentName, String argumentDescription){
-		argumentTable.put(argumentName, new Argument(argumentName, argumentDescription));
-		positionalArgList.add(argumentName);
-	}
 	
 	public void addArgument(Argument.DataType type, String argumentName){
 		argumentTable.put(argumentName, new Argument(type, argumentName));

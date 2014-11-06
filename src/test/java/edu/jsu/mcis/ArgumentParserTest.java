@@ -46,9 +46,12 @@ public class ArgumentParserTest{
 	@Test
 	public void testGetUsageWithDescription(){
 		ArgumentParser argp= new ArgumentParser();
-		argp.addArgument("length", "The length of the object");
-		argp.addArgument("width", "The width of the object");
-		argp.addArgument("height", "The height of the object");
+		argp.addArgument("length");
+		argp.getArgument("length").setDescription("The length of the object");
+		argp.addArgument("width");
+		argp.getArgument("width").setDescription("The width of the object");
+		argp.addArgument("height");
+		argp.getArgument("height").setDescription("The height of the object");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
 		String a="edu.jsu.mcis.ArgumentParserTest\n positional arguments:\n length The length of the object\n width The width of the object\n height The height of the object";
