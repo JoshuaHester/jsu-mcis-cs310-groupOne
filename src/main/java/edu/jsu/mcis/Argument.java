@@ -31,19 +31,9 @@ public class Argument {
 		value = "";
 	}
 	
-	public Argument(String argument, String description){
-		this(argument);
-		setDescription(description);
-	}
-	
 	public Argument(DataType t, String argument){
 		this(argument);
 		variables = t;
-	}
-	
-	public Argument(DataType t, String argument, String description){
-		this(t,argument);
-		setDescription(description);
 	}
 
 	public <T> T getValue(){
