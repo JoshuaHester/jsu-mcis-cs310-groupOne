@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class ArgumentParser {
 
 	private String programName ="";
-	private List<String> positionalArgList;
-	private List<String> optionalArgList;
-	private Hashtable<String,Argument> argumentTable;
+	protected List<String> positionalArgList;
+	protected List<String> optionalArgList;
+	protected Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
 	
 	public ArgumentParser(){

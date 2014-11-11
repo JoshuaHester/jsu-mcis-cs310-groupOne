@@ -9,40 +9,40 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 
+import java.io.IOException;
 import org.xml.sax.SAXException;
+import javax.xml.parsers.ParserConfigurationException;
 
-public class LoadXML{
+public class LoadXML extends ArgumentParser{
 	private File xmlFile; 
-	
+/*	
 	private ArrayList<String> positionalArgList;
 	private ArrayList<String> optionalArgList;
 	private Hashtable<String,Argument> argumentTable;
-	
+//*/	
 	public LoadXML(String fileName){
 		
 		positionalArgList = new ArrayList<String>(5);
 		optionalArgList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,Argument>(5);
 	
-		//entire thing must be in bolck to comile. an exception is being thrown, trying to debug
-			xmlFile = new File(fileName);
+		xmlFile = new File(fileName);
 		 
-			DocumentBuilderFactory dbFactory;
-			DocumentBuilder dBuilder;
-			Document doc; 
-			try{
-				dbFactory = DocumentBuilderFactory.newInstance();			
-				dBuilder= dbFactory.newDocumentBuilder();
-				doc = dBuilder.parse(xmlFile);
-				doc.getDocumentElement().normalize();
-				doc.getDocumentElement().getNodeName();
+		DocumentBuilderFactory dbFactory;
+		DocumentBuilder dBuilder;
+		Document doc; 
+		try{
+			dbFactory = DocumentBuilderFactory.newInstance();			
+			dBuilder= dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(xmlFile);//throw cannot find file, cannot parse file 
+			doc.getDocumentElement().normalize();
+			doc.getDocumentElement().getNodeName();
 			
-				NodeList nList = doc.getElementsByTagName("Argument");
+			NodeList nList = doc.getElementsByTagName("Argument");
 			
 			for (int i = 0; i < nList.getLength(); i++) {
 				
 				Node nNode = nList.item(i);
-				System.out.println("car");
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 					
@@ -88,43 +88,20 @@ public class LoadXML{
 				}
 			}
 		
-		}catch(Exception e){e.getCause();}
+		}catch (IOException ex) {
+			System.out.println("Path : " + xmlFile.getAbsolutePath());
+		}catch (SAXException ex) {
+			System.out.println("dog.................p[[u[u...");
+		}catch (ParserConfigurationException ex) {
+			System.out.println("truck'''''''''''''");
+		}
 	}
-	
-	public Argument getArgument(String argName){
-//		if(argumentTable.containsKey(argName)){
-			return argumentTable.get(argName);
-/*		}
-		else{	
-			Argument val = new Argument("");
-			val.setValue("");
-			return val;
-		}*/
-	}
-	
-	public int getNumArgs(){
-		return argumentTable.size();
-	}
-	
-	public int getNumPosArguments(){
-		return positionalArgList.size();
-	}
-	
-	public int getNumOptArguments(){
-		return optionalArgList.size();
-	}
-	
-	public void translateDataUp(List posList, List optList, Hashtable args){
-		posList=(ArrayList) positionalArgList.clone();
-		optList=(ArrayList) optionalArgList.clone();
-		args=(Hashtable) argumentTable.clone();
-	}
-	
-	public ArrayList getPosArgs(){
+		
+	public List getPosArgs(){
 		return positionalArgList;
 	}
 	
-	public ArrayList getOptArgs(){
+	public List getOptArgs(){
 		return optionalArgList;
 	}
 	

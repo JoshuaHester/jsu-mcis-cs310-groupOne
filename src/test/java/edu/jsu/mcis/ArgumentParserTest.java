@@ -480,8 +480,7 @@ public class ArgumentParserTest{
 	@Test 
 	public void testXML(){
 		ArgumentParser argp=new ArgumentParser();
-		String xmlFile = "C:/Users/Joshua/Documents/GitHub/jsu-mcis-cs310-groupOne/testPrograms/test.xml";
-		argp.loadXML(xmlFile);
+		argp.loadXML("xmlFiles/test.xml");
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
 	
