@@ -29,6 +29,7 @@ public class Argument {
 	public Argument(String argument){
 		name = argument;
 		value = "";
+		variables = DataType.STRING;
 	}
 	
 	public Argument(DataType t, String argument){
@@ -42,6 +43,17 @@ public class Argument {
 	
 	public String getName(){
 		return name;
+	}
+		public void setDescription(String s){
+		description = s;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+	
+	public String getType(){
+		return variables.toString();
 	}
 	
 	public void setValue(String v){
@@ -63,17 +75,5 @@ public class Argument {
 		default:
 			value = v;
 		}
-	}
-	
-	public void setDescription(String s){
-		description = s;
-	}
-
-	public String getDescription(){
-		return description;
-	}
-	
-	public String getType(){
-	return variables.toString();
 	}
 }
