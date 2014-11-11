@@ -29,8 +29,9 @@ public class ArgumentTest{
 	
 	@Test
 	public void testMakeArgumentWithDescription(){
-		v = new Argument("pet", "Best Friend");
+		v = new Argument("pet");
 		v.setValue("dog");
+		v.setDescription("Best Friend");
 		assertEquals("dog",v.getValue());
 		assertEquals("Best Friend",v.getDescription());
 		assertEquals("pet",v.getName());

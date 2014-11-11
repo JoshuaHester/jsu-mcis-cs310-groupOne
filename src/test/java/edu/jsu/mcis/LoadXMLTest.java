@@ -1,3 +1,4 @@
+/*
 package edu.jsu.mcis;
 import java.util.*;
 import org.junit.*;
@@ -56,3 +57,4 @@ public class LoadXMLTest{
 	
 	
 }
+*/

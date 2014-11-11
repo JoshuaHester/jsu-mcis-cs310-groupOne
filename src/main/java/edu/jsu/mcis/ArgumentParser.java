@@ -24,10 +24,6 @@ public class ArgumentParser {
 		positionalArgList.add(argumentName);
 	}
 	
-	public void addArgument(String argumentName, String argumentDescription){
-		argumentTable.put(argumentName, new Argument(argumentName, argumentDescription));
-		positionalArgList.add(argumentName);
-	}
 	
 	public void addArgument(Argument.DataType type, String argumentName){
 		argumentTable.put(argumentName, new Argument(type, argumentName));
@@ -36,15 +32,6 @@ public class ArgumentParser {
 
 	public void addArgument(String argumentName, Argument.DataType type){
 		addArgument(type, argumentName);
-	}
-	
-	public void addArgument(Argument.DataType type, String argumentName, String argumentDescription){
-		argumentTable.put(argumentName, new Argument(type, argumentName, argumentDescription));
-		positionalArgList.add(argumentName);
-	}
-	
-	public void addArgument(String argumentName, Argument.DataType type, String argumentDescription){
-		addArgument(type, argumentName, argumentDescription);
 	}
 	
 	public void addOptionalArgument(Argument.DataType type, String argumentName){
@@ -67,15 +54,6 @@ public class ArgumentParser {
 	
 	public void addOptionalArgument(String argumentName, Argument.DataType type, String defaultVal){
 		addOptionalArgument(type, argumentName, defaultVal);
-	}
-	
-	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal, String desc){
-		addOptionalArgument(type, argumentName, defaultVal);
-		getArgument(argumentName).setDescription(desc);
-	}
-	
-	public void addOptionalArgument(String argumentName, Argument.DataType type, String defaultVal, String desc){
-		addOptionalArgument(type, argumentName, defaultVal, desc);
 	}
 	
 	public int getNumPosArguments(){

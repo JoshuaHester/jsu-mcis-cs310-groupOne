@@ -2,7 +2,6 @@ package edu.jsu.mcis;
 
 import java.util.*;
 
-@SuppressWarnings("unchecked")
 public class Argument {
 
 	private String name;
@@ -27,24 +26,15 @@ public class Argument {
 		}
 	}
 
-	public Argument(String arg){
-		name = arg;
+	public Argument(String argument){
+		name = argument;
 		value = "";
+		variables = DataType.STRING;
 	}
 	
-	public Argument(String arg, String desc){
-		this(arg);
-		setDescription(desc);
-	}
-	
-	public Argument(DataType t, String arg){
-		this(arg);
+	public Argument(DataType t, String argument){
+		this(argument);
 		variables = t;
-	}
-	
-	public Argument(DataType t, String arg, String desc){
-		this(t,arg);
-		setDescription(desc);
 	}
 
 	public <T> T getValue(){
@@ -53,6 +43,17 @@ public class Argument {
 	
 	public String getName(){
 		return name;
+	}
+		public void setDescription(String s){
+		description = s;
+	}
+
+	public String getDescription(){
+		return description;
+	}
+	
+	public String getType(){
+		return variables.toString();
 	}
 	
 	public void setValue(String v){
@@ -74,17 +75,5 @@ public class Argument {
 		default:
 			value = v;
 		}
-	}
-	
-	public void setDescription(String s){
-		description = s;
-	}
-
-	public String getDescription(){
-		return description;
-	}
-	
-	public String getType(){
-	return variables.toString();
 	}
 }
