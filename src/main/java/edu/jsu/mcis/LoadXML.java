@@ -15,11 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class LoadXML extends ArgumentParser{
 	private File xmlFile; 
-/*	
-	private ArrayList<String> positionalArgList;
-	private ArrayList<String> optionalArgList;
-	private Hashtable<String,Argument> argumentTable;
-//*/	
+
 	public LoadXML(String fileName){
 		
 		positionalArgList = new ArrayList<String>(5);
@@ -50,6 +46,7 @@ public class LoadXML extends ArgumentParser{
 					String dataType="String";
 					String desc ="";
 					String defaultVal=null;
+					boolean optional = false;
 					argName = eElement.getElementsByTagName("Name").item(0).getTextContent();
 					try{
 						dataType = eElement.getElementsByTagName("Type").item(0).getTextContent();
@@ -70,21 +67,35 @@ public class LoadXML extends ArgumentParser{
 					default:
 						type = Argument.DataType.STRING;
 					}
-					argumentTable.put(argName, new Argument(type,argName));
+	//				argumentTable.put(argName, new Argument(type,argName));
 					try{
 						eElement.getElementsByTagName("Optional").item(0).getTextContent();
-						optionalArgList.add(argName);
+						optional = true;
+//						optionalArgList.add(argName);
 					}catch(Exception e){
 						positionalArgList.add(argName);
 					}
 					try{
-						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
-						argumentTable.get(argName).setDescription(desc);
+						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
+//						argumentTable.get(argName).setValue(defaultVal);
 					}catch(Exception e){}
 					try{
-						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
-						argumentTable.get(argName).setValue(defaultVal);
+						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
+//						argumentTable.get(argName).setDescription(desc);
 					}catch(Exception e){}
+					
+					
+					if(optional){
+						if(type.equals(Argument.DataType.BOOLEAN)){
+							addFlag(argName);
+						}else{
+							addOptionalArgument(type,argName,defaultVal);
+						}
+					}else{
+						addArgument(type,argName);
+					}
+					getArgument(argName).setDescription(desc);
+					
 				}
 			}
 		
