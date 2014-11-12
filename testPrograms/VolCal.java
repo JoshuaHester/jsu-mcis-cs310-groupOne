@@ -36,11 +36,17 @@ public class VolCal {
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
-		arg.addArgument(DataType.FLOAT, "length", "The length of the object. Radius if object is a sphere");
-		arg.addArgument(DataType.FLOAT, "width", "The width of the object");
-		arg.addArgument("height", DataType.FLOAT, "The height of the object");
-		arg.addOptionalArgument(DataType.STRING, "type", "box", "The type of object having its volume calculated");
-		arg.addOptionalArgument(DataType.BOOLEAN, "hollow", "false", "whether the object is hollow");
+		arg.addArgument(Argument.DataType.FLOAT, "length");
+		arg.getArgument("length").setDescription("The length of the object. Radius if object is a sphere");
+		arg.addArgument(Argument.DataType.FLOAT, "width");
+		arg.getArgument("width").setDescription("The width of the object");
+		arg.addArgument("height", Argument.DataType.FLOAT);
+		arg.getArgument("height").setDescription("The height of the object");
+		arg.addOptionalArgument(Argument.DataType.STRING, "type", "box");
+		arg.getArgument("type").setDescription("The type of object having its volume calculated");
+		arg.getArgument("type").setShortName("t");
+		//arg.addFlag("hollow");
+		//arg.getArgument("hollow").setDescription("whether the object is hollow");
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";

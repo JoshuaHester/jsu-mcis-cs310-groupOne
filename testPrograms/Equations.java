@@ -36,10 +36,15 @@ public class Equations {
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
-		arg.addArgument(DataType.FLOAT, "first", "The first number in the equation");
-		arg.addArgument(DataType.FLOAT, "second", "The second number in the equation");
-		arg.addArgument("third", DataType.FLOAT, "The third number in the equation");
-		arg.addOptionalArgument(DataType.STRING, "type", "add", "The type of arithmetic to perform on the equations");
+		arg.addArgument(Argument.DataType.FLOAT, "first");
+		arg.getArgument("first").setDescription( "The first number in the equation");
+		arg.addArgument(Argument.DataType.FLOAT, "second");
+		arg.getArgument("second").setDescription( "The second number in the equation");
+		arg.addArgument("third", Argument.DataType.FLOAT);
+		arg.getArgument("third").setDescription("The third number in the equation");
+		arg.addOptionalArgument(Argument.DataType.STRING, "type", "add");
+		arg.getArgument("type").setDescription( "The type of arithmetic to perform on the equations");
+		arg.getArgument("type").setShortName("t");
 		//arg.saveToXML("myArguments.XML") 			functionality that is wanted from the product owner. May want to make a different class. BorderFactory that creates boarder. Class that builds argument parser
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
