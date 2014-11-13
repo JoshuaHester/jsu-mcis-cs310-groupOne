@@ -530,7 +530,7 @@ public class ArgumentParserTest{
 		assertEquals("car",argp.getArgument("type").getValue());
 	}
 	
-	//@Test 
+	@Test 
 	public void testXML(){
 		ArgumentParser argp=new ArgumentParser();
 		argp.loadXML("xmlFiles/test.xml");

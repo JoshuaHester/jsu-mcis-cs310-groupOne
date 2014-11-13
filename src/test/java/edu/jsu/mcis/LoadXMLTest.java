@@ -44,6 +44,19 @@ public class LoadXMLTest{
 		assertEquals(5,loader.getNumArguments());
 	}
 	
+	@Test
+	public void testFlags(){
+		LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
+		assertEquals(false,loader.getArgument("hollow").getValue());
+	
+	}
+	
+	@Test
+	public void testSizePos2() {
+		LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
+		assertEquals(3,loader.getNumPosArguments());
+	}
+	
 	
 }
 

@@ -5,6 +5,7 @@ public class InvalidFileException extends RuntimeException{
 	private String exceptionClassInfo;
 	
 	public InvalidFileException(String fileName){
+
 		this.fileName=fileName;
 		
 	}
@@ -14,7 +15,7 @@ public class InvalidFileException extends RuntimeException{
 	}
 	
 	
-	public String toString{
+	public String toString(){
 		
 		return exceptionClassInfo +" " + fileName + " is invalid, please fix the file";
 		

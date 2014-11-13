@@ -11,13 +11,9 @@ public class InvalidFileExceptionTest{
 	
 	} catch (InvalidFileException e) {
 		a=e.getFile();
-		
 	}
 	
 	assertEquals(a,"Corolla.java");
-
-
+	}
 
 }
-
-

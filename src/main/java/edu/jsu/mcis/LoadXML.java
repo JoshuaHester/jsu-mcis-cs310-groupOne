@@ -30,7 +30,7 @@ public class LoadXML extends ArgumentParser{
 		try{
 			dbFactory = DocumentBuilderFactory.newInstance();			
 			dBuilder= dbFactory.newDocumentBuilder();
-			doc = dBuilder.parse(xmlFile);//throw cannot find file, cannot parse file 
+			doc = dBuilder.parse(xmlFile);
 			doc.getDocumentElement().normalize();
 			doc.getDocumentElement().getNodeName();
 			
@@ -42,12 +42,15 @@ public class LoadXML extends ArgumentParser{
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 					
-					String argName; 
+					String argName = ""; 
 					String dataType="String";
 					String desc ="";
 					String defaultVal=null;
 					boolean optional = false;
-					argName = eElement.getElementsByTagName("Name").item(0).getTextContent();
+					String shortName = null;
+					try{
+						argName = eElement.getElementsByTagName("Name").item(0).getTextContent();
+					}catch(Exception e){/*if(optional&&dataType!=boolean) throw new MissingTagsException("Name");*/}
 					try{
 						dataType = eElement.getElementsByTagName("Type").item(0).getTextContent();
 					}catch(Exception e){}
@@ -67,44 +70,43 @@ public class LoadXML extends ArgumentParser{
 					default:
 						type = Argument.DataType.STRING;
 					}
-	//				argumentTable.put(argName, new Argument(type,argName));
 					try{
-						eElement.getElementsByTagName("Optional").item(0).getTextContent();
+						String temp = eElement.getElementsByTagName("Optional").item(0).getTextContent();
 						optional = true;
-//						optionalArgList.add(argName);
-					}catch(Exception e){
-						positionalArgList.add(argName);
-					}
+						if(temp.equals("false")){
+							optional = false;
+						}
+					}catch(Exception e){}
 					try{
 						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
-//						argumentTable.get(argName).setValue(defaultVal);
-					}catch(Exception e){}
+					}catch(Exception e){/*if(optional&&dataType!=boolean) throw new MissingTagsException("Default");*/}
 					try{
 						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
-//						argumentTable.get(argName).setDescription(desc);
+					}catch(Exception e){}
+					try{
+						shortName = eElement.getElementsByTagName("Short").item(0).getTextContent();
 					}catch(Exception e){}
 					
-					
 					if(optional){
-						if(type.equals(Argument.DataType.BOOLEAN)){
+						if(dataType.equals("boolean")){
 							addFlag(argName);
 						}else{
 							addOptionalArgument(type,argName,defaultVal);
+						}
+						if(shortName != null){
+							getArgument(argName).setShortName(shortName);
 						}
 					}else{
 						addArgument(type,argName);
 					}
 					getArgument(argName).setDescription(desc);
-					
 				}
 			}
 		
-		}catch (IOException ex) {
+		}catch (IOException ex) {/*throw new CannotFindFileException(fileName);*/
 			System.out.println("Path : " + xmlFile.getAbsolutePath());
-		}catch (SAXException ex) {
-			System.out.println("dog.................p[[u[u...");
-		}catch (ParserConfigurationException ex) {
-			System.out.println("truck'''''''''''''");
+		}catch (SAXException ex) {throw new InvalidFileException(fileName);
+		}catch (ParserConfigurationException ex) {throw new CriticalErrorException("ParserConfigurationException");
 		}
 	}
 		
