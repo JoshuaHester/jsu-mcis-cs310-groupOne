@@ -1,0 +1,15 @@
+javac -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar VolCal.java
+
+javac -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar Equations.java
+
+javac -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar Palindrome.java
+
+javac -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar BillAtRestaurant.java
+
+java -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar VolCal
+
+java -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar Equations
+
+java -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar Palindrome
+
+java -cp .;C:\Users\sfedy_000\Documents\GitHub\jsu-mcis-cs310-groupOne\build\libs\jsu-mcis-cs310-groupOne-1.0.jar BillAtRestaurant

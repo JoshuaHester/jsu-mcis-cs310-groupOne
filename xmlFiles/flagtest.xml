@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Arguments>
+	<Argument>
+		<Name>length</Name>
+		<Type>float</Type>
+		<Description>"length of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>width</Name>
+		<Type>float</Type>
+		<Optional>false</Optional>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>height</Name>
+		<Type>float</Type>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>type</Name>
+		<Type>String</Type>
+		<Short>t</Short>
+		<Optional />
+		<Description>"type of object"</Description>
+		<Default>box</Default>
+	</Argument>
+	<Argument>
+		<Name>color</Name>
+		<Type>String</Type>
+		<Optional />
+		<Short>c</Short>
+		<Description>"color of object"</Description>
+		<Default>red</Default>
+	</Argument>
+	<Argument>
+		<Name>hollow</Name>
+		<Type>boolean</Type>
+		<Optional />
+		<Short>h</Short>
+		<Description>"whether the object is hollow"</Description>
+	</Argument>
+</Arguments>

@@ -8,6 +8,7 @@ public class Argument {
 	private Object value;
 	private String description;
 	private DataType variables = DataType.STRING;
+	private String shortName;
 	
 	
 	public enum DataType{STRING, INT, FLOAT, BOOLEAN;
@@ -54,6 +55,14 @@ public class Argument {
 	
 	public String getType(){
 		return variables.toString();
+	}
+	
+	public String getShortName(){
+		return shortName;
+	}
+	
+	public void setShortName(String shortName){
+		this.shortName = shortName;
 	}
 	
 	public void setValue(String v){

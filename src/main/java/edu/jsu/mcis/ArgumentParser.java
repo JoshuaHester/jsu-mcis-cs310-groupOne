@@ -34,18 +34,12 @@ public class ArgumentParser {
 		addArgument(type, argumentName);
 	}
 	
-	public void addOptionalArgument(Argument.DataType type, String argumentName){
-		argumentTable.put(argumentName, new Argument(type, argumentName));
+	public void addFlag(String argumentName){
+		argumentTable.put(argumentName, new Argument(Argument.DataType.BOOLEAN, argumentName));
 		optionalArgList.add(argumentName);
-		if(type.toString().equals("boolean")){
-			getArgument(argumentName).setValue("false");
-		}
+		getArgument(argumentName).setValue("false");
 	}
-	
-	public void addOptionalArgument(String argumentName, Argument.DataType type){
-		addOptionalArgument(type, argumentName);
-	}
-	
+
 	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal){
 		argumentTable.put(argumentName, new Argument(type, argumentName));
 		optionalArgList.add(argumentName);
@@ -91,6 +85,7 @@ public class ArgumentParser {
 						helpCalled = true;
 					}
 				}
+			
 				else if(nextVal.contains("--")){
 					String argName = nextVal.substring(2);
 					if(getArgument(argName).getType().equals("boolean")){
@@ -98,6 +93,15 @@ public class ArgumentParser {
 					}
 					else{
 						getArgument(argName).setValue(scan.next());
+					}
+				}	
+				else if(nextVal.contains("-")){
+					String shortName = nextVal.substring(1);
+					if(getArgumentByShortName(shortName).getType().equals("boolean")){
+						getArgumentByShortName(shortName).setValue("true");
+					}
+					else{
+						getArgumentByShortName(shortName).setValue(scan.next());
 					}
 				}
 				else if(getNumPosArguments()>i){
@@ -136,6 +140,16 @@ public class ArgumentParser {
 			val.setValue("");
 			return val;
 		}
+	}
+	
+	private Argument getArgumentByShortName(String shortName){
+		for(int i = 0; i < getNumOptArguments(); i ++){
+			if(shortName.equals(getArgument(optionalArgList.get(i)).getShortName()))
+				return getArgument(optionalArgList.get(i));
+		}
+		Argument val = new Argument("");
+		val.setValue("");
+		return val;
 	}
 	
 	public String getUsage(){
