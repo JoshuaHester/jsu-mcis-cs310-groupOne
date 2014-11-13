@@ -50,7 +50,7 @@ public class LoadXML extends ArgumentParser{
 					String shortName = null;
 					try{
 						argName = eElement.getElementsByTagName("Name").item(0).getTextContent();
-					}catch(Exception e){/*if(optional&&dataType!=boolean) throw new MissingTagsException("Name");*/}
+					}catch(Exception e){if(optional&&dataType!=boolean) throw new XMLException(fileName, "The following tag is missing: [Name]")}
 					try{
 						dataType = eElement.getElementsByTagName("Type").item(0).getTextContent();
 					}catch(Exception e){}
@@ -79,7 +79,7 @@ public class LoadXML extends ArgumentParser{
 					}catch(Exception e){}
 					try{
 						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
-					}catch(Exception e){/*if(optional&&dataType!=boolean) throw new MissingTagsException("Default");*/}
+					}catch(Exception e){if(optional&&dataType!=boolean) throw new XMLException(fileName, "The following tag is missing: [Default]");}
 					try{
 						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
 					}catch(Exception e){}
@@ -103,10 +103,9 @@ public class LoadXML extends ArgumentParser{
 				}
 			}
 		
-		}catch (IOException ex) {/*throw new CannotFindFileException(fileName);*/
-			System.out.println("Path : " + xmlFile.getAbsolutePath());
-		}catch (SAXException ex) {throw new InvalidFileException(fileName);
-		}catch (ParserConfigurationException ex) {throw new CriticalErrorException("ParserConfigurationException");
+		}catch (IOException ex) {throw new XMLException(fileName, "The XML file cannot be found");
+		}catch (SAXException ex) {throw new XMLException(fileName, "The XML file is built incorrectly");
+		}catch (ParserConfigurationException ex) {throw new XMLException(fileName, "Critical error, please notify the developers [ParserConfigurationException]");
 		}
 	}
 		
