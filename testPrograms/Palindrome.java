@@ -27,8 +27,9 @@ public class Palindrome{
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
-		arg.addArgument(DataType.STRING, "word", ": string without spaces");
-		arg.addOptionalArgument(DataType.BOOLEAN, "ignoreCase", "false",": ignores capitalization");
+		//arg.addArgument(DataType.STRING, "word", ": string without spaces");
+		//arg.addOptionalArgument(DataType.BOOLEAN, "ignoreCase", "false",": ignores capitalization");
+		argp.LoadXML(Palindrome.xml);
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";

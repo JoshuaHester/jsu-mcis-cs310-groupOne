@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<Arguments>
+	<Argument>
+		<Name>word</Name>
+	    <Type>String</Type>	
+		<Description>:string without spaces</Description>
+	</Argument>
+	<Argument>
+		<Name>ignoreCase</Name>
+		<Optional />
+		<type>boolean</Type>
+		<Description>: ignores capitalization</Descrition>
+	</Argument>
+</Arguments>
