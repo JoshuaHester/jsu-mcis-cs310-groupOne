@@ -50,7 +50,7 @@ public class LoadXML extends ArgumentParser{
 					String shortName = null;
 					try{
 						argName = eElement.getElementsByTagName("Name").item(0).getTextContent();
-					}catch(Exception e){if(optional&&dataType!=boolean) throw new XMLException(fileName, "The following tag is missing: [Name]")}
+					}catch(Exception e){throw new XMLException(fileName, "The following tag is missing: [Name]");}
 					try{
 						dataType = eElement.getElementsByTagName("Type").item(0).getTextContent();
 					}catch(Exception e){}
@@ -79,7 +79,7 @@ public class LoadXML extends ArgumentParser{
 					}catch(Exception e){}
 					try{
 						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
-					}catch(Exception e){if(optional&&dataType!=boolean) throw new XMLException(fileName, "The following tag is missing: [Default]");}
+					}catch(Exception e){if(optional&&type!=Argument.DataType.BOOLEAN){ throw new XMLException(fileName, "The following tag is missing: [Default]");}}
 					try{
 						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
 					}catch(Exception e){}
