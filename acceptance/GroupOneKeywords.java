@@ -61,7 +61,7 @@ public class GroupOneKeywords{
 		p.addArgument("length");
 		p.addArgument("width");
 		p.addArgument("height");
-		p.addOptionalArgument("type", Argument.DataType.STRING);
+		p.addOptionalArgument("type", Argument.DataType.STRING, "default");
 		p.parse(s);
 	}
 	
@@ -85,7 +85,7 @@ public class GroupOneKeywords{
 		p.addArgument("width");
 		p.addArgument("height");
 		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
-		p.addOptionalArgument("hollow", Argument.DataType.BOOLEAN);
+		p.addFlag("hollow");
 		p.parse(s);
 	}
 	
@@ -95,7 +95,7 @@ public class GroupOneKeywords{
 		p.addArgument("width");
 		p.addArgument("height");
 		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
-		p.addOptionalArgument("hollow", Argument.DataType.BOOLEAN);
+		p.addFlag("hollow");
 		p.parse(s);
 	}
 	
