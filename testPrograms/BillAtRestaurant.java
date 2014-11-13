@@ -39,9 +39,13 @@ public class BillAtRestaurant {
 	
 	public static void main(String[] args) {
 		ArgumentParser arg = new ArgumentParser();
-		arg.addArgument(DataType.FLOAT, "price", "The price of your bill.");
-		arg.addArgument(DataType.FLOAT, "percentage", "This is the tip percentage.");
-		arg.addOptionalArgument(DataType.STRING, "coupon","none", "if the customer has a coupon.");
+		arg.addArgument(Argument.DataType.FLOAT, "price");
+		arg.getArgument("price").setDescription( "The price of your bill.");
+		arg.addArgument(Argument.DataType.FLOAT, "percentage");
+		arg.getArgument("percentage").setDescription("This is the tip percentage.");
+		arg.addOptionalArgument(Argument.DataType.STRING, "coupon","none");
+		arg.getArgument("coupon").setDescription("if the customer has a coupon.");
+		arg.getArgument("coupon").setShortName("c");
 		
 		String input = "";
 		for(int i = 0; i < args.length; i++){
