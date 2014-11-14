@@ -27,13 +27,13 @@ public class Argument {
 		}
 	}
 
-	public Argument(String argument){
+	 Argument(String argument){
 		name = argument;
 		value = "";
 		variables = DataType.STRING;
 	}
 	
-	public Argument(DataType t, String argument){
+ 	Argument(DataType t, String argument){
 		this(argument);
 		variables = t;
 	}
