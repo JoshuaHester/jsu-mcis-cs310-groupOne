@@ -11,8 +11,11 @@ public class BillAtRestaurant {
 			case "$5off":
 				answer = fiveOffTranscation(price, percentage);
 				break;
-			default:
+			case("none"):
 				answer = normalTransaction(price, percentage);
+				break;
+			default:
+				throw new InvalidOptionalArgumentException(coupon);
 		}
 	}
 	
@@ -44,7 +47,7 @@ public class BillAtRestaurant {
 		arg.addArgument(Argument.DataType.FLOAT, "percentage");
 		arg.getArgument("percentage").setDescription("This is the tip percentage.");
 		arg.addOptionalArgument(Argument.DataType.STRING, "coupon","none");
-		arg.getArgument("coupon").setDescription("if the customer has a coupon.");
+		arg.getArgument("coupon").setDescription("if the customer has a coupon: none(default), halfoff, $5off");
 		arg.getArgument("coupon").setShortName("c");
 		
 		String input = "";

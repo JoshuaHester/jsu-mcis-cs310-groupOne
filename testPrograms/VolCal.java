@@ -12,8 +12,11 @@ public class VolCal {
 			case "pyramid":
 				result = calcPyramid(l,w,h);
 				break;
-			default:
+			case "box":
 				result = calcBox(l,w,h);
+				break;
+			default:
+				throw new InvalidOptionalArgumentException(type);
 		}
 	}
 	
@@ -43,7 +46,7 @@ public class VolCal {
 		arg.addArgument("height", Argument.DataType.FLOAT);
 		arg.getArgument("height").setDescription("The height of the object");
 		arg.addOptionalArgument(Argument.DataType.STRING, "type", "box");
-		arg.getArgument("type").setDescription("The type of object having its volume calculated");
+		arg.getArgument("type").setDescription("The type of object having its volume calculated:box(default), sphere, pyramid");
 		arg.getArgument("type").setShortName("t");
 		//arg.addFlag("hollow");
 		//arg.getArgument("hollow").setDescription("whether the object is hollow");

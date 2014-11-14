@@ -153,18 +153,24 @@ public class ArgumentParser {
 	}
 	
 	public String getUsage(){
-		String s = programName.toString()+"\n positional arguments:";
+		String positionalArguments = "";
 		for(int i=0;i<getNumPosArguments();i++){
-			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName();
+			positionalArguments=positionalArguments+" " + argumentTable.get(positionalArgList.get(i)).getName();
+		}
+		
+		String s = programName.toString() + positionalArguments + "\n";
+		
+		for(int i=0;i<getNumPosArguments();i++){
+			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName()+": ";
 			if(argumentTable.get(positionalArgList.get(i)).getDescription()!=null){
-				s=s+" "+argumentTable.get(positionalArgList.get(i)).getDescription();
+				s=s+" "+argumentTable.get(positionalArgList.get(i)).getDescription()+".";
 			}
 		}
 		if(getNumOptArguments() != 0){
 			for(int i = 0;i < getNumOptArguments();i++){
-				s = s+"\n --"+argumentTable.get(optionalArgList.get(i)).getName();
+				s = s+"\n --"+argumentTable.get(optionalArgList.get(i)).getName()+": ";
 				if(argumentTable.get(optionalArgList.get(i)).getDescription() != null){
-					s = s+" "+argumentTable.get(optionalArgList.get(i)).getDescription();
+					s = s+" "+argumentTable.get(optionalArgList.get(i)).getDescription() +".";
 				}
 			}
 		}
