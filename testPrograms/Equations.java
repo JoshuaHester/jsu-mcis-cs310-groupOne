@@ -5,16 +5,17 @@ public class Equations {
 	private float result;
 	
 	public Equations(float first, float second, float third, String type){
-		switch(type){
-			case "subtract":
-				result = subtract(first, second, third);
-				break;
-			case "multiply":
-				result = multiply(first, second, third);
-				break;
-			default:
-				result = add(first, second, third);
-		}
+			switch(type){
+				case "subtract":
+					result = subtract(first, second, third);
+					break;
+				case "multiply":
+					result = multiply(first, second, third);
+					break;
+				default:
+					result = add(first, second, third);
+			}
+	
 	}
 	
 	public float subtract(float first, float second, float third){
