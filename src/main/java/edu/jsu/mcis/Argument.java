@@ -27,7 +27,7 @@ public class Argument {
 		}
 	}
 
-	 Argument(String argument){
+	Argument(String argument){
 		name = argument;
 		value = "";
 		variables = DataType.STRING;

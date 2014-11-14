@@ -152,7 +152,7 @@ public class ArgumentParser {
 		return val;
 	}
 	
-	public String getUsage(){
+	String getUsage(){
 		String positionalArguments = "";
 		for(int i=0;i<getNumPosArguments();i++){
 			positionalArguments=positionalArguments+" " + argumentTable.get(positionalArgList.get(i)).getName();
