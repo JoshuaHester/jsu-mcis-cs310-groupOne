@@ -136,9 +136,7 @@ public class ArgumentParser {
 			return argumentTable.get(argName);
 		}
 		else{	
-			Argument val = new Argument("");
-			val.setValue("");
-			return val;
+			throw new InvalidArgumentException(argName);
 		}
 	}
 	
@@ -147,9 +145,7 @@ public class ArgumentParser {
 			if(shortName.equals(getArgument(optionalArgList.get(i)).getShortName()))
 				return getArgument(optionalArgList.get(i));
 		}
-		Argument val = new Argument("");
-		val.setValue("");
-		return val;
+		throw new InvalidArgumentException(shortName);
 	}
 	
 	String getUsage(){

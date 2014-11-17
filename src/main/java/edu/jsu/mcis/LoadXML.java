@@ -109,15 +109,15 @@ public class LoadXML extends ArgumentParser{
 		}
 	}
 		
-	public List getPosArgs(){
+	List getPosArgs(){
 		return positionalArgList;
 	}
 	
-	public List getOptArgs(){
+	List getOptArgs(){
 		return optionalArgList;
 	}
 	
-	public Hashtable getArgs(){
+	Hashtable getArgs(){
 		return argumentTable;
 	}
 	

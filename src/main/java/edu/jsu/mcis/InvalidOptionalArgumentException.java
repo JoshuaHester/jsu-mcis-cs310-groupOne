@@ -1,8 +1,8 @@
 package edu.jsu.mcis;
 
-public class InvalidOptionalArgumentException extends RunTimeException{
+public class InvalidOptionalArgumentException extends RuntimeException{
 
-	private String invalidOptionalArgumentOption;
+	private String invalidOptionalArgument;
 	private String exceptionClassInfo;
 	
 	public InvalidOptionalArgumentException(String s){
@@ -15,7 +15,7 @@ public class InvalidOptionalArgumentException extends RunTimeException{
 	}
 	
 	private void setExceptionClassName(){
-		exceptionClassInfp = this.getClass().getSimpleName();
+		exceptionClassInfo = this.getClass().getSimpleName();
 	}
 	
 	public String toString(){

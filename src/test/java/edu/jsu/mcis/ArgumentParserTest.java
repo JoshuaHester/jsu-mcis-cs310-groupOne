@@ -24,11 +24,16 @@ public class ArgumentParserTest{
 	}
 	
 	@Test
-	public void testNonExistantArgumentShouldBeEmptyString() {
+	public void testNonExistantArgumentShouldThrowException() {
 		ArgumentParser parser=new ArgumentParser();
 		parser.addArgument("pet");
 		parser.parse("dog");
-		assertEquals("", parser.getArgument("animal").getValue());
+		try{
+			parser.getArgument("duck");
+			assert false;	
+		}catch(InvalidArgumentException e){
+			assert true;
+		}
 	}
 	
 	@Test
