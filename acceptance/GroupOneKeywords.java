@@ -13,17 +13,17 @@ public class GroupOneKeywords{
 	}
 	
 	public String getLength(){
-		String s =  p.getArgument("length").getValue();
+		String s = p.getArgument("length").getValue().toString();
 		return s;
 	}
 	
 	public String getWidth(){
-		String s = p.getArgument("width").getValue();
+		String s = p.getArgument("width").getValue().toString();
 		return s;
 	}
 	
 	public String getHeight(){
-		String s =  p.getArgument("height").getValue();
+		String s =  p.getArgument("height").getValue().toString();
 		return s;
 	}
 	
@@ -105,5 +105,22 @@ public class GroupOneKeywords{
 		boolean b =  p.getArgument("hollow").getValue();
 		String s = String.valueOf(b);
 		return s;
+	}
+	
+	public void StartProgramWithXMLFile(String file, String args){
+		p = new ArgumentParser();
+		p.loadXML(file);
+		p.parse(args);
+	}
+	
+	public void StartProgramWithShortNames(String args){
+		p = new ArgumentParser();
+		p.addArgument("length");
+		p.addArgument("width");
+		p.addArgument("height");
+		p.addOptionalArgument("type", Argument.DataType.STRING, "box");
+		p.getArgument("type").setShortName("t");
+		p.addFlag("hollow");
+		p.parse(args);
 	}
 }

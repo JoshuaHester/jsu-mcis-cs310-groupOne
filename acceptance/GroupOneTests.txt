@@ -75,4 +75,35 @@ Test Including Boolean Flag
 	${boolean} = 		Get Hollow
 	Should Be Equal		false		${boolean}
 	
+
+
+
+Test With XML File
+	Start Program With XML File		Acceptance.xml		7 5 2 --type sphere
+	${length}= 			Get Length
+	Should Be Equal 	7 			${length}
+	${width}= 			Get Width
+	Should Be Equal 	5 			${width}
+	${height}= 			Get Height
+	Should Be Equal 	2 			${height}
+	${type} =			Get Type
+	Should Be Equal		sphere		${type}
+	${boolean} = 		Get Hollow
+	Should Be Equal		false		${boolean}
+
+
+Test Including Short Names
+	Start Program With Short Names		7 5 2 -t sphere
+	${length}= 			Get Length
+	Should Be Equal 	7 			${length}
+	${width}= 			Get Width
+	Should Be Equal 	5 			${width}
+	${height}= 			Get Height
+	Should Be Equal 	2 			${height}
+	${type} =			Get Type
+	Should Be Equal		sphere		${type}
+	${boolean} = 		Get Hollow
+	Should Be Equal		false		${boolean}
+
+
 	

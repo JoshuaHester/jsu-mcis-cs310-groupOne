@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Arguments>
+	<Argument>
+		<Name>length</Name>
+		<Type>int</Type>
+		<Description>"length of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>width</Name>
+		<Type>int</Type>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>height</Name>
+		<Type>int</Type>
+		<Description>"height of object"</Description>
+	</Argument>
+	<Argument>
+		<Name>type</Name>
+		<Type>String</Type>
+		<Optional />
+		<Description>"type of object"</Description>
+		<Default>box</Default>
+	</Argument>
+	<Argument>
+		<Name>hollow</Name>
+		<Type>boolean</Type>
+		<Optional />
+		<Description>"is it hollow"</Description>
+	</Argument>
+</Arguments>
