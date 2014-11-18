@@ -545,5 +545,25 @@ public class ArgumentParserTest{
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
 	
+	@Test
+	public void testShortName(){
+		ArgumentParser argp=new ArgumentParser();
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
+		argp.getArgument("type").setDescription("lorem ipsum");
+		argp.getArgument("type").setShortName("t");
+		argp.parse("Chevy -t car");
+		assertEquals("car",argp.getArgumentByShortName("t").getValue());		
+	}
 	
+	@Test(expected = InvalidArgumentException.class)
+	public void testShortNameExceptionThrown(){
+		ArgumentParser argp=new ArgumentParser();
+		argp.addArgument(Argument.DataType.STRING,"car");
+		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
+		argp.getArgument("type").setDescription("lorem ipsum");
+		argp.getArgument("type").setShortName("t");
+		argp.parse("Chevy -b car");
+	}
+		
 }

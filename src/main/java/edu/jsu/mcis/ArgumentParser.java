@@ -140,7 +140,7 @@ public class ArgumentParser {
 		}
 	}
 	
-	private Argument getArgumentByShortName(String shortName){
+	public Argument getArgumentByShortName(String shortName){
 		for(int i = 0; i < getNumOptArguments(); i ++){
 			if(shortName.equals(getArgument(optionalArgList.get(i)).getShortName()))
 				return getArgument(optionalArgList.get(i));
