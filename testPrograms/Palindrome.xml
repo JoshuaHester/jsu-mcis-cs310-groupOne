@@ -9,7 +9,7 @@
 	<Argument>
 		<Name>ignoreCase</Name>
 		<Optional />
-		<type>boolean</Type>
-		<Description>: ignores capitalization</Descrition>
+		<Type>boolean</Type>
+		<Description>: ignores capitalization</Description>
 	</Argument>
 </Arguments>
