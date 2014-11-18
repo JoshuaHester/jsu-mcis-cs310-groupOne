@@ -58,5 +58,27 @@ public class LoadXMLTest{
 	}
 	
 	
+	@Test
+	public void testCantFindFile() {
+		try{
+			LoadXML loader = new LoadXML("xmlFiles/null.xml");
+			assert false;
+		}catch(XMLException e){
+			assert true;
+		}
+	}
+	
+	@Test
+	public void testBadXML() {
+		try{
+			LoadXML loader = new LoadXML("xmlFiles/bad.xml");
+			assert false;
+		}catch(XMLException e){
+			assert true;
+		}
+	}
+	
+	
+	
 }
 

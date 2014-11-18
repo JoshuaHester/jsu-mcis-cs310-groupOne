@@ -1,5 +1,9 @@
 package edu.jsu.mcis;
 
+/*
+Note: this class should either be renamed or merged with InvalidArgumentException, depending on its function
+*/
+
 public class InvalidOptionalArgumentException extends RuntimeException{
 
 	private String invalidOptionalArgument;

@@ -39,4 +39,11 @@
 		<Short>h</Short>
 		<Description>"whether the object is hollow"</Description>
 	</Argument>
+	<Argument>
+		<Name>amount</Name>
+		<Type>int</Type>
+		<Optional />
+		<Default>1</Default>
+		<Description>"number of objects"</Description>
+	</Argument>
 </Arguments>

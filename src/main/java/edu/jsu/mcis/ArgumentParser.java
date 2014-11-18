@@ -176,7 +176,7 @@ public class ArgumentParser {
 	public void loadXML(String path){
 		LoadXML loader = new LoadXML(path);
 		positionalArgList=loader.getPosArgs();
-		optionalArgList=loader.getPosArgs();
+		optionalArgList=loader.getOptArgs();
 		argumentTable=loader.getArgs();
 	}
 	
