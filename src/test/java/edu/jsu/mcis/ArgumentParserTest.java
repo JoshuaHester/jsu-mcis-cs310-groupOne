@@ -565,5 +565,41 @@ public class ArgumentParserTest{
 		argp.getArgument("type").setShortName("t");
 		argp.parse("Chevy -b car");
 	}
+	
+	@Test
+	public void testsetRestrictedIntegerValues(){
+		ArgumentParser argp = new ArgumentParser();
+		int [] restrictedValues = {1,3,5,7,9};
+		argp.setRestrictedIntValues(restrictedValues);
+		for(int i  = 0; i < restrictedValues.length; i ++){
+			assertTrue(argp.checkRestrictedIntValues(restrictedValues[i]));
+		}
+		assertFalse(argp.checkRestrictedIntValues(2));
+		
+	}
+	
+	@Test
+	public void testsetRestrictedStringValues(){
+		ArgumentParser argp = new ArgumentParser();
+		String [] restrictedValues = {"a","b","c"};
+		argp.setRestrictedStringValues(restrictedValues);
+		for(int i  = 0; i < restrictedValues.length; i ++){
+			assertTrue(argp.checkRestrictedStringValues(restrictedValues[i]));
+		}
+		assertFalse(argp.checkRestrictedStringValues("e"));
+		
+	}
+	
+	@Test
+	public void testsetRestrictedFloatValues(){
+		ArgumentParser argp = new ArgumentParser();
+		float [] restrictedValues = {7.2f,3.6f,2.1f,1.3f};
+		argp.setRestrictedFloatValues(restrictedValues);
+		for(int i  = 0; i < restrictedValues.length; i ++){
+			assertTrue(argp.checkRestrictedFloatValues(restrictedValues[i]));
+		}
+		assertFalse(argp.checkRestrictedFloatValues(5.5f));
+		
+	}
 		
 }

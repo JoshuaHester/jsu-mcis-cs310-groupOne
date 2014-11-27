@@ -10,6 +10,10 @@ public class ArgumentParser {
 	protected List<String> optionalArgList;
 	protected Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
+	private boolean addedFlag;
+	private int [] restrictedIntValues;
+	private float [] restrictedFloatValues;
+	private String [] restrictedStringValues;
 	
 	public ArgumentParser(){
 		positionalArgList = new ArrayList<String>(5);
@@ -38,6 +42,77 @@ public class ArgumentParser {
 		argumentTable.put(argumentName, new Argument(Argument.DataType.BOOLEAN, argumentName));
 		optionalArgList.add(argumentName);
 		getArgument(argumentName).setValue("false");
+		addedFlag = true;
+	}
+	
+	public boolean getAddedFlag(){
+		return addedFlag;
+	}
+	
+	public void setRestrictedIntValues(int [] argumentArray){
+		restrictedIntValues = new int [argumentArray.length];
+		
+		for (int i = 0; i < argumentArray.length; i ++){
+			restrictedIntValues[i] = argumentArray[i];
+		}
+		
+	}
+	
+	public boolean checkRestrictedIntValues(int a){
+		boolean isRestricted = false;
+		
+		for(int i = 0; i < restrictedIntValues.length; i ++){
+			if(a == restrictedIntValues[i]){
+				isRestricted = true;
+				break;
+			}
+		}
+		
+		return isRestricted;
+	}
+	
+	public void setRestrictedFloatValues(float [] argumentArray){
+		restrictedFloatValues = new float [argumentArray.length];
+		
+		for (int i = 0; i < argumentArray.length; i ++){
+			restrictedFloatValues[i] = argumentArray[i];
+		}
+		
+	}
+	
+	public boolean checkRestrictedFloatValues(float a){
+		boolean isRestricted = false;
+		
+		for(int i = 0; i < restrictedFloatValues.length; i ++){
+			if(a == restrictedFloatValues[i]){
+				isRestricted = true;
+				break;
+			}
+		}
+		
+		return isRestricted;
+	}
+	
+	public void setRestrictedStringValues(String [] argumentArray){
+		restrictedStringValues = new String [argumentArray.length];
+		
+		for (int i = 0; i < argumentArray.length; i ++){
+			restrictedStringValues[i] = argumentArray[i];
+		}
+		
+	}
+	
+	public boolean checkRestrictedStringValues(String a){
+		boolean isRestricted = false;
+		
+		for(int i = 0; i < restrictedStringValues.length; i ++){
+			if(a == restrictedStringValues[i]){
+				isRestricted = true;
+				break;
+			}
+		}
+		
+		return isRestricted;
 	}
 
 	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal){

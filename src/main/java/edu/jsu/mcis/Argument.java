@@ -45,7 +45,7 @@ public class Argument {
 	public String getName(){
 		return name;
 	}
-		public void setDescription(String s){
+	public void setDescription(String s){
 		description = s;
 	}
 
