@@ -247,13 +247,6 @@ public class ArgumentParser {
 		return s;
 	}
 	
-	public void loadXML(String path){
-		LoadXML loader = new LoadXML(path);
-		positionalArgList=loader.getPosArgs();
-		optionalArgList=loader.getOptArgs();
-		argumentTable=loader.getArgs();
-	}
-	
 	private void setProgramName(){
 		programName = Thread.currentThread().getStackTrace()[3].getClassName();
 	}

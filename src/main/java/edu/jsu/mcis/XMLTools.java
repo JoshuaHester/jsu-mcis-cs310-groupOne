@@ -12,16 +12,14 @@ import java.io.IOException;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class LoadXML extends ArgumentParser{
-	private File xmlFile; 
-
-	public LoadXML(String fileName){
-		
-		positionalArgList = new ArrayList<String>(5);
-		optionalArgList = new ArrayList<String>(5);
-		argumentTable = new Hashtable<String,Argument>(5);
+public class XMLTools {
+	public static ArgumentParser loadParser(String fileName) {
+		ArgumentParser p = new ArgumentParser();
+		//positionalArgList = new ArrayList<String>(5);
+		//optionalArgList = new ArrayList<String>(5);
+		//argumentTable = new Hashtable<String,Argument>(5);
 	
-		xmlFile = new File(fileName);
+		File xmlFile = new File(fileName);
 		 
 		DocumentBuilderFactory dbFactory;
 		DocumentBuilder dBuilder;
@@ -39,6 +37,7 @@ public class LoadXML extends ArgumentParser{
 				
 				Node nNode = nList.item(i);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					
 					Element eElement = (Element) nNode;
 					
 					String argName = ""; 
@@ -83,8 +82,18 @@ public class LoadXML extends ArgumentParser{
 						defaultVal = eElement.getElementsByTagName("Default").item(0).getTextContent();
 					}catch(Exception e){if(optional&&type!=Argument.DataType.BOOLEAN){ throw new XMLException(fileName, "The following tag is missing: [Default].");}}
 					
+					if(optional) {
+						p.addOptionalArgument(argName, type, defaultVal);
+						
+					}
+					else {
+						p.addArgument(argName, type);
+						
+					}
+					
 					try{
 						desc = eElement.getElementsByTagName("Description").item(0).getTextContent();
+						p.getArgument(argName).setDescription(desc);
 					}catch(Exception e){}
 					
 					try{
@@ -108,6 +117,8 @@ public class LoadXML extends ArgumentParser{
 					getArgument(argName).setDescription(desc);
 				}
 			}
+			
+			return p;
 		
 		}catch (IOException ex) {throw new XMLException(fileName, "The XML file cannot be found.");
 		}catch (SAXException ex) {throw new XMLException(fileName, "The XML file is built incorrectly.");
@@ -115,17 +126,15 @@ public class LoadXML extends ArgumentParser{
 		}
 	}
 		
-	List getPosArgs(){
-
-		return positionalArgList;
+		
+	public static void saveParser(ArgumentParser p, String filename) {
+		// Here we'd process the parser p and write all the data in it to the file.
+		//
+		// <Argument>
+		//    <Name>whatever</Name>
+		//    <Description>something</Description>
+		// </Argument>
+		String xmlstuff = "";
+		xmlstuff += "<Name>" + p.getArgument("whatever").getName() + "</Name>";
 	}
-	
-	List getOptArgs(){
-		return optionalArgList;
-	}
-	
-	Hashtable getArgs(){
-		return argumentTable;
-	}
-	
 }
