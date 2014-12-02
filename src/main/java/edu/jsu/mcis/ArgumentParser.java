@@ -10,7 +10,7 @@ public class ArgumentParser {
 	protected List<String> optionalArgList;
 	protected Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
-	private boolean addedFlag;
+	private boolean addedFlag = false;
 	private int [] restrictedIntValues;
 	private float [] restrictedFloatValues;
 	private String [] restrictedStringValues;
@@ -42,14 +42,13 @@ public class ArgumentParser {
 		argumentTable.put(argumentName, new Argument(Argument.DataType.BOOLEAN, argumentName));
 		optionalArgList.add(argumentName);
 		getArgument(argumentName).setValue("false");
-		addedFlag = true;
 	}
 	
 	public boolean getAddedFlag(){
 		return addedFlag;
 	}
 	
-	public void setRestrictedIntValues(int [] argumentArray){
+	public void setRestrictedValues(int [] argumentArray){
 		restrictedIntValues = new int [argumentArray.length];
 		
 		for (int i = 0; i < argumentArray.length; i ++){
@@ -58,7 +57,7 @@ public class ArgumentParser {
 		
 	}
 	
-	public boolean checkRestrictedIntValues(int a){
+	public boolean checkRestrictedValues(int a){
 		boolean isRestricted = false;
 		
 		for(int i = 0; i < restrictedIntValues.length; i ++){
@@ -71,7 +70,7 @@ public class ArgumentParser {
 		return isRestricted;
 	}
 	
-	public void setRestrictedFloatValues(float [] argumentArray){
+	public void setRestrictedValues(float [] argumentArray){
 		restrictedFloatValues = new float [argumentArray.length];
 		
 		for (int i = 0; i < argumentArray.length; i ++){
@@ -80,7 +79,7 @@ public class ArgumentParser {
 		
 	}
 	
-	public boolean checkRestrictedFloatValues(float a){
+	public boolean checkRestrictedValues(float a){
 		boolean isRestricted = false;
 		
 		for(int i = 0; i < restrictedFloatValues.length; i ++){
@@ -93,7 +92,7 @@ public class ArgumentParser {
 		return isRestricted;
 	}
 	
-	public void setRestrictedStringValues(String [] argumentArray){
+	public void setRestrictedValues(String [] argumentArray){
 		restrictedStringValues = new String [argumentArray.length];
 		
 		for (int i = 0; i < argumentArray.length; i ++){
@@ -102,7 +101,7 @@ public class ArgumentParser {
 		
 	}
 	
-	public boolean checkRestrictedStringValues(String a){
+	public boolean checkRestrictedValues(String a){
 		boolean isRestricted = false;
 		
 		for(int i = 0; i < restrictedStringValues.length; i ++){

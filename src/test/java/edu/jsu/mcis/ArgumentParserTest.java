@@ -570,11 +570,11 @@ public class ArgumentParserTest{
 	public void testsetRestrictedIntegerValues(){
 		ArgumentParser argp = new ArgumentParser();
 		int [] restrictedValues = {1,3,5,7,9};
-		argp.setRestrictedIntValues(restrictedValues);
+		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedIntValues(restrictedValues[i]));
+			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
 		}
-		assertFalse(argp.checkRestrictedIntValues(2));
+		assertFalse(argp.checkRestrictedValues(2));
 		
 	}
 	
@@ -582,11 +582,11 @@ public class ArgumentParserTest{
 	public void testsetRestrictedStringValues(){
 		ArgumentParser argp = new ArgumentParser();
 		String [] restrictedValues = {"a","b","c"};
-		argp.setRestrictedStringValues(restrictedValues);
+		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedStringValues(restrictedValues[i]));
+			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
 		}
-		assertFalse(argp.checkRestrictedStringValues("e"));
+		assertFalse(argp.checkRestrictedValues("e"));
 		
 	}
 	
@@ -594,11 +594,11 @@ public class ArgumentParserTest{
 	public void testsetRestrictedFloatValues(){
 		ArgumentParser argp = new ArgumentParser();
 		float [] restrictedValues = {7.2f,3.6f,2.1f,1.3f};
-		argp.setRestrictedFloatValues(restrictedValues);
+		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedFloatValues(restrictedValues[i]));
+			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
 		}
-		assertFalse(argp.checkRestrictedFloatValues(5.5f));
+		assertFalse(argp.checkRestrictedValues(5.5f));
 		
 	}
 		

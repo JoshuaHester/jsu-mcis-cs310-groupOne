@@ -54,7 +54,7 @@ public class VolCal {
 		arg.addFlag("hollow");
 		arg.getArgument("hollow").setDescription("whether the object is hollow");
 		float [] restrictedValues = {1.1f,3.3f,5.5f,7.7f,9.9f};
-		arg.setRestrictedFloatValues(restrictedValues);
+		arg.setRestrictedValues(restrictedValues);
 
 		
 		String input = "";
@@ -66,20 +66,31 @@ public class VolCal {
 		float w = arg.getArgument("width").getValue();
 		float h = arg.getArgument("height").getValue();
 		String t = arg.getArgument("type").getValue();
-		boolean f = arg.getAddedFlag();
-		boolean restrictedL = arg.checkRestrictedFloatValues(l);
-		boolean restrictedW = arg.checkRestrictedFloatValues(w);
-		boolean restrictedH = arg.checkRestrictedFloatValues(h);
+		boolean f = arg.getArgument("hollow").getValue();
+		boolean restrictedL = arg.checkRestrictedValues(l);
+		boolean restrictedW = arg.checkRestrictedValues(w);
+		boolean restrictedH = arg.checkRestrictedValues(h);
+		boolean foundRestricted = false;
 		VolCal cal = new VolCal(l,w,h,t);
-		if(restrictedL)
+		if(restrictedL){
 			System.out.println("Restricted Value" + l);
-		else if(restrictedW)
+			foundRestricted = true;
+		}
+		if(restrictedW){
 			System.out.println("Restricted Value" + w);
-		else if(restrictedH)
+			foundRestricted = true;
+		}
+		if(restrictedH){
 			System.out.println("Restricted Value" + h);
-		else if(f)
-			System.out.println(cal.getResult() + " optional flag is " + f);
-		else
-			System.out.println(cal.getResult());
+			foundRestricted = true;
+		}
+		
+		if (foundRestricted == false){
+			if(f){
+				System.out.println(cal.getResult() + "\noptional flag is " + f);
+			}
+			else
+				System.out.println(cal.getResult());
+		}
 	}
 }
