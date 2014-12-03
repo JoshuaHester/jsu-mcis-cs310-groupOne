@@ -83,8 +83,13 @@ public class XMLTools {
 					}catch(Exception e){if(optional&&type!=Argument.DataType.BOOLEAN){ throw new XMLException(fileName, "The following tag is missing: [Default].");}}
 					
 					if(optional) {
-						p.addOptionalArgument(argName, type, defaultVal);
 						
+						if(dataType.equals("boolean")){
+																			p.addFlag(argName);
+																		}
+																		else{
+																			p.addOptionalArgument(argName, type, defaultVal);
+							}												
 					}
 					else {
 						p.addArgument(argName, type);
@@ -101,20 +106,13 @@ public class XMLTools {
 					}catch(Exception e){}
 					
 					if(optional){
-						if(dataType.equals("boolean")){
-							addFlag(argName);
-						}
-						else{
-							addOptionalArgument(type,argName,defaultVal);
-						}
+						
+	
+						
 						if(shortName != null){
-							getArgument(argName).setShortName(shortName);
+							p.getArgument(argName).setShortName(shortName);
 						}
 					}
-					else{
-						addArgument(type,argName);
-					}
-					getArgument(argName).setDescription(desc);
 				}
 			}
 			

@@ -17,7 +17,7 @@ public class XMLToolsTest{
 	public void testLoadXMLFile() {
 		assertEquals(5, p.getNumArguments());
 	}
-	/*
+	
 	@Test
 	public void testGetFirstValue() {
 		assertEquals("float", p.getArgument("length").getType());
@@ -27,7 +27,7 @@ public class XMLToolsTest{
 	public void testGetLastValue() {
 		assertEquals("red", p.getArgument("color").getValue());
 	}
-	
+	/*
 	@Test
 	public void testSizePos() {
 		assertEquals(3,loader.getNumPosArguments());

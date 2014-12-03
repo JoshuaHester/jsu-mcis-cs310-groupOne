@@ -546,8 +546,15 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testXML(){
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+		ArgumentParser argp=XMLTools.loadParser("xmlFiles/test.xml");
+=======
+>>>>>>> Stashed changes
 		
 		argp.loadXML("xmlFiles/test.xml");
+>>>>>>> FETCH_HEAD
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
 	
