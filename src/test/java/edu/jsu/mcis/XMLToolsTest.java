@@ -50,11 +50,11 @@ public class XMLToolsTest{
 	
 	}
 	
-	//@Test
-	//public void testSizePos2() {
-		//LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
-		//assertEquals(3,p.getNumPosArguments());
-	//}
+	@Test
+	public void testSizePos2() {
+		p=XMLTools.loadParser("xmlFiles/flagtest.xml");
+		assertEquals(3,p.getNumPosArguments());
+	}
 
 	
 }
