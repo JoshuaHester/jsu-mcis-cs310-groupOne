@@ -6,30 +6,36 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ArgumentParserTest{
+	private ArgumentParser argp;
+	
+	@Before
+	public void setUpMyTest(){
+		argp = new ArgumentParser();
+	}
 
 	@Test
 	public void testAddArgument(){
-		ArgumentParser parser = new ArgumentParser();
-		assertEquals(0, parser.getNumArguments());
-		parser.addArgument("color");
-		assertEquals(1, parser.getNumArguments());
+		
+		assertEquals(0, argp.getNumArguments());
+		argp.addArgument("color");
+		assertEquals(1, argp.getNumArguments());
 	}
 	
 	@Test
 	public void testParseSingleArgument() {
-		ArgumentParser parser = new ArgumentParser();
-		parser.addArgument("color");
-		parser.parse("red");
-		assertEquals("red", parser.getArgument("color").getValue());
+		
+		argp.addArgument("color");
+		argp.parse("red");
+		assertEquals("red", argp.getArgument("color").getValue());
 	}
 	
 	@Test
 	public void testNonExistantArgumentShouldThrowException() {
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("pet");
-		parser.parse("dog");
+
+		argp.addArgument("pet");
+		argp.parse("dog");
 		try{
-			parser.getArgument("duck");
+			argp.getArgument("duck");
 			assert false;	
 		}catch(InvalidArgumentException e){
 			assert true;
@@ -38,19 +44,20 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testGetUsage(){
-		ArgumentParser argp= new ArgumentParser();
+		
+		argp.setProgramName("VolCal");
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length: \n width: \n height: ";
+		String a="VolCal length width height\n\n length: \n width: \n height: ";
 		assertEquals(a,s);
 	}
 	
 	@Test
 	public void testGetUsageWithDescription(){
-		ArgumentParser argp= new ArgumentParser();
+		argp.setProgramName("VolCal");
 		argp.addArgument("length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument("width");
@@ -59,28 +66,26 @@ public class ArgumentParserTest{
 		argp.getArgument("height").setDescription("The height of the object");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
+		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
 		assertEquals(a,s);
 	}
 	
 	@Test
 	public void testDashHFunction(){
-		ArgumentParser argp = new ArgumentParser();
+		argp.setProgramName("VolCal");
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length: \n width: \n height: ";
-		
-		/*"edu.jsu.mcis.ArgumentParserTest length width height\n\n length: \n width: \n height: ";*/
+		String a="VolCal length width height\n\n length: \n width: \n height: ";
 		assertEquals(a,s);
 	}
 	
 	@Test 
 	public void testTooManyArguments(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
@@ -94,7 +99,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testTooManyArgumentsTwo(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
@@ -108,7 +113,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testTooFewArguments(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height"); 
@@ -122,7 +127,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testTooFewArgumentsTwo(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height"); 
@@ -136,39 +141,39 @@ public class ArgumentParserTest{
 
 	@Test
 	public void testAddIntArgument() {
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.INT, "length");
-		parser.parse("5");
-		assertEquals(5, parser.getArgument("length").getValue());
+		
+		argp.addArgument(Argument.DataType.INT, "length");
+		argp.parse("5");
+		assertEquals(5, argp.getArgument("length").getValue());
 	}
 	
 	@Test
 	public void testAddFloatArgument() {
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.FLOAT, "length");
-		parser.parse("5.5");
-		assertEquals(5.5f, parser.getArgument("length").getValue());
+		
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.parse("5.5");
+		assertEquals(5.5f, argp.getArgument("length").getValue());
 	}
 	
 	@Test
 	public void testAddBooleanArgument() {
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.BOOLEAN, "Rainy");
-		parser.parse("true");
-		assertEquals(true, parser.getArgument("Rainy").getValue());
+		
+		argp.addArgument(Argument.DataType.BOOLEAN, "Rainy");
+		argp.parse("true");
+		assertEquals(true, argp.getArgument("Rainy").getValue());
 	}
 	
 	@Test
 	public void testAddStringArgument() {
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.STRING, "pet");
-		parser.parse("dog");
-		assertEquals("dog", parser.getArgument("pet").getValue());
+		
+		argp.addArgument(Argument.DataType.STRING, "pet");
+		argp.parse("dog");
+		assertEquals("dog", argp.getArgument("pet").getValue());
 	}
 	
 	@Test
 	public void testTypeUsageWithDef(){
-		ArgumentParser argp= new ArgumentParser();
+		argp.setProgramName("VolCal");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -178,16 +183,16 @@ public class ArgumentParserTest{
 		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
+		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
 		assertEquals(a,s);
 	}
 	
 	@Test
 	public void testIncorrectBooleanDataType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.BOOLEAN, "pet");
+		
+		argp.addArgument(Argument.DataType.BOOLEAN, "pet");
 		try{
-			parser.parse("50");
+			argp.parse("50");
 			assert false;
 		} catch (InvalidDataTypeException e){
 			assert true;
@@ -196,10 +201,10 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testIncorrectFloatDataType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.FLOAT, "pet");
+		
+		argp.addArgument(Argument.DataType.FLOAT, "pet");
 		try{
-			parser.parse("dog");
+			argp.parse("dog");
 			assert false;
 		} catch (InvalidDataTypeException e){
 			assert true;
@@ -208,10 +213,10 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testIncorrectIntDataType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument(Argument.DataType.INT, "pet");
+		
+		argp.addArgument(Argument.DataType.INT, "pet");
 		try{
-			parser.parse("true");
+			argp.parse("true");
 			assert false;
 		} catch (InvalidDataTypeException e){
 			assert true;
@@ -220,49 +225,49 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testNameBeforeType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", Argument.DataType.FLOAT);
-		parser.parse("3.14");
-		assertEquals(3.14f, parser.getArgument("height").getValue());
-		assertEquals("float", parser.getArgument("height").getType());
+		
+		argp.addArgument("height", Argument.DataType.FLOAT);
+		argp.parse("3.14");
+		assertEquals(3.14f, argp.getArgument("height").getValue());
+		assertEquals("float", argp.getArgument("height").getType());
 	}
 	
 	@Test
 	public void testNameBeforeTypeWithDesc(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", Argument.DataType.FLOAT);
-		parser.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
-		parser.parse("3.14");
-		assertEquals(3.14f, parser.getArgument("height").getValue());
-		assertEquals("float", parser.getArgument("height").getType());
+		
+		argp.addArgument("height", Argument.DataType.FLOAT);
+		argp.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
+		argp.parse("3.14");
+		assertEquals(3.14f, argp.getArgument("height").getValue());
+		assertEquals("float", argp.getArgument("height").getType());
 	}
 	
 	@Test
 	public void testOptNameBeforeType(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", Argument.DataType.FLOAT);
-		parser.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
-		parser.addOptionalArgument("type", Argument.DataType.INT, "0");
-		parser.parse("3.14 --type 5");
-		assertEquals(5, parser.getArgument("type").getValue());
-		assertEquals("int", parser.getArgument("type").getType());
+		
+		argp.addArgument("height", Argument.DataType.FLOAT);
+		argp.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
+		argp.addOptionalArgument("type", Argument.DataType.INT, "0");
+		argp.parse("3.14 --type 5");
+		assertEquals(5, argp.getArgument("type").getValue());
+		assertEquals("int", argp.getArgument("type").getType());
 	}
 	
 	@Test
 	public void testOptNameBeforeTypeWithDesc(){
-		ArgumentParser parser=new ArgumentParser();
-		parser.addArgument("height", Argument.DataType.FLOAT);
-		parser.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
-		parser.addOptionalArgument("type", Argument.DataType.INT, "1");
-		parser.getArgument("type").setDescription("Lorem ipsum dolor sit amet");
-		parser.parse("3 --type 5");
-		assertEquals(5, parser.getArgument("type").getValue());
-		assertEquals("int", parser.getArgument("type").getType());
+		
+		argp.addArgument("height", Argument.DataType.FLOAT);
+		argp.getArgument("height").setDescription("Lorem ipsum dolor sit amet");
+		argp.addOptionalArgument("type", Argument.DataType.INT, "1");
+		argp.getArgument("type").setDescription("Lorem ipsum dolor sit amet");
+		argp.parse("3 --type 5");
+		assertEquals(5, argp.getArgument("type").getValue());
+		assertEquals("int", argp.getArgument("type").getType());
 	}
 
 	@Test 
 	public void testParseOptionalArgumentsOne(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -276,7 +281,7 @@ public class ArgumentParserTest{
 
 	@Test 
 	public void testParseOptionalArgumentsTwo(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -292,7 +297,7 @@ public class ArgumentParserTest{
 		
 	@Test 
 	public void testParseOptionalArgumentsAnyOrder(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -308,7 +313,7 @@ public class ArgumentParserTest{
 
 	@Test 
 	public void testParseOptionalArgumentsWithDescriptions(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -329,7 +334,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseTwoOptionalBooleanArguments(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -345,7 +350,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseBooleanOptionalArgumentsOne(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -359,7 +364,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseBooleanOptionalArgumentsAnyOrder(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -375,7 +380,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseBooleanOptionalArgumentsWithDescriptions(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -396,7 +401,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseIntOptionalArgumentsWithDescriptions(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -417,7 +422,7 @@ public class ArgumentParserTest{
 
 	@Test 
 	public void testParseIntOptionalArgumentsOne(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -431,7 +436,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseIntOptionalArgumentsAnyOrder(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
@@ -447,20 +452,21 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testParseOptionalArgumentsHelp(){
-		ArgumentParser argp=new ArgumentParser();
+		
+		argp.setProgramName("VolCal");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
 		argp.addOptionalArgument(Argument.DataType.STRING, "type", "box");
 		argp.parse("7 4 3 --type sphere");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length: \n width: \n height: \n --type: ";
+		String a="VolCal length width height\n\n length: \n width: \n height: \n --type: ";
 		assertEquals(a,s);
 	}
 	
 	@Test 
 	public void testParseOptionalArgumentsHelpWithDesc(){
-		ArgumentParser argp=new ArgumentParser();
+		argp.setProgramName("VolCal");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -473,7 +479,7 @@ public class ArgumentParserTest{
 		argp.getArgument("color").setDescription("The color of the object");
 		argp.parse("7 4 3 --type sphere --color red");
 		String s=argp.getUsage();
-		String a="edu.jsu.mcis.ArgumentParserTest length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.\n --type:  The type of object.\n --color:  The color of the object.";
+		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.\n --type:  The type of object.\n --color:  The color of the object.";
 		assertEquals(a,s);
 		
 	}
@@ -481,7 +487,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testOptionalArgumentWithDefaultValueUnchanged(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.parse("Chevy");
@@ -490,7 +496,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testOptionalArgumentWithDefaultValueChanged(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.parse("Chevy --type car");
@@ -499,7 +505,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testOptionalArgumentWithDefaultValueUnchangedWithDesc(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -509,7 +515,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testSingleLetterOptionalArgumentWithDefaultValueUnchangedWithDesc(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","slow");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -519,7 +525,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testOptionalArgumentWithDefaultValueChangedWithDesc(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -529,7 +535,7 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testSingleLetterOptionalArgumentWithDefaultValueChanged(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -540,14 +546,14 @@ public class ArgumentParserTest{
 	
 	@Test 
 	public void testXML(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.loadXML("xmlFiles/test.xml");
 		assertEquals("box",argp.getArgument("type").getValue());
 	}
 	
 	@Test
 	public void testShortName(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -558,7 +564,7 @@ public class ArgumentParserTest{
 	
 	@Test(expected = InvalidArgumentException.class)
 	public void testShortNameExceptionThrown(){
-		ArgumentParser argp=new ArgumentParser();
+		
 		argp.addArgument(Argument.DataType.STRING,"car");
 		argp.addOptionalArgument(Argument.DataType.STRING,"type","box");
 		argp.getArgument("type").setDescription("lorem ipsum");
@@ -568,7 +574,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testsetRestrictedIntegerValues(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		int [] restrictedValues = {1,3,5,7,9};
 		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
@@ -580,7 +586,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testsetRestrictedStringValues(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		String [] restrictedValues = {"a","b","c"};
 		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
@@ -592,7 +598,7 @@ public class ArgumentParserTest{
 	
 	@Test
 	public void testsetRestrictedFloatValues(){
-		ArgumentParser argp = new ArgumentParser();
+		
 		float [] restrictedValues = {7.2f,3.6f,2.1f,1.3f};
 		argp.setRestrictedValues(restrictedValues);
 		for(int i  = 0; i < restrictedValues.length; i ++){
@@ -601,5 +607,19 @@ public class ArgumentParserTest{
 		assertFalse(argp.checkRestrictedValues(5.5f));
 		
 	}
+	
+	@Test
+	public void testRequiredOptionalArguments(){
 		
+		assertEquals(0, argp.getNumArguments());
+		argp.addRequiredArgument( "type", Argument.DataType.STRING, "box");
+		assertEquals(1, argp.getNumArguments());
+		assertEquals("box", argp.getArgument("type").getValue());
+	}
+	
+	@Test
+	public void testAddProgramName(){
+		argp.setProgramName("VolCal");
+		assertEquals("VolCal", argp.getProgramName());
+	}
 }

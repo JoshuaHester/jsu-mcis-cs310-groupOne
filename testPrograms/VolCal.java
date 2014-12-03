@@ -39,15 +39,14 @@ public class VolCal {
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
-		//arg.setProgramName("VolCal")
-		//the description. also specified by the XML file
+		arg.setProgramName("VolCal");
 		arg.addArgument(Argument.DataType.FLOAT, "length");
 		arg.getArgument("length").setDescription("The length of the object. Radius if object is a sphere");
 		arg.addArgument(Argument.DataType.FLOAT, "width");
 		arg.getArgument("width").setDescription("The width of the object");
 		arg.addArgument("height", Argument.DataType.FLOAT);
 		arg.getArgument("height").setDescription("The height of the object");
-		arg.addOptionalArgument(Argument.DataType.STRING, "type", "box");
+		arg.addRequiredArgument("type",Argument.DataType.STRING, "box");
 		arg.getArgument("type").setDescription("The type of object having its volume calculated:box(default), sphere, pyramid");
 		//arg.setDescription("type", "The type of the object")
 		arg.getArgument("type").setShortName("t");
