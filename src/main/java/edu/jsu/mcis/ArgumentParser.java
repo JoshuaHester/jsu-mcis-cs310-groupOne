@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ArgumentParser {
 	
 	public String programName ="";
+	public String programDescription = "";
 	protected List<String> positionalArgList;
 	protected List<String> optionalArgList;
 	protected Hashtable<String,Argument> argumentTable;
@@ -179,7 +180,7 @@ public class ArgumentParser {
 			positionalArguments=positionalArguments+" " + argumentTable.get(positionalArgList.get(i)).getName();
 		}
 		
-		String s = programName.toString() + positionalArguments + "\n";
+		String s = programName.toString() +" ("+ getProgramDescription() +")" + positionalArguments + "\n";
 		
 		for(int i=0;i<getNumPosArguments();i++){
 			s=s+"\n "+argumentTable.get(positionalArgList.get(i)).getName()+": ";
@@ -205,5 +206,13 @@ public class ArgumentParser {
 	public String getProgramName(){
 		return programName;
 
+	}
+	
+	public void setProgramDescription(String desc){
+		programDescription = desc;
+	}
+	
+	public String getProgramDescription(){
+		return programDescription;
 	}
 }

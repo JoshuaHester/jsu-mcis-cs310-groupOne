@@ -43,6 +43,7 @@ public class BillAtRestaurant {
 	public static void main(String[] args) {
 		ArgumentParser arg = new ArgumentParser();
 		arg.setProgramName("BillAtRestaurant");
+		arg.setProgramDescription("Calculates total bill price after adding tip and taking off any coupons");
 		arg.addArgument(Argument.DataType.FLOAT, "price");
 		arg.getArgument("price").setDescription( "The price of your bill.");
 		arg.addArgument(Argument.DataType.FLOAT, "percentage");

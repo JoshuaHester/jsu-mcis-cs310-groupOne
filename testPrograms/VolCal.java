@@ -40,6 +40,7 @@ public class VolCal {
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
 		arg.setProgramName("VolCal");
+		arg.setProgramDescription("Calculates volume");
 		arg.addArgument("length", Argument.DataType.FLOAT);
 		arg.getArgument("length").setDescription("the length of the object. The radius if the object is a sphere");
 		arg.addArgument("width", Argument.DataType.FLOAT);

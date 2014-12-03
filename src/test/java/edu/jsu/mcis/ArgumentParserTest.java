@@ -46,18 +46,20 @@ public class ArgumentParserTest{
 	public void testGetUsage(){
 		
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculates Volume");
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length: \n width: \n height: ";
+		String a="VolCal (Calculates Volume) length width height\n\n length: \n width: \n height: ";
 		assertEquals(a,s);
 	}
 	
 	@Test
 	public void testGetUsageWithDescription(){
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculate Volume");
 		argp.addArgument("length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument("width");
@@ -66,20 +68,21 @@ public class ArgumentParserTest{
 		argp.getArgument("height").setDescription("The height of the object");
 		argp.parse("0 0 0");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
+		String a="VolCal (Calculate Volume) length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
 		assertEquals(a,s);
 	}
 	
 	@Test
 	public void testDashHFunction(){
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculates Volume");
 		argp.addArgument("length");
 		argp.addArgument("width");
 		argp.addArgument("height");
 		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length: \n width: \n height: ";
+		String a="VolCal (Calculates Volume) length width height\n\n length: \n width: \n height: ";
 		assertEquals(a,s);
 	}
 	
@@ -174,6 +177,7 @@ public class ArgumentParserTest{
 	@Test
 	public void testTypeUsageWithDef(){
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculates Volume");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -183,7 +187,7 @@ public class ArgumentParserTest{
 		argp.setHelpFlagExits(false);
 		argp.parse("-h");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
+		String a="VolCal (Calculates Volume) length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.";
 		assertEquals(a,s);
 	}
 	
@@ -454,19 +458,21 @@ public class ArgumentParserTest{
 	public void testParseOptionalArgumentsHelp(){
 		
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculates Volume");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
 		argp.addArgument(Argument.DataType.FLOAT, "height"); 
 		argp.addOptionalArgument(Argument.DataType.STRING, "type", "box");
 		argp.parse("7 4 3 --type sphere");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length: \n width: \n height: \n --type: ";
+		String a="VolCal (Calculates Volume) length width height\n\n length: \n width: \n height: \n --type: ";
 		assertEquals(a,s);
 	}
 	
 	@Test 
 	public void testParseOptionalArgumentsHelpWithDesc(){
 		argp.setProgramName("VolCal");
+		argp.setProgramDescription("Calculates Volume");
 		argp.addArgument(Argument.DataType.FLOAT, "length");
 		argp.getArgument("length").setDescription("The length of the object");
 		argp.addArgument(Argument.DataType.FLOAT, "width");
@@ -479,7 +485,7 @@ public class ArgumentParserTest{
 		argp.getArgument("color").setDescription("The color of the object");
 		argp.parse("7 4 3 --type sphere --color red");
 		String s=argp.getUsage();
-		String a="VolCal length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.\n --type:  The type of object.\n --color:  The color of the object.";
+		String a="VolCal (Calculates Volume) length width height\n\n length:  The length of the object.\n width:  The width of the object.\n height:  The height of the object.\n --type:  The type of object.\n --color:  The color of the object.";
 		assertEquals(a,s);
 		
 	}
@@ -604,5 +610,11 @@ public class ArgumentParserTest{
 	public void testAddProgramName(){
 		argp.setProgramName("VolCal");
 		assertEquals("VolCal", argp.getProgramName());
+	}
+	
+	@Test
+	public void testAddProgramDescription(){
+		argp.setProgramDescription("Calculates Volume");
+		assertEquals("Calculates Volume", argp.getProgramDescription());
 	}
 }

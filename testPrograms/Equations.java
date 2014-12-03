@@ -40,6 +40,7 @@ public class Equations {
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
 		arg.setProgramName("Equations");
+		arg.setProgramDescription("Calculates a simple mathematical equation using three numeric values");
 		arg.addArgument(Argument.DataType.FLOAT, "first");
 		arg.getArgument("first").setDescription( "The first number in the equation");
 		arg.addArgument(Argument.DataType.FLOAT, "second");

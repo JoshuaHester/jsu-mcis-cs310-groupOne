@@ -34,6 +34,8 @@ public class Palindrome{
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
+		arg.setProgramName("Palindrome");
+		arg.setProgramDescription("Checks to see if a word is a palindrome");
 		arg.loadXML("Palindrome.xml");
 		String userInput = "";
 
