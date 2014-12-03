@@ -39,6 +39,7 @@ public class Equations {
 	
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
+		arg.setProgramName("Equations");
 		arg.addArgument(Argument.DataType.FLOAT, "first");
 		arg.getArgument("first").setDescription( "The first number in the equation");
 		arg.addArgument(Argument.DataType.FLOAT, "second");
@@ -48,7 +49,10 @@ public class Equations {
 		arg.addOptionalArgument(Argument.DataType.STRING, "type", "add");
 		arg.getArgument("type").setDescription( "The type of arithmetic to perform on the equations: add(default), subtract, multiply");
 		arg.getArgument("type").setShortName("t");
-		//arg.saveToXML("myArguments.XML") 			functionality that is wanted from the product owner. May want to make a different class. BorderFactory that creates boarder. Class that builds argument parser
+		arg.setRestrictedValue("first", "1","3");
+		arg.setRestrictedValue("second", "5","7");
+		arg.setRestrictedValue("third", "2","4");
+		
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
 			input += args[i] + " ";
@@ -58,7 +62,26 @@ public class Equations {
 		float s = arg.getArgument("second").getValue();
 		float th = arg.getArgument("third").getValue();
 		String t = arg.getArgument("type").getValue();
+		boolean restrictedF = arg.checkRestrictedValues("first", f);
+		boolean restrictedS = arg.checkRestrictedValues("second", s);
+		boolean restrictedT = arg.checkRestrictedValues("third", th);
+		boolean foundRestricted = false;
 		Equations cal = new Equations(f,s,th,t);
-		System.out.println(cal.getResult());
+		if(restrictedF){
+			System.out.println("Restricted Value" + f);
+			foundRestricted = true;
+		}
+		if(restrictedS){
+			System.out.println("Restricted Value" + s);
+			foundRestricted = true;
+		}
+		if(restrictedT){
+			System.out.println("Restricted Value" + th);
+			foundRestricted = true;
+		}
+		
+		if (foundRestricted == false){
+				System.out.println(cal.getResult());
+		}		
 	}
 }

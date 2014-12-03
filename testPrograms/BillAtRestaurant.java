@@ -42,13 +42,15 @@ public class BillAtRestaurant {
 	
 	public static void main(String[] args) {
 		ArgumentParser arg = new ArgumentParser();
+		arg.setProgramName("BillAtRestaurant");
 		arg.addArgument(Argument.DataType.FLOAT, "price");
 		arg.getArgument("price").setDescription( "The price of your bill.");
 		arg.addArgument(Argument.DataType.FLOAT, "percentage");
 		arg.getArgument("percentage").setDescription("This is the tip percentage.");
-		arg.addOptionalArgument(Argument.DataType.STRING, "coupon","none");
+		arg.addRequiredArgument("coupon",Argument.DataType.STRING, "none");
 		arg.getArgument("coupon").setDescription("if the customer has a coupon: none(default), halfoff, $5off");
 		arg.getArgument("coupon").setShortName("c");
+		
 		
 		String input = "";
 		for(int i = 0; i < args.length; i++){

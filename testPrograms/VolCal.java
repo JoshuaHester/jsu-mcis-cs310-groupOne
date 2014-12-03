@@ -47,6 +47,7 @@ public class VolCal {
 		arg.addArgument("height", Argument.DataType.FLOAT);
 		arg.getArgument("height").setDescription("height of the object");
 		arg.addRequiredArgument("type",Argument.DataType.STRING, "box");
+		arg.getArgument("type").setDescription("The type of object you are calculating the volume for: box(default), sphere, or pyramid");
 		arg.getArgument("type").setShortName("t");
 		arg.addFlag("hollow");
 		arg.getArgument("hollow").setDescription("whether the object is hollow");
