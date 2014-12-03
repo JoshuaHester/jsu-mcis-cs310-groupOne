@@ -4,22 +4,17 @@ import java.util.*;
 import java.util.Scanner;
 
 public class ArgumentParser {
-
-	private String programName ="";
+	
+	public String programName ="";
 	protected List<String> positionalArgList;
 	protected List<String> optionalArgList;
 	protected Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
-	private boolean addedFlag = false;
-	private int [] restrictedIntValues;
-	private float [] restrictedFloatValues;
-	private String [] restrictedStringValues;
 	
 	public ArgumentParser(){
 		positionalArgList = new ArrayList<String>(5);
 		optionalArgList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,Argument>(5);
-		setProgramName();
 		helpFlagExits = true;
 	}
 	
@@ -38,80 +33,36 @@ public class ArgumentParser {
 		addArgument(type, argumentName);
 	}
 	
+	public void addRequiredArgument(String argumentName, Argument.DataType type, String defaultVal){
+		argumentTable.put(argumentName, new Argument(type, argumentName));
+		positionalArgList.add(argumentName);
+		getArgument(argumentName).setValue(defaultVal);
+	} 	
 	public void addFlag(String argumentName){
 		argumentTable.put(argumentName, new Argument(Argument.DataType.BOOLEAN, argumentName));
 		optionalArgList.add(argumentName);
 		getArgument(argumentName).setValue("false");
 	}
 	
-	public boolean getAddedFlag(){
-		return addedFlag;
-	}
-	
-	public void setRestrictedValues(int [] argumentArray){
-		restrictedIntValues = new int [argumentArray.length];
-		
-		for (int i = 0; i < argumentArray.length; i ++){
-			restrictedIntValues[i] = argumentArray[i];
+	public void setRestrictedValue(String argumentName, String ...restrictedValue){
+		for (String value : restrictedValue)
+		{
+			getArgument(argumentName).setRestrictedValue(value);
 		}
-		
-	}
+	}	
 	
-	public boolean checkRestrictedValues(int a){
-		boolean isRestricted = false;
-		
-		for(int i = 0; i < restrictedIntValues.length; i ++){
-			if(a == restrictedIntValues[i]){
-				isRestricted = true;
-				break;
-			}
+	public boolean checkRestrictedValues(String argumentName, Object value){
+		if(getArgument(argumentName).getType().equals("int")){
+			value = Integer.parseInt(value.toString());
+		}	
+		else if(getArgument(argumentName).getType().equals("float")){
+			value = Float.parseFloat(value.toString());
 		}
+		else{
+			value = value.toString();
+		}	
 		
-		return isRestricted;
-	}
-	
-	public void setRestrictedValues(float [] argumentArray){
-		restrictedFloatValues = new float [argumentArray.length];
-		
-		for (int i = 0; i < argumentArray.length; i ++){
-			restrictedFloatValues[i] = argumentArray[i];
-		}
-		
-	}
-	
-	public boolean checkRestrictedValues(float a){
-		boolean isRestricted = false;
-		
-		for(int i = 0; i < restrictedFloatValues.length; i ++){
-			if(a == restrictedFloatValues[i]){
-				isRestricted = true;
-				break;
-			}
-		}
-		
-		return isRestricted;
-	}
-	
-	public void setRestrictedValues(String [] argumentArray){
-		restrictedStringValues = new String [argumentArray.length];
-		
-		for (int i = 0; i < argumentArray.length; i ++){
-			restrictedStringValues[i] = argumentArray[i];
-		}
-		
-	}
-	
-	public boolean checkRestrictedValues(String a){
-		boolean isRestricted = false;
-		
-		for(int i = 0; i < restrictedStringValues.length; i ++){
-			if(a == restrictedStringValues[i]){
-				isRestricted = true;
-				break;
-			}
-		}
-		
-		return isRestricted;
+		return getArgument(argumentName).getRestrictedValue().contains(value);
 	}
 
 	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal){
@@ -247,7 +198,12 @@ public class ArgumentParser {
 		return s;
 	}
 	
-	private void setProgramName(){
-		programName = Thread.currentThread().getStackTrace()[3].getClassName();
+	public void setProgramName(String name){
+		programName = name;
+	}
+	
+	public String getProgramName(){
+		return programName;
+
 	}
 }

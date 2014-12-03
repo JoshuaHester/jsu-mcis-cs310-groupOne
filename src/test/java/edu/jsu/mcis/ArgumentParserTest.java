@@ -543,21 +543,7 @@ public class ArgumentParserTest{
 		argp.parse("Chevy -t car");
 		assertEquals("car",argp.getArgument("type").getValue());
 	}
-	/*
-	@Test 
-	public void testXML(){
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-		ArgumentParser argp=XMLTools.loadParser("xmlFiles/test.xml");
-=======
->>>>>>> Stashed changes
-		
-		argp.loadXML("xmlFiles/test.xml");
->>>>>>> FETCH_HEAD
-		assertEquals("box",argp.getArgument("type").getValue());
-	}
-	*/
+	
 	@Test
 	public void testShortName(){
 		
@@ -579,40 +565,30 @@ public class ArgumentParserTest{
 		argp.parse("Chevy -b car");
 	}
 	
-	@Test
+		@Test
 	public void testsetRestrictedIntegerValues(){
-		
-		int [] restrictedValues = {1,3,5,7,9};
-		argp.setRestrictedValues(restrictedValues);
-		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
-		}
-		assertFalse(argp.checkRestrictedValues(2));
-		
+		argp.setProgramName("VolCal");
+		argp.addArgument(Argument.DataType.INT, "length");
+		argp.setRestrictedValue("length", "1","3");
+		assertTrue(argp.checkRestrictedValues("length","3"));
 	}
+	
 	
 	@Test
 	public void testsetRestrictedStringValues(){
-		
-		String [] restrictedValues = {"a","b","c"};
-		argp.setRestrictedValues(restrictedValues);
-		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
-		}
-		assertFalse(argp.checkRestrictedValues("e"));
+		argp.setProgramName("VolCal");
+		argp.addArgument(Argument.DataType.STRING, "length");
+		argp.setRestrictedValue("length", "no","nope");
+		assertTrue(argp.checkRestrictedValues("length","nope"));
 		
 	}
 	
 	@Test
 	public void testsetRestrictedFloatValues(){
-		
-		float [] restrictedValues = {7.2f,3.6f,2.1f,1.3f};
-		argp.setRestrictedValues(restrictedValues);
-		for(int i  = 0; i < restrictedValues.length; i ++){
-			assertTrue(argp.checkRestrictedValues(restrictedValues[i]));
-		}
-		assertFalse(argp.checkRestrictedValues(5.5f));
-		
+		argp.setProgramName("VolCal");
+		argp.addArgument(Argument.DataType.FLOAT, "length");
+		argp.setRestrictedValue("length", "3.3","4.4");
+		assertTrue(argp.checkRestrictedValues("length","3.3"));
 	}
 	
 	@Test

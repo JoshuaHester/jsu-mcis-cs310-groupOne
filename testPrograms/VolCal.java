@@ -40,21 +40,19 @@ public class VolCal {
 	public static void main(String args[]){
 		ArgumentParser arg = new ArgumentParser();
 		arg.setProgramName("VolCal");
-		arg.addArgument(Argument.DataType.FLOAT, "length");
-		arg.getArgument("length").setDescription("The length of the object. Radius if object is a sphere");
-		arg.addArgument(Argument.DataType.FLOAT, "width");
-		arg.getArgument("width").setDescription("The width of the object");
+		arg.addArgument("length", Argument.DataType.FLOAT);
+		arg.getArgument("length").setDescription("the length of the object. The radius if the object is a sphere");
+		arg.addArgument("width", Argument.DataType.FLOAT);
+		arg.getArgument("width").setDescription("the width of the argument");
 		arg.addArgument("height", Argument.DataType.FLOAT);
-		arg.getArgument("height").setDescription("The height of the object");
+		arg.getArgument("height").setDescription("height of the object");
 		arg.addRequiredArgument("type",Argument.DataType.STRING, "box");
-		arg.getArgument("type").setDescription("The type of object having its volume calculated:box(default), sphere, pyramid");
-		//arg.setDescription("type", "The type of the object")
 		arg.getArgument("type").setShortName("t");
 		arg.addFlag("hollow");
 		arg.getArgument("hollow").setDescription("whether the object is hollow");
-		float [] restrictedValues = {1.1f,3.3f,5.5f,7.7f,9.9f};
-		arg.setRestrictedValues(restrictedValues);
-
+		arg.setRestrictedValue("length", "1","3");
+		arg.setRestrictedValue("width", "5","7");
+		arg.setRestrictedValue("height", "2","4");
 		
 		String input = "";
 		for(int i = 0; i < args.length; i++) {
@@ -66,9 +64,9 @@ public class VolCal {
 		float h = arg.getArgument("height").getValue();
 		String t = arg.getArgument("type").getValue();
 		boolean f = arg.getArgument("hollow").getValue();
-		boolean restrictedL = arg.checkRestrictedValues(l);
-		boolean restrictedW = arg.checkRestrictedValues(w);
-		boolean restrictedH = arg.checkRestrictedValues(h);
+		boolean restrictedL = arg.checkRestrictedValues("length", l);
+		boolean restrictedW = arg.checkRestrictedValues("width", w);
+		boolean restrictedH = arg.checkRestrictedValues("height", h);
 		boolean foundRestricted = false;
 		VolCal cal = new VolCal(l,w,h,t);
 		if(restrictedL){

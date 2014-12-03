@@ -9,6 +9,7 @@ public class Argument {
 	private String description;
 	private DataType variables = DataType.STRING;
 	private String shortName;
+	private List<Object> restrictedValue;
 	
 	
 	public enum DataType{STRING, INT, FLOAT, BOOLEAN;
@@ -31,6 +32,7 @@ public class Argument {
 		name = argument;
 		value = "";
 		variables = DataType.STRING;
+		restrictedValue = new ArrayList<Object>();
 	}
 	
  	Argument(DataType t, String argument){
@@ -41,6 +43,7 @@ public class Argument {
 	public <T> T getValue(){
 		return (T) value;
 	}
+
 	
 	public String getName(){
 		return name;
@@ -84,5 +87,24 @@ public class Argument {
 		default:
 			value = v;
 		}
+	}
+	
+	public void setRestrictedValue(String  arg){
+		
+			switch(variables){
+			case INT:
+				restrictedValue.add(Integer.parseInt(arg));
+				break;
+			case FLOAT:
+				restrictedValue.add(Float.parseFloat(arg));
+				break;
+			default:
+				restrictedValue.add(arg);
+			}
+		
+	}
+	public List getRestrictedValue()
+	{
+		return restrictedValue;
 	}
 }
