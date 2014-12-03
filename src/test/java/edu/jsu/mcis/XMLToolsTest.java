@@ -27,35 +27,35 @@ public class XMLToolsTest{
 	public void testGetLastValue() {
 		assertEquals("red", p.getArgument("color").getValue());
 	}
-	/*
+	
 	@Test
 	public void testSizePos() {
-		assertEquals(3,loader.getNumPosArguments());
+		assertEquals(3,p.getNumPosArguments());
 	}
 	
 	@Test
 	public void testSizeOpt() {
-		assertEquals(2,loader.getNumOptArguments());
+		assertEquals(2,p.getNumOptArguments());
 	}
 	
 	@Test
 	public void testGetLists() {
-		assertEquals(5,loader.getNumArguments());
+		assertEquals(5,p.getNumArguments());
 	}
 	
 	@Test
 	public void testFlags(){
-		LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
-		assertEquals(false,loader.getArgument("hollow").getValue());
+		p = XMLTools.loadParser("xmlFiles/flagtest.xml");
+		assertEquals(false,p.getArgument("hollow").getValue());
 	
 	}
 	
-	@Test
-	public void testSizePos2() {
-		LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
-		assertEquals(3,loader.getNumPosArguments());
-	}
-	*/
+	//@Test
+	//public void testSizePos2() {
+		//LoadXML loader = new LoadXML("xmlFiles/flagtest.xml");
+		//assertEquals(3,p.getNumPosArguments());
+	//}
+
 	
 }
 

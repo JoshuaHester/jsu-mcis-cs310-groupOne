@@ -5,21 +5,21 @@ import java.util.Scanner;
 
 public class ArgumentParser {
 
-	public String programName ="";
+	private String programName ="";
 	protected List<String> positionalArgList;
 	protected List<String> optionalArgList;
-	public List<T> restrictedValues;
 	protected Hashtable<String,Argument> argumentTable;
 	private boolean helpFlagExits;
+	private boolean addedFlag = false;
 	private int [] restrictedIntValues;
 	private float [] restrictedFloatValues;
 	private String [] restrictedStringValues;
-
 	
 	public ArgumentParser(){
 		positionalArgList = new ArrayList<String>(5);
 		optionalArgList = new ArrayList<String>(5);
 		argumentTable = new Hashtable<String,Argument>(5);
+		setProgramName();
 		helpFlagExits = true;
 	}
 	
@@ -38,27 +38,26 @@ public class ArgumentParser {
 		addArgument(type, argumentName);
 	}
 	
-	public void addRequiredArgument(String argumentName, Argument.DataType type, String defaultVal){
-		argumentTable.put(argumentName, new Argument(type, argumentName));
-		positionalArgList.add(argumentName);
-		getArgument(argumentName).setValue(defaultVal);
-	} 	
-	
 	public void addFlag(String argumentName){
 		argumentTable.put(argumentName, new Argument(Argument.DataType.BOOLEAN, argumentName));
 		optionalArgList.add(argumentName);
 		getArgument(argumentName).setValue("false");
 	}
-	//list of t
-	public <T> void setRestrictedValues(List<T> givenValues){
-		restrictedValues = new ArrayList<T>(givenValues.size());
-		//for (int i = 0; i < givenValues.size(); i ++){
-			restrictedValues.add(givenValues);
+	
+	public boolean getAddedFlag(){
+		return addedFlag;
+	}
+	
+	public void setRestrictedValues(int [] argumentArray){
+		restrictedIntValues = new int [argumentArray.length];
 		
+		for (int i = 0; i < argumentArray.length; i ++){
+			restrictedIntValues[i] = argumentArray[i];
+		}
 		
 	}
 	
-	/*public boolean checkRestrictedValues(int a){
+	public boolean checkRestrictedValues(int a){
 		boolean isRestricted = false;
 		
 		for(int i = 0; i < restrictedIntValues.length; i ++){
@@ -113,7 +112,7 @@ public class ArgumentParser {
 		}
 		
 		return isRestricted;
-	}*/
+	}
 
 	public void addOptionalArgument(Argument.DataType type, String argumentName, String defaultVal){
 		argumentTable.put(argumentName, new Argument(type, argumentName));
@@ -248,12 +247,7 @@ public class ArgumentParser {
 		return s;
 	}
 	
-	public void setProgramName(String name){
-		programName = name;
-	}
-	
-	public String getProgramName(){
-		return programName;
-
+	private void setProgramName(){
+		programName = Thread.currentThread().getStackTrace()[3].getClassName();
 	}
 }
