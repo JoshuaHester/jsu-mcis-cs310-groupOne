@@ -215,4 +215,12 @@ public class ArgumentParser {
 	public String getProgramDescription(){
 		return programDescription;
 	}
+	
+	public List getPositionalArgs(){
+		return positionalArgList;
+	}
+
+	public List getOptionalArgs(){
+		return optionalArgList;
+	}
 }

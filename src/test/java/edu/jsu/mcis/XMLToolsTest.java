@@ -55,6 +55,11 @@ public class XMLToolsTest{
 		p=XMLTools.loadParser("xmlFiles/flagtest.xml");
 		assertEquals(3,p.getNumPosArguments());
 	}
+	
+	@Test
+	public void testSaveParser(){
+		XMLTools.saveParser(p,"xmlFiles/savedFile.xml");
+	}
 
 	
 }
