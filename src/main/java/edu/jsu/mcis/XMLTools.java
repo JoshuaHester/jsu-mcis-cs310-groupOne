@@ -12,6 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+
 public class XMLTools {
 	public static ArgumentParser p;
 	public static ArrayList<String> argNameList;
@@ -168,5 +169,6 @@ public class XMLTools {
 			System.out.println("Input/Output Exception");
 			System.exit(1);
 		}
+		
 	}
 }

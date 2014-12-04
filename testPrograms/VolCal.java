@@ -70,6 +70,8 @@ public class VolCal {
 		boolean restrictedW = arg.checkRestrictedValues("width", w);
 		boolean restrictedH = arg.checkRestrictedValues("height", h);
 		boolean foundRestricted = false;
+		
+		
 		VolCal cal = new VolCal(l,w,h,t);
 		if(restrictedL){
 			System.out.println("Restricted Value" + l);

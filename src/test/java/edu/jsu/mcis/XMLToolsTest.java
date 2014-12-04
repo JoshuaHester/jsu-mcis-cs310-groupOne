@@ -25,7 +25,7 @@ public class XMLToolsTest{
 	
 		@Test
 	public void testGetLastValue() {
-		assertEquals("red", p.getArgument("color").getValue());
+		assertEquals(false, p.getArgument("hollow").getValue());
 	}
 	
 	@Test

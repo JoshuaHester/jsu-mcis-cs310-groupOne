@@ -107,12 +107,6 @@ public class GroupOneKeywords{
 		return s;
 	}
 	
-	public void StartProgramWithXMLFile(String file, String args){
-		p = new ArgumentParser();
-		p.loadXML(file);
-		p.parse(args);
-	}
-	
 	public void StartProgramWithShortNames(String args){
 		p = new ArgumentParser();
 		p.addArgument("length");
