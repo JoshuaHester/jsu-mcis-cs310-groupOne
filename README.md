@@ -1,4 +1,4 @@
-Group 1
+Software Engineering Group Project: Argument Parser
 ==========
 
 Sarah Fedyk  
