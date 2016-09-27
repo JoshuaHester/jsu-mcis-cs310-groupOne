@@ -1,6 +1,8 @@
 Software Engineering Group Project: Argument Parser
 ==========
 
+Group Members:
+
 Sarah Fedyk  
 
 Joshua Hester
@@ -14,3 +16,7 @@ Corey Kyle
 Jingtong Dai
 
 Shannon Bolton
+
+=============
+
+
